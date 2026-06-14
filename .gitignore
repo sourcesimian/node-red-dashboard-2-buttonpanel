@@ -1,0 +1,32 @@
+# Dependencies
+node_modules/
+dist/
+
+# Local Node-RED development instances
+_node_red*/
+
+# Build and package output
+ui/dist/
+*.tgz
+
+# Local caches
+.npm-cache/
+.cache/
+.vite/
+.npmrc
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# Environment and local editor files
+.env
+.env.*
+.envrc
+.DS_Store
+.vscode/
+.idea/
+*.swp
+*.swo

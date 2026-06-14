@@ -1,0 +1,21 @@
+[
+  {
+    "id": "buttonpanel-dark-theme",
+    "type": "ui-theme",
+    "name": "buttonpanel: Dark",
+    "colors": {
+      "surface": "#272b30",
+      "primary": "#3a3f44",
+      "bgPage": "#1f2124",
+      "groupBg": "#272b30",
+      "groupOutline": "#272b30"
+    },
+    "sizes": {
+      "density": "compact",
+      "pagePadding": "2px",
+      "groupGap": "4px",
+      "groupBorderRadius": "4px",
+      "widgetGap": "4px"
+    }
+  }
+]

@@ -49,7 +49,7 @@ Then open:
 http://127.0.0.1:1880/
 ```
 
-`make setup` installs Node-RED and Dashboard 2.0 into `_node_red`. `make link` builds this package and symlinks it into `_node_red/node_modules` as `node-red-dashboard-2-buttonpanel`.
+`make setup` installs Node-RED and Dashboard 2.0 into `_node_red`. `make link` builds this package and symlinks it into `_node_red/node_modules` as `@sourcesimian/node-red-dashboard-2-buttonpanel`.
 
 To test the package as an installed tarball instead of a symlink, use:
 
@@ -65,6 +65,12 @@ From your Node-RED user directory:
 
 ```sh
 npm install /path/to/node-red-dashboard-2-buttonpanel
+```
+
+Or, after publication:
+
+```sh
+npm install @sourcesimian/node-red-dashboard-2-buttonpanel
 ```
 
 Restart Node-RED, then add ButtonPanel nodes from the palette.

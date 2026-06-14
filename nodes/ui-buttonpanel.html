@@ -1,0 +1,417 @@
+<script type="text/javascript">
+  const BUTTONPANEL_NODE_COLOR = '#a8c97f'
+
+  const BUTTONPANEL_WIDGETS = [
+    { type: 'text', nodeType: 'ui-buttonpanel-text', label: 'text', color: BUTTONPANEL_NODE_COLOR, icon: 'font-awesome/fa-font' },
+    { type: 'button', nodeType: 'ui-buttonpanel-button', label: 'button', color: BUTTONPANEL_NODE_COLOR, icon: 'font-awesome/fa-hand-pointer-o' },
+    { type: 'switch', nodeType: 'ui-buttonpanel-switch', label: 'switch', color: BUTTONPANEL_NODE_COLOR, icon: 'font-awesome/fa-toggle-on' },
+    { type: 'select', nodeType: 'ui-buttonpanel-select', label: 'select', color: BUTTONPANEL_NODE_COLOR, icon: 'font-awesome/fa-list-ul' },
+    { type: 'fader', nodeType: 'ui-buttonpanel-fader', label: 'fader', color: BUTTONPANEL_NODE_COLOR, icon: 'font-awesome/fa-arrows-v' },
+    { type: 'lamp', nodeType: 'ui-buttonpanel-lamp', label: 'lamp', color: BUTTONPANEL_NODE_COLOR, icon: 'font-awesome/fa-lightbulb-o' },
+    { type: 'image', nodeType: 'ui-buttonpanel-image', label: 'image', color: BUTTONPANEL_NODE_COLOR, icon: 'font-awesome/fa-picture-o' },
+    { type: 'iframe', nodeType: 'ui-buttonpanel-iframe', label: 'iframe', color: BUTTONPANEL_NODE_COLOR, icon: 'font-awesome/fa-window-maximize' }
+  ]
+
+  const BUTTONPANEL_EDITABLE_TYPES = ['text']
+  const BUTTONPANEL_GAUGE_TYPES = ['fader']
+  const BUTTONPANEL_BUTTON_TYPES = ['select', 'image']
+  const BUTTONPANEL_ACTION_TYPES = ['text', 'button', 'switch', 'fader', 'select', 'image']
+  const BUTTONPANEL_DISPLAY_ONLY_TYPES = ['lamp', 'image', 'iframe']
+
+  function buttonpanelDefaults (widgetType) {
+    const inputs = widgetType === 'button' ? 0 : 1
+    const outputs = widgetType === 'image' ? 0 : (BUTTONPANEL_ACTION_TYPES.includes(widgetType) ? 1 : 0)
+
+    const defaults = {
+      name: { value: '' },
+      group: { type: 'ui-group', required: true },
+      order: { value: 0 },
+      width: { value: 0 },
+      height: { value: 0 },
+      label: { value: '' },
+      config: { value: '' },
+      widgetType: { value: widgetType, required: true },
+      inputs: { value: inputs },
+      outputs: { value: outputs }
+    }
+
+    if (BUTTONPANEL_EDITABLE_TYPES.includes(widgetType)) {
+      defaults.editable = { value: true }
+    }
+    if (BUTTONPANEL_GAUGE_TYPES.includes(widgetType)) {
+      defaults.gauge = { value: false }
+    }
+    if (BUTTONPANEL_BUTTON_TYPES.includes(widgetType)) {
+      defaults.button = { value: false }
+    }
+
+    return defaults
+  }
+
+  function prepareButtonPanelEditor (fixedType, nodeConfig) {
+    $('.buttonpanel-editor').html($('#buttonpanel-editor-template').html())
+    $('#node-input-widgetType').val(fixedType)
+
+    const helpBase = 'https://github.com/sourcesimian/node-red-dashboard-2-buttonpanel/blob/main/MANUAL.md#'
+
+    function updateByType () {
+      const type = $('#node-input-widgetType').val() || fixedType
+      const editable = $('#node-input-editable').prop('checked')
+      const gauge = $('#node-input-gauge').prop('checked')
+      const button = $('#node-input-button').prop('checked')
+      const inputs = type === 'button' || (type === 'select' && button) ? 0 : 1
+      const outputs = BUTTONPANEL_EDITABLE_TYPES.includes(type)
+        ? (editable ? 1 : 0)
+        : type === 'fader'
+          ? (gauge ? 0 : 1)
+          : type === 'image'
+            ? (button ? 1 : 0)
+            : (BUTTONPANEL_ACTION_TYPES.includes(type) ? 1 : 0)
+      $('#node-input-inputs').val(inputs)
+      $('#node-input-outputs').val(outputs)
+      $('#buttonpanel-editable-row').toggle(BUTTONPANEL_EDITABLE_TYPES.includes(type))
+      $('#buttonpanel-gauge-row').toggle(BUTTONPANEL_GAUGE_TYPES.includes(type))
+      $('#buttonpanel-button-row').toggle(BUTTONPANEL_BUTTON_TYPES.includes(type))
+      $('#buttonpanel-config-help').attr('href', `${helpBase}buttonpanel-${type}-config`)
+
+      const hint = BUTTONPANEL_BUTTON_TYPES.includes(type)
+        ? (type === 'select'
+          ? (button
+            ? 'Select button widget: user taps open the configured values dialog; no input is used.'
+            : 'Select widget: incoming values update state; user selections emit output messages.')
+          : (button
+            ? 'Image button widget: incoming values update the image; user taps emit output messages.'
+            : 'Display-only image widget: incoming values update the image; no output is emitted.'))
+        : BUTTONPANEL_DISPLAY_ONLY_TYPES.includes(type)
+        ? 'Display-only widget: incoming values update the tile; no output is emitted.'
+        : BUTTONPANEL_EDITABLE_TYPES.includes(type)
+          ? 'Editable widget: incoming values update the tile; user edits emit output messages.'
+        : type === 'fader'
+          ? (gauge
+            ? 'Gauge widget: incoming numeric values update the display; no output is emitted.'
+            : 'Fader widget: incoming numeric values update the display; user edits emit output messages.')
+          : 'Interactive widget: incoming values update state; user actions emit output messages.'
+      $('#buttonpanel-output-hint').text(hint)
+    }
+
+    function stringifyScalar (value) {
+      if (value === undefined || value === null) return ''
+      if (Array.isArray(value)) return `[${value.map(stringifyScalar).join(', ')}]`
+      if (typeof value === 'boolean' || typeof value === 'number') return String(value)
+      const text = String(value)
+      if (!text) return ''
+      if (/[:#\[\]\{\},]|^\s|\s$/.test(text)) return JSON.stringify(text)
+      return text
+    }
+
+    function stringifyItems (key, items) {
+      const rows = [`${key}:`]
+      for (const item of items) {
+        const entries = Object.entries(item)
+        if (!entries.length) continue
+        const [firstKey, firstValue] = entries[0]
+        rows.push(`  - ${firstKey}: ${stringifyScalar(firstValue)}`)
+        entries.slice(1).forEach(([itemKey, itemValue]) => {
+          rows.push(`    ${itemKey}: ${stringifyScalar(itemValue)}`)
+        })
+      }
+      return rows
+    }
+
+    function stringifyObject (key, value) {
+      const rows = [`${key}:`]
+      Object.entries(value || {}).forEach(([objectKey, objectValue]) => {
+        rows.push(`  ${objectKey}: ${stringifyScalar(objectValue)}`)
+      })
+      return rows
+    }
+
+    function sampleConfig (type) {
+      const editable = $('#node-input-editable').prop('checked')
+      const gauge = $('#node-input-gauge').prop('checked')
+      const button = $('#node-input-button').prop('checked')
+      const samples = {
+        text: editable
+          ? { text: '', icon: 'keyboard', color: '#f6f26b', input_timeout: 0 }
+          : { text: 'Status', icon: 'article', color: '#ffffff' },
+        button: { text: 'Play', value: 'PLAY', icon: 'play_arrow', color: '#52D017', confirm: 'Run command?', confirm_pin: 0, input_timeout: 0 },
+        switch: {
+          input_timeout: 0,
+          values: [
+            { value: 'OFF', text: 'Off', icon: 'toggle_off', color: '#7f8790' },
+            { value: 'ON', text: 'On', icon: 'toggle_on', color: '#52D017', confirm: 'Turn this on?', confirm_pin: 4 }
+          ]
+        },
+        select: button
+          ? {
+              text: 'Scene',
+              icon: 'radio_button_checked',
+              color: '#26c6da',
+              input_timeout: 0,
+              values: [
+                { value: 'MOUNTAIN', text: 'Mountain', icon: 'landscape', color: '#bdbdbd' },
+                { value: 'COAST', text: 'Coast', icon: 'waves', color: '#26c6da', confirm: 'Switch to coast?', confirm_pin: 4 }
+              ]
+            }
+          : {
+              input_timeout: 0,
+              values: [
+                { value: 'MOUNTAIN', text: 'Mountain', icon: 'landscape', color: '#bdbdbd' },
+                { value: 'COAST', text: 'Coast', icon: 'waves', color: '#26c6da', confirm: 'Switch to coast?', confirm_pin: 4 }
+              ]
+            },
+        fader: gauge
+          ? {
+              text: 'Gauge',
+              min: 0,
+              max: 100,
+              ranges: [
+                { range: [0, 40], text: 'Low', icon: 'battery_1_bar', color: '#91c900' },
+                { range: [41, 75], text: 'Good', icon: 'battery_4_bar', color: '#00c000' },
+                { range: [76, 100], text: 'High', icon: 'warning', color: '#f89406' }
+              ]
+            }
+          : {
+              text: 'Level',
+              icon: 'tune',
+              color: '#62a8ea',
+              min: 0,
+              max: 100,
+              live: false,
+              input_timeout: 0,
+              ranges: [
+                { range: [0, 40], text: 'Low', icon: 'battery_1_bar', color: '#91c900' },
+                { range: [41, 75], text: 'Good', icon: 'battery_4_bar', color: '#00c000' },
+                { range: [76, 100], text: 'High', icon: 'warning', color: '#f89406' }
+              ]
+            },
+        lamp: {
+          values: [
+            { value: 'OFF', text: 'OFF', icon: 'emoji_objects', color: '#7f8790' },
+            { value: 'ON', text: 'ON', icon: 'emoji_objects', color: '#ffd84d' }
+          ]
+        },
+        image: button
+          ? { overflow: 'hidden', value: 'IMAGE', confirm: 'Send image command?', confirm_pin: 0, input_timeout: 0 }
+          : { overflow: 'hidden' },
+        iframe: { attributes: { loading: 'lazy', referrerpolicy: 'no-referrer', scrolling: 'auto', overflow: 'auto' } }
+      }
+      return toYaml(samples[type] || {})
+    }
+
+    function toYaml (config) {
+      const rows = []
+      Object.entries(config).forEach(([key, value]) => {
+        if (Array.isArray(value)) {
+          rows.push(...stringifyItems(key, value))
+        } else if (value && typeof value === 'object') {
+          rows.push(...stringifyObject(key, value))
+        } else {
+          rows.push(`${key}: ${stringifyScalar(value)}`)
+        }
+      })
+      return rows.join('\n')
+    }
+
+    $('#node-input-name').val(nodeConfig.name || '')
+    $('#node-input-label').val(nodeConfig.label || '')
+    const defaultEditable = BUTTONPANEL_EDITABLE_TYPES.includes(fixedType)
+    $('#node-input-editable').prop('checked', nodeConfig.editable === undefined
+      ? defaultEditable
+      : (nodeConfig.editable === true || nodeConfig.editable === 'true'))
+    $('#node-input-gauge').prop('checked', nodeConfig.gauge === true || nodeConfig.gauge === 'true')
+    $('#node-input-button').prop('checked', nodeConfig.button === true || nodeConfig.button === 'true')
+    $('#node-input-config').val(nodeConfig.config || '')
+    updateByType()
+
+    $('#node-input-editable').on('change', updateByType)
+    $('#node-input-gauge').on('change', updateByType)
+    $('#node-input-button').on('change', updateByType)
+
+    $('#buttonpanel-example-config').on('click', function (event) {
+      event.preventDefault()
+      const type = $('#node-input-widgetType').val()
+      $('#node-input-config').val(sampleConfig(type)).trigger('input').trigger('change')
+    })
+  }
+
+  for (const widget of BUTTONPANEL_WIDGETS) {
+    RED.nodes.registerType(widget.nodeType, {
+      category: 'buttonpanel',
+      color: widget.color,
+      defaults: buttonpanelDefaults(widget.type),
+      inputs: widget.type === 'button' ? 0 : 1,
+      outputs: BUTTONPANEL_EDITABLE_TYPES.includes(widget.type) || widget.type === 'fader' || (widget.type !== 'image' && BUTTONPANEL_ACTION_TYPES.includes(widget.type)) ? 1 : 0,
+      icon: widget.icon,
+      align: 'left',
+      paletteLabel: widget.label,
+      label: function () {
+        return this.name || this.label || widget.label
+      },
+      oneditprepare: function () {
+        prepareButtonPanelEditor(widget.type, this)
+      }
+    })
+  }
+</script>
+
+<script type="text/html" data-template-name="ui-buttonpanel-text">
+  <div class="form-row">
+    <label for="node-input-group"><i class="fa fa-table"></i> Group</label>
+    <input type="text" id="node-input-group">
+  </div>
+  <div class="buttonpanel-editor"></div>
+</script>
+<script type="text/html" data-template-name="ui-buttonpanel-button">
+  <div class="form-row">
+    <label for="node-input-group"><i class="fa fa-table"></i> Group</label>
+    <input type="text" id="node-input-group">
+  </div>
+  <div class="buttonpanel-editor"></div>
+</script>
+<script type="text/html" data-template-name="ui-buttonpanel-switch">
+  <div class="form-row">
+    <label for="node-input-group"><i class="fa fa-table"></i> Group</label>
+    <input type="text" id="node-input-group">
+  </div>
+  <div class="buttonpanel-editor"></div>
+</script>
+<script type="text/html" data-template-name="ui-buttonpanel-fader">
+  <div class="form-row">
+    <label for="node-input-group"><i class="fa fa-table"></i> Group</label>
+    <input type="text" id="node-input-group">
+  </div>
+  <div class="buttonpanel-editor"></div>
+</script>
+<script type="text/html" data-template-name="ui-buttonpanel-lamp">
+  <div class="form-row">
+    <label for="node-input-group"><i class="fa fa-table"></i> Group</label>
+    <input type="text" id="node-input-group">
+  </div>
+  <div class="buttonpanel-editor"></div>
+</script>
+<script type="text/html" data-template-name="ui-buttonpanel-select">
+  <div class="form-row">
+    <label for="node-input-group"><i class="fa fa-table"></i> Group</label>
+    <input type="text" id="node-input-group">
+  </div>
+  <div class="buttonpanel-editor"></div>
+</script>
+<script type="text/html" data-template-name="ui-buttonpanel-image">
+  <div class="form-row">
+    <label for="node-input-group"><i class="fa fa-table"></i> Group</label>
+    <input type="text" id="node-input-group">
+  </div>
+  <div class="buttonpanel-editor"></div>
+</script>
+<script type="text/html" data-template-name="ui-buttonpanel-iframe">
+  <div class="form-row">
+    <label for="node-input-group"><i class="fa fa-table"></i> Group</label>
+    <input type="text" id="node-input-group">
+  </div>
+  <div class="buttonpanel-editor"></div>
+</script>
+
+<script type="text/html" id="buttonpanel-editor-template">
+  <div class="form-row">
+    <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+    <input type="text" id="node-input-name">
+  </div>
+  <div class="form-row">
+    <label for="node-input-label"><i class="fa fa-header"></i> Label</label>
+    <input type="text" id="node-input-label">
+  </div>
+  <div class="form-row" id="buttonpanel-editable-row">
+    <label for="node-input-editable"><i class="fa fa-pencil"></i> Editable</label>
+    <input type="checkbox" id="node-input-editable" style="display:inline-block; width:auto; vertical-align:top;">
+  </div>
+  <div class="form-row" id="buttonpanel-gauge-row">
+    <label for="node-input-gauge"><i class="fa fa-tachometer"></i> Gauge</label>
+    <input type="checkbox" id="node-input-gauge" style="display:inline-block; width:auto; vertical-align:top;">
+  </div>
+  <div class="form-row" id="buttonpanel-button-row">
+    <label for="node-input-button"><i class="fa fa-hand-pointer-o"></i> Button</label>
+    <input type="checkbox" id="node-input-button" style="display:inline-block; width:auto; vertical-align:top;">
+  </div>
+  <div class="form-row">
+    <label for="node-input-config"><i class="fa fa-code"></i> Config</label>
+    <textarea id="node-input-config" rows="13" class="buttonpanel-config-input" spellcheck="false"></textarea>
+  </div>
+  <div class="form-row">
+    <label></label>
+    <button id="buttonpanel-example-config" class="red-ui-button">Example Config</button>
+    <a class="red-ui-button buttonpanel-editor-button" href="https://fonts.google.com/icons" target="_blank" rel="noopener noreferrer">Browse Icons</a>
+    <a id="buttonpanel-config-help" class="red-ui-button buttonpanel-editor-button" href="https://github.com/sourcesimian/node-red-dashboard-2-buttonpanel/blob/main/MANUAL.md#buttonpanel-config" target="_blank" rel="noopener noreferrer">Config Help</a>
+  </div>
+  <div class="form-row">
+    <label><i class="fa fa-random"></i> Output</label>
+    <span id="buttonpanel-output-hint" style="display:inline-block; max-width:70%; color:var(--red-ui-secondary-text-color);"></span>
+  </div>
+  <input type="hidden" id="node-input-widgetType">
+  <input type="hidden" id="node-input-outputs">
+  <input type="hidden" id="node-input-inputs">
+</script>
+
+<style>
+  .buttonpanel-config-input {
+    width: 70% !important;
+    min-height: 240px;
+    font-family: Menlo, Consolas, "Liberation Mono", monospace;
+    font-size: 12px;
+  }
+
+  .buttonpanel-editor-button {
+    margin-left: 8px;
+  }
+</style>
+
+<script type="text/html" id="buttonpanel-help-template">
+  <p>Compact Dashboard 2.0 widgets for tactile button-style control panels, inspired by <code>sourcesimian/mqtt-panel</code>.</p>
+  <p>Incoming messages are reduced to a single incoming value by <code>value_from</code>. Only interactive widgets emit outgoing messages.</p>
+  <h3>Inputs</h3>
+  <dl class="message-properties">
+    <dt>payload</dt>
+    <dd>The default source used by <code>value_from</code>. The widget receives only the resulting incoming value.</dd>
+    <dt class="optional">ui_update.config</dt>
+    <dd>Runtime widget config overrides stored in Dashboard state.</dd>
+  </dl>
+  <h3>Values and ranges</h3>
+  <p><b>Values</b> and <b>Ranges</b> use the YAML list format described in the manual.</p>
+  <p>Value entries can include <code>topic</code>, <code>confirm</code>, <code>confirm_pin</code>, and <code>input_timeout</code>. Top-level values for those keys are inherited by individual value entries.</p>
+  <h3>Outputs</h3>
+  <dl class="message-properties">
+    <dt>payload</dt>
+    <dd>The edited, selected, or commanded value. Set <code>value_type</code> in widget config to control conversion.</dd>
+    <dt class="optional">topic</dt>
+    <dd>Only emitted when configured at the top level or on the selected value entry.</dd>
+    <dt class="optional">pin</dt>
+    <dd>Only emitted when <code>confirm_pin</code> is configured and completed.</dd>
+  </dl>
+</script>
+
+<script type="text/html" data-help-name="ui-buttonpanel-text">
+  <p>Text tile. Incoming values update the display; editable text emits user-entered values.</p>
+</script>
+<script type="text/html" data-help-name="ui-buttonpanel-button">
+  <p>Command button tile. User taps emit the configured value; the node has no input.</p>
+</script>
+<script type="text/html" data-help-name="ui-buttonpanel-switch">
+  <p>Switch tile. Incoming messages update state; user taps cycle through configured Values and emit the selected value.</p>
+</script>
+<script type="text/html" data-help-name="ui-buttonpanel-fader">
+  <p>Fader tile. Incoming numeric values update the display; non-gauge faders emit numeric values.</p>
+</script>
+<script type="text/html" data-help-name="ui-buttonpanel-select">
+  <p>Select tile. Incoming messages update state; user selections emit the selected value.</p>
+</script>
+<script type="text/html" data-help-name="ui-buttonpanel-lamp">
+  <p>Display-only lamp tile. Incoming values are mapped through the configured Values list.</p>
+</script>
+<script type="text/html" data-help-name="ui-buttonpanel-image">
+  <p>Display-only image tile. Incoming values are used as image URLs.</p>
+  <p>Config key: <code>overflow</code>. When Button is enabled, also <code>value</code>, <code>topic</code>, <code>confirm</code>, <code>confirm_pin</code>, and <code>input_timeout</code>.</p>
+</script>
+<script type="text/html" data-help-name="ui-buttonpanel-iframe">
+  <p>Display-only iframe tile. Incoming values are used as iframe URLs.</p>
+  <p>Config key: <code>attributes</code>. Dashboard node Height controls the outer grid frame.</p>
+</script>

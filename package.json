@@ -1,0 +1,95 @@
+{
+  "name": "@sourcesimian/node-red-dashboard-2-buttonpanel",
+  "version": "0.1.0",
+  "description": "Compact Node-RED Dashboard 2.0 button panel widgets.",
+  "author": "Source Simian",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sourcesimian/node-red-dashboard-2-buttonpanel.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sourcesimian/node-red-dashboard-2-buttonpanel/issues"
+  },
+  "homepage": "https://github.com/sourcesimian/node-red-dashboard-2-buttonpanel#readme",
+  "keywords": [
+    "node-red",
+    "node-red-dashboard-2",
+    "buttonpanel",
+    "dashboard-widget"
+  ],
+  "license": "MIT",
+  "type": "commonjs",
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "CHANGELOG.md",
+    "MANUAL.md",
+    "examples/*",
+    "nodes/*",
+    "resources/*",
+    "scripts/*"
+  ],
+  "scripts": {
+    "build": "vite build",
+    "build:dev": "NODE_ENV=development vite build",
+    "check": "node scripts/check-package.js"
+  },
+  "dependencies": {},
+  "peerDependencies": {
+    "@flowfuse/node-red-dashboard": ">=1.0.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.2.4",
+    "vite": "^6.3.5",
+    "vite-plugin-css-injected-by-js": "^3.5.2",
+    "vue": "^3.3.8",
+    "vuex": "^4.1.0"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "node-red": {
+    "version": ">=3.0.0",
+    "nodes": {
+      "ui-buttonpanel": "nodes/ui-buttonpanel.js"
+    }
+  },
+  "node-red-dashboard-2": {
+    "version": "1.0.0",
+    "widgets": {
+      "ui-buttonpanel-text": {
+        "output": "ui-buttonpanel.umd.js",
+        "component": "UIButtonPanel"
+      },
+      "ui-buttonpanel-button": {
+        "output": "ui-buttonpanel.umd.js",
+        "component": "UIButtonPanel"
+      },
+      "ui-buttonpanel-switch": {
+        "output": "ui-buttonpanel.umd.js",
+        "component": "UIButtonPanel"
+      },
+      "ui-buttonpanel-fader": {
+        "output": "ui-buttonpanel.umd.js",
+        "component": "UIButtonPanel"
+      },
+      "ui-buttonpanel-select": {
+        "output": "ui-buttonpanel.umd.js",
+        "component": "UIButtonPanel"
+      },
+      "ui-buttonpanel-lamp": {
+        "output": "ui-buttonpanel.umd.js",
+        "component": "UIButtonPanel"
+      },
+      "ui-buttonpanel-image": {
+        "output": "ui-buttonpanel.umd.js",
+        "component": "UIButtonPanel"
+      },
+      "ui-buttonpanel-iframe": {
+        "output": "ui-buttonpanel.umd.js",
+        "component": "UIButtonPanel"
+      }
+    }
+  }
+}

@@ -31,6 +31,7 @@
       label: { value: '' },
       config: { value: '' },
       widgetType: { value: widgetType, required: true },
+      waitForInput: { value: true },
       inputs: { value: inputs },
       outputs: { value: outputs }
     }
@@ -69,6 +70,7 @@
             : (BUTTONPANEL_ACTION_TYPES.includes(type) ? 1 : 0)
       $('#node-input-inputs').val(inputs)
       $('#node-input-outputs').val(outputs)
+      $('#buttonpanel-wait-row').toggle(inputs > 0 && outputs > 0)
       $('#buttonpanel-editable-row').toggle(BUTTONPANEL_EDITABLE_TYPES.includes(type))
       $('#buttonpanel-gauge-row').toggle(BUTTONPANEL_GAUGE_TYPES.includes(type))
       $('#buttonpanel-button-row').toggle(BUTTONPANEL_BUTTON_TYPES.includes(type))
@@ -221,12 +223,16 @@
       : (nodeConfig.editable === true || nodeConfig.editable === 'true'))
     $('#node-input-gauge').prop('checked', nodeConfig.gauge === true || nodeConfig.gauge === 'true')
     $('#node-input-button').prop('checked', nodeConfig.button === true || nodeConfig.button === 'true')
+    $('#node-input-waitForInput').prop('checked', nodeConfig.waitForInput === undefined
+      ? true
+      : (nodeConfig.waitForInput === true || nodeConfig.waitForInput === 'true'))
     $('#node-input-config').val(nodeConfig.config || '')
     updateByType()
 
     $('#node-input-editable').on('change', updateByType)
     $('#node-input-gauge').on('change', updateByType)
     $('#node-input-button').on('change', updateByType)
+    $('#node-input-waitForInput').on('change', updateByType)
 
     $('#buttonpanel-example-config').on('click', function (event) {
       event.preventDefault()
@@ -333,6 +339,10 @@
     <label for="node-input-button"><i class="fa fa-hand-pointer-o"></i> Button</label>
     <input type="checkbox" id="node-input-button" style="display:inline-block; width:auto; vertical-align:top;">
   </div>
+  <div class="form-row" id="buttonpanel-wait-row">
+    <label for="node-input-waitForInput"><i class="fa fa-clock-o"></i> Wait for input</label>
+    <input type="checkbox" id="node-input-waitForInput" style="display:inline-block; width:auto; vertical-align:top;">
+  </div>
   <div class="form-row">
     <label for="node-input-config"><i class="fa fa-code"></i> Config</label>
     <textarea id="node-input-config" rows="13" class="buttonpanel-config-input" spellcheck="false"></textarea>
@@ -368,10 +378,13 @@
 <script type="text/html" id="buttonpanel-help-template">
   <p>Compact Dashboard 2.0 widgets for tactile button-style control panels, inspired by <code>sourcesimian/mqtt-panel</code>.</p>
   <p>Incoming messages are reduced to a single incoming value by <code>value_from</code>. Only interactive widgets emit outgoing messages.</p>
+  <p>Widgets with both input and output can enable <b>Wait for input</b> to show the waiting state until an input message arrives.</p>
   <h3>Inputs</h3>
   <dl class="message-properties">
     <dt>payload</dt>
     <dd>The default source used by <code>value_from</code>. The widget receives only the resulting incoming value.</dd>
+    <dt class="optional">enabled</dt>
+    <dd>When set to <code>false</code>, disables widgets that have inputs. Messages without <code>enabled</code> leave widgets enabled.</dd>
     <dt class="optional">ui_update.config</dt>
     <dd>Runtime widget config overrides stored in Dashboard state.</dd>
   </dl>
@@ -381,7 +394,7 @@
   <h3>Outputs</h3>
   <dl class="message-properties">
     <dt>payload</dt>
-    <dd>The edited, selected, or commanded value. Set <code>value_type</code> in widget config to control conversion.</dd>
+    <dd>The edited, selected, or commanded value. Configured YAML values are emitted as parsed, faders emit numbers, and editable text emits strings.</dd>
     <dt class="optional">topic</dt>
     <dd>Only emitted when configured at the top level or on the selected value entry.</dd>
     <dt class="optional">pin</dt>

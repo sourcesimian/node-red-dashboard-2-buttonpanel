@@ -28,16 +28,22 @@ All widgets also accept these optional top-level config keys:
 
 ```yaml
 value_from: msg.payload
-value_type: string
 topic: device/command
 ```
 
 `value_from` selects the incoming value before the widget sees it. It defaults
 to `msg.payload`, supports dot notation such as `msg.device.state`, and can use
-JSONata expressions when supported by the Node-RED runtime. `value_type`
-converts outgoing widget config values before they are emitted as `msg.payload`.
-Supported types are `string`, `number`, `boolean`, `json`, and `buffer`. `topic`
-is optional and is only included on output messages when configured.
+JSONata expressions when supported by the Node-RED runtime. Output values are
+emitted as their natural values: configured YAML values are emitted as parsed,
+faders emit numbers, and editable text emits strings. `topic` is optional and
+is only included on output messages when configured.
+
+Widgets with inputs also observe `msg.enabled`. If `msg.enabled` is `false`, the
+widget is disabled. Messages without `enabled` leave the widget enabled.
+
+Widgets with both input and output provide a **Wait for input** property. When it
+is enabled, the widget shows a waiting state after sending until the next input
+message arrives. When it is disabled, the widget only shows the sending state.
 
 For entries inside `values`, the top-level `topic`, `confirm`, `confirm_pin`,
 and `input_timeout` values are inherited unless the entry provides its own.

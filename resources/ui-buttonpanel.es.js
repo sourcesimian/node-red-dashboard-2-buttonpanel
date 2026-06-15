@@ -1,58 +1,67 @@
-(function(){"use strict";try{if(typeof document<"u"){var t=document.createElement("style");t.appendChild(document.createTextNode('@import"https://fonts.googleapis.com/icon?family=Material+Icons";.bp-widget[data-v-50986be2]{--bp-font-color: #aaa;--bp-title-color: #bdbdbd;--bp-font-muted: #969696;--bp-bg: #32383e;--bp-bg-disabled: #232628;--bp-meter-bg: #444;--bp-fader-empty: #25292d;--bp-waiting: #f89406;position:relative;display:flex;flex-direction:column;min-width:100px;min-height:65px;height:100%;box-sizing:border-box;padding:7px 10px 16px;overflow:hidden;border-radius:4px;border:0;background:var(--bp-bg);color:var(--bp-font-color);font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Arial,sans-serif;line-height:1.25;-webkit-user-select:none;user-select:none}.bp-title[data-v-50986be2]{width:100%;flex:0 0 auto;overflow:hidden;text-align:left;color:var(--bp-title-color);font-size:1.2rem;font-weight:700;white-space:nowrap;text-overflow:ellipsis}.bp-main[data-v-50986be2]{display:flex;align-items:center;min-height:32px;gap:12px;padding-top:8px;color:#f5f5f5;font-size:1.25rem}.bp-icon[data-v-50986be2],.bp-button-icon[data-v-50986be2],.bp-text-quote[data-v-50986be2]{display:inline-block;font-family:Material Icons,sans-serif;font-weight:400;font-style:normal;line-height:1;text-align:center;text-transform:none;letter-spacing:normal;white-space:nowrap;direction:ltr;word-wrap:normal;-webkit-font-feature-settings:"liga";-webkit-font-smoothing:antialiased;font-feature-settings:"liga";text-rendering:optimizeLegibility}.bp-icon[data-v-50986be2]{min-width:28px;font-size:32px}.bp-text[data-v-50986be2],.bp-text-value[data-v-50986be2]{overflow:hidden;white-space:nowrap;text-overflow:ellipsis}.bp-text-body[data-v-50986be2]{display:flex;align-items:center;gap:10px;padding-top:9px}.bp-text-quote[data-v-50986be2]{min-width:28px;font-size:32px}.bp-text-value[data-v-50986be2]{padding-top:1px;color:#fff;font-size:1.25rem;line-height:1.2}.bp-state-body[data-v-50986be2]{gap:12px;padding-top:9px}.bp-state-indicator[data-v-50986be2]{display:inline-flex;flex:0 0 auto;align-items:center;justify-content:center;width:42px;height:34px;border:0;background:transparent}.bp-state-indicator .bp-icon[data-v-50986be2]{min-width:0;font-size:34px}.bp-switch .bp-state-indicator[data-v-50986be2]{position:relative;width:40px;height:18px;border:0;border-radius:999px;opacity:.95}.bp-switch-knob[data-v-50986be2]{position:absolute;top:5px;left:25px;width:8px;height:8px;border-radius:50%;background:#232628}.bp-switch.bp-state-on .bp-switch-knob[data-v-50986be2]{left:25px}.bp-switch:not(.bp-state-on) .bp-switch-knob[data-v-50986be2]{left:7px}.bp-state-text[data-v-50986be2]{font-size:1.25rem;font-weight:400;text-transform:none}.bp-select-caret[data-v-50986be2]{margin-left:auto;color:var(--bp-font-muted);font-size:22px}.bp-button-body[data-v-50986be2]{display:flex;align-items:center;gap:12px;min-height:36px;padding-top:8px;border:0;background:transparent}.bp-button-icon[data-v-50986be2]{min-width:42px;font-size:34px}.bp-button-text[data-v-50986be2]{overflow:hidden;font-size:1.25rem;font-weight:400;white-space:nowrap;text-overflow:ellipsis}.bp-gauge-body[data-v-50986be2]{display:grid;grid-template-columns:26px minmax(0,1fr) 52px;padding-right:42px}.bp-gauge-label[data-v-50986be2]{font-weight:700}.bp-number[data-v-50986be2]{margin-left:auto;padding-right:0;color:#bdbdbd;font-size:1.3rem;font-weight:400}.bp-last-update[data-v-50986be2]{position:absolute;right:8px;bottom:4px;color:var(--bp-font-muted);font-size:11px}.bp-clickable[data-v-50986be2]{cursor:pointer}.bp-clickable[data-v-50986be2]:hover{cursor:pointer;filter:brightness(1.05)}.bp-disabled[data-v-50986be2]{background:var(--bp-bg-disabled);color:#606060;cursor:not-allowed;filter:none}.bp-pending[data-v-50986be2]{outline:2px solid var(--bp-waiting);outline-offset:-2px;background:#35383a;cursor:wait}.bp-pending[data-v-50986be2]>:not(.bp-pending-overlay):not(.bp-modal-backdrop){opacity:.46}.bp-pending-overlay[data-v-50986be2]{position:absolute;right:7px;top:7px;z-index:4;display:flex;align-items:center;justify-content:center;gap:5px;padding:4px 6px;border-radius:3px;color:#1f2124;background:var(--bp-waiting);font-size:.68rem;font-weight:800;text-transform:uppercase}.bp-spinner[data-v-50986be2]{width:11px;height:11px;border:2px solid rgba(31,33,36,.35);border-top-color:#1f2124;border-radius:50%;animation:bp-spin-50986be2 .8s linear infinite}.bp-unknown-state[data-v-50986be2]{opacity:.78}.bp-meter[data-v-50986be2]{position:absolute;top:9px;right:9px;width:22px;height:calc(100% - 28px);border:1px solid rgba(0,0,0,.45);background:var(--bp-meter-bg)}@keyframes bp-spin-50986be2{to{transform:rotate(360deg)}}.bp-meter>span[data-v-50986be2]{position:absolute;bottom:0;left:0;display:block;width:100%}.bp-image[data-v-50986be2]{display:flex;flex:1 1 auto;align-items:center;justify-content:center;min-height:0;margin-top:6px;overflow:hidden;line-height:1.2}.bp-image img[data-v-50986be2]{display:block;max-width:100%;max-height:100%;width:auto;height:auto;margin:0;object-fit:contain;object-position:center center}.bp-iframe[data-v-50986be2]{flex:1 1 auto;min-height:0;width:100%;height:100%;margin-top:6px;border:0;overflow:auto}.bp-unknown[data-v-50986be2]{align-self:flex-start;padding-top:2px;color:var(--bp-font-muted);font-size:1rem;line-height:1.2}.bp-modal-backdrop[data-v-50986be2]{position:fixed;top:0;right:0;bottom:0;left:0;z-index:1000;display:flex;align-items:center;justify-content:center;background:#00000080}.bp-modal[data-v-50986be2]{position:relative;min-width:330px;max-width:min(90vw,420px);padding:18px;border-radius:4px;background:#272b30;color:#ddd;box-shadow:0 12px 30px #00000059}.bp-modal-title[data-v-50986be2]{margin-bottom:12px;color:#f5f5f5;font-weight:700}.bp-modal-close[data-v-50986be2]{position:absolute;top:8px;right:8px;width:24px;height:24px;min-height:0;padding:0;border:0;background:transparent;cursor:pointer}.bp-modal-close span[data-v-50986be2],.bp-modal-close[data-v-50986be2]:before{position:absolute;top:11px;left:3px;width:18px;height:2px;border-radius:2px;background:#ddd;content:""}.bp-modal-close span[data-v-50986be2]{transform:rotate(45deg)}.bp-modal-close[data-v-50986be2]:before{transform:rotate(-45deg)}.bp-modal-close:hover span[data-v-50986be2],.bp-modal-close[data-v-50986be2]:hover:before{background:#fff}.bp-modal-actions[data-v-50986be2],.bp-select-list[data-v-50986be2]{display:grid;gap:8px}.bp-modal-actions[data-v-50986be2]{grid-template-columns:1fr 1fr;margin-top:16px}.bp-modal-actions button[data-v-50986be2],.bp-select-list button[data-v-50986be2]{min-height:57px;padding:9px 15px;border:1px solid #151719;border-radius:4px;background:#3a3f44;color:#f5f5f5;font-size:1.05rem;cursor:pointer}.bp-select-list button[data-v-50986be2]{display:flex;width:100%;align-items:center;gap:8px;justify-content:flex-start;padding:9px 15px}.bp-value-modal[data-v-50986be2]{display:grid;gap:12px;min-width:240px}.bp-value-input[data-v-50986be2]{width:100%;min-height:40px;box-sizing:border-box;padding:8px 10px;border:1px solid #151719;border-radius:4px;outline:none;background:#32383e;color:#fff;font:inherit}.bp-value-input[data-v-50986be2]:focus{border-color:#888;box-shadow:0 0 0 1px #888}.bp-pin-modal[data-v-50986be2]{display:grid;gap:14px;min-width:240px;padding-top:2px}.bp-pin-message[data-v-50986be2]{padding-right:18px;color:#f5f5f5;line-height:1.35}.bp-pin-dots[data-v-50986be2]{display:flex;justify-content:center;gap:10px;padding:4px 0 6px}.bp-pin-dots span[data-v-50986be2]{width:12px;height:12px;border-radius:50%;background:#50565d;box-shadow:inset 0 0 0 1px #181a1c}.bp-pin-dots span.bp-pin-dot-filled[data-v-50986be2]{background:#f0f36a;box-shadow:0 0 8px #f0f36a8c}.bp-pin-keypad[data-v-50986be2]{display:grid;grid-template-columns:repeat(3,52px);gap:8px;justify-content:center}.bp-pin-keypad button[data-v-50986be2]{width:52px;height:44px;border:1px solid #151719;border-radius:4px;background:#3a3f44;color:#f5f5f5;font:inherit;font-size:1.2rem;cursor:pointer}.bp-pin-keypad button[data-v-50986be2]:hover{background:#474d53}.bp-pin-keypad .bp-pin-key-blank[data-v-50986be2]{visibility:hidden;cursor:default}.bp-pin-keypad .bp-pin-backspace[data-v-50986be2]{font-family:Material Icons,sans-serif;font-size:1.35rem}.bp-fader-modal[data-v-50986be2]{--bp-fader-track-left: 52px;--bp-fader-track-top: 42px;--bp-fader-track-width: 48px;--bp-fader-track-height: 320px;position:relative;width:170px;height:428px;margin:0 auto}.bp-fader-modal input[data-v-50986be2]{position:absolute;top:calc(var(--bp-fader-track-top) + (var(--bp-fader-track-height) - var(--bp-fader-track-width)) / 2);left:calc(var(--bp-fader-track-left) - (var(--bp-fader-track-height) - var(--bp-fader-track-width)) / 2);width:var(--bp-fader-track-height);height:var(--bp-fader-track-width);border:1px solid #232628;background-color:var(--bp-fader-color);box-shadow:inset 0 0 0 1px #ffffff14;cursor:pointer;opacity:1;outline:none;touch-action:none;transform-origin:50% 50%;transform:rotate(270deg);appearance:none;-webkit-appearance:none;-moz-appearance:none}.bp-fader-modal input[data-v-50986be2]:hover,.bp-fader-modal input[data-v-50986be2]:active{opacity:1}.bp-fader-modal input[data-v-50986be2]::-webkit-slider-runnable-track{width:var(--bp-fader-track-height);height:var(--bp-fader-track-width);border:0;background:transparent}.bp-fader-modal input[data-v-50986be2]::-moz-range-track{width:var(--bp-fader-track-height);height:var(--bp-fader-track-width);border:0;background:transparent}.bp-fader-modal input[data-v-50986be2]::-webkit-slider-thumb{width:30px;height:60px;margin-top:-6px;border:0;border-radius:10px;background:#fff;cursor:pointer;-webkit-appearance:none;-moz-appearance:none;appearance:none}.bp-fader-modal input[data-v-50986be2]::-moz-range-thumb{width:30px;height:60px;border:0;border-radius:10px;background:#fff;cursor:pointer;-moz-appearance:none}.bp-fader-meta[data-v-50986be2]{position:absolute;top:374px;left:20px;display:flex;align-items:center;gap:6px}.bp-fader-value[data-v-50986be2]{position:absolute;top:190px;right:146px;font-size:1.2rem}.bp-fader-bounds[data-v-50986be2]{position:absolute;top:var(--bp-fader-track-top);left:136px;height:var(--bp-fader-track-height);display:flex;flex-direction:column;justify-content:space-between;color:#aaa}')),document.head.appendChild(t)}}catch(e){console.error("vite-plugin-css-injected-by-js",e)}})();
-import { mapState as S } from "vuex";
-import { openBlock as o, createElementBlock as c, normalizeClass as v, createElementVNode as s, toDisplayString as u, normalizeStyle as d, mergeProps as M, Fragment as p, createCommentVNode as m, createBlock as C, Teleport as I, withModifiers as T, renderList as y, withDirectives as k, withKeys as w, vModelText as _ } from "vue";
-const N = (e, t) => {
-  const r = e.__vccOpts || e;
-  for (const [a, l] of t)
-    r[a] = l;
-  return r;
-}, A = [
+(function(){"use strict";try{if(typeof document<"u"){var t=document.createElement("style");t.appendChild(document.createTextNode('@import"https://fonts.googleapis.com/icon?family=Material+Icons";.bp-widget[data-v-cd173103]{--bp-font-color: #aaa;--bp-title-color: #bdbdbd;--bp-font-muted: #969696;--bp-bg: #32383e;--bp-bg-disabled: #232628;--bp-disabled-color: #606060;--bp-meter-bg: #444;--bp-fader-empty: #25292d;--bp-waiting: #f89406;--bp-sending: #26c6da;--bp-active: #26c6da;position:relative;display:flex;flex-direction:column;width:100%;min-width:0;max-width:100%;min-height:65px;height:100%;box-sizing:border-box;padding:6px 8px 14px;overflow:hidden;border-radius:4px;border:0;background:var(--bp-bg);color:var(--bp-font-color);font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Arial,sans-serif;line-height:1.25;-webkit-user-select:none;user-select:none}.bp-title[data-v-cd173103]{width:100%;flex:0 0 auto;overflow:hidden;text-align:left;color:var(--bp-title-color);font-size:1rem;font-weight:400;white-space:nowrap;text-overflow:clip}.bp-main[data-v-cd173103]{display:flex;flex:1 1 auto;align-items:center;min-width:0;min-height:0;gap:6px;padding-top:0;color:#f5f5f5;font-size:1.25rem}.bp-icon[data-v-cd173103],.bp-button-icon[data-v-cd173103],.bp-text-quote[data-v-cd173103]{display:inline-block;font-family:Material Icons,sans-serif;font-weight:400;font-style:normal;line-height:1;text-align:center;text-transform:none;letter-spacing:normal;white-space:nowrap;direction:ltr;word-wrap:normal;-webkit-font-feature-settings:"liga";-webkit-font-smoothing:antialiased;font-feature-settings:"liga";text-rendering:optimizeLegibility}.bp-icon[data-v-cd173103]{min-width:28px;font-size:32px}.bp-gauge-body>.bp-icon[data-v-cd173103]{grid-column:1}.bp-text[data-v-cd173103],.bp-text-value[data-v-cd173103]{overflow:hidden;white-space:nowrap;text-overflow:clip}.bp-text-body[data-v-cd173103]{display:flex;flex:1 1 auto;align-items:center;min-width:0;min-height:0;gap:6px;padding-top:0}.bp-text-quote[data-v-cd173103]{min-width:28px;font-size:32px}.bp-text-value[data-v-cd173103]{padding-top:1px;color:#fff;font-size:1.25rem;line-height:1.2}.bp-state-body[data-v-cd173103]{gap:6px;padding-top:0}.bp-state-indicator[data-v-cd173103]{display:inline-flex;flex:0 0 auto;align-items:center;justify-content:center;width:42px;height:34px;border:0;background:transparent}.bp-state-indicator .bp-icon[data-v-cd173103]{min-width:0;font-size:34px}.bp-state-text[data-v-cd173103]{font-size:1.25rem;font-weight:400;text-transform:none}.bp-select-caret[data-v-cd173103]{margin-left:auto;color:var(--bp-font-muted);font-size:22px}.bp-button-body[data-v-cd173103]{display:flex;flex:1 1 auto;align-items:center;gap:6px;min-width:0;min-height:0;padding-top:0;border:0;background:transparent}.bp-button-icon[data-v-cd173103]{flex:0 0 auto;min-width:30px;font-size:31px}.bp-button-text[data-v-cd173103]{flex:1 1 auto;min-width:0;overflow:hidden;font-size:1.25rem;font-weight:400;white-space:nowrap;text-overflow:clip}.bp-gauge-body[data-v-cd173103]{display:grid;grid-template-columns:auto minmax(0,1fr) max-content;align-items:center;align-content:center;padding-right:26px}.bp-gauge-label[data-v-cd173103]{grid-column:2;min-width:0;font-weight:400}.bp-number[data-v-cd173103]{grid-column:3;justify-self:end;min-width:3ch;max-width:100%;padding-right:0;overflow:hidden;color:#bdbdbd;font-size:1.2rem;font-weight:400;text-align:right;text-overflow:clip;white-space:nowrap}.bp-last-update[data-v-cd173103]{position:absolute;right:6px;bottom:4px;color:var(--bp-font-muted);font-size:9px}.bp-clickable[data-v-cd173103]{cursor:pointer}.bp-clickable[data-v-cd173103]:hover{cursor:pointer;filter:brightness(1.05)}.bp-disabled[data-v-cd173103]{background:var(--bp-bg-disabled);color:var(--bp-disabled-color);cursor:not-allowed;filter:none}.bp-disabled .bp-title[data-v-cd173103],.bp-disabled .bp-last-update[data-v-cd173103],.bp-disabled .bp-icon[data-v-cd173103],.bp-disabled .bp-button-icon[data-v-cd173103],.bp-disabled .bp-text-quote[data-v-cd173103],.bp-disabled .bp-text[data-v-cd173103],.bp-disabled .bp-text-value[data-v-cd173103],.bp-disabled .bp-state-text[data-v-cd173103],.bp-disabled .bp-gauge-label[data-v-cd173103],.bp-disabled .bp-number[data-v-cd173103],.bp-disabled .bp-button-body[data-v-cd173103],.bp-disabled .bp-button-text[data-v-cd173103]{color:var(--bp-disabled-color)!important}.bp-disabled .bp-state-indicator[data-v-cd173103]{color:var(--bp-disabled-color)!important;border-color:var(--bp-disabled-color)!important;background-color:transparent!important}.bp-disabled .bp-meter>span[data-v-cd173103]{background-color:var(--bp-disabled-color)!important}.bp-active[data-v-cd173103]{outline:2px solid var(--bp-active);outline-offset:-2px}.bp-sending[data-v-cd173103]{outline:2px solid var(--bp-sending);outline-offset:-2px;cursor:progress}.bp-pending[data-v-cd173103]{outline:2px solid var(--bp-waiting);outline-offset:-2px;background:#35383a;cursor:wait}.bp-sending[data-v-cd173103]>:not(.bp-status-overlay):not(.bp-modal-backdrop),.bp-pending[data-v-cd173103]>:not(.bp-status-overlay):not(.bp-modal-backdrop){opacity:.46}.bp-status-overlay[data-v-cd173103]{position:absolute;right:7px;top:7px;z-index:4;display:flex;align-items:center;justify-content:center;gap:5px;padding:4px 6px;border-radius:3px;color:#1f2124;background:var(--bp-waiting);font-size:.68rem;font-weight:800;text-transform:uppercase}.bp-sending .bp-status-overlay[data-v-cd173103]{background:var(--bp-sending)}.bp-spinner[data-v-cd173103]{width:11px;height:11px;border:2px solid rgba(31,33,36,.35);border-top-color:#1f2124;border-radius:50%;animation:bp-spin-cd173103 .8s linear infinite}.bp-unknown-state[data-v-cd173103]{opacity:.78}.bp-meter[data-v-cd173103]{position:absolute;top:9px;right:7px;width:20px;height:calc(100% - 26px);border:1px solid rgba(0,0,0,.45);background:var(--bp-meter-bg)}@keyframes bp-spin-cd173103{to{transform:rotate(360deg)}}.bp-meter>span[data-v-cd173103]{position:absolute;bottom:0;left:0;display:block;width:100%}.bp-image[data-v-cd173103]{display:flex;flex:1 1 auto;align-items:center;justify-content:center;min-height:0;margin-top:6px;overflow:hidden;line-height:1.2}.bp-image img[data-v-cd173103]{display:block;max-width:100%;max-height:100%;width:auto;height:auto;margin:0;object-fit:contain;object-position:center center}.bp-iframe[data-v-cd173103]{flex:1 1 auto;min-height:0;width:100%;height:100%;margin-top:6px;border:0;overflow:auto}.bp-unknown[data-v-cd173103]{align-self:flex-start;padding-top:2px;color:var(--bp-font-muted);font-size:1rem;line-height:1.2}.bp-modal-backdrop[data-v-cd173103]{position:fixed;top:0;right:0;bottom:0;left:0;z-index:1000;display:flex;align-items:center;justify-content:center;background:#00000080}.bp-modal[data-v-cd173103]{position:relative;min-width:330px;max-width:min(90vw,420px);padding:18px;border-radius:4px;background:#272b30;color:#ddd;box-shadow:0 12px 30px #00000059}.bp-modal-title[data-v-cd173103]{margin-bottom:12px;color:#f5f5f5;font-weight:700}.bp-modal-close[data-v-cd173103]{position:absolute;top:8px;right:8px;width:24px;height:24px;min-height:0;padding:0;border:0;background:transparent;cursor:pointer}.bp-modal-close span[data-v-cd173103],.bp-modal-close[data-v-cd173103]:before{position:absolute;top:11px;left:3px;width:18px;height:2px;border-radius:2px;background:#ddd;content:""}.bp-modal-close span[data-v-cd173103]{transform:rotate(45deg)}.bp-modal-close[data-v-cd173103]:before{transform:rotate(-45deg)}.bp-modal-close:hover span[data-v-cd173103],.bp-modal-close[data-v-cd173103]:hover:before{background:#fff}.bp-modal-actions[data-v-cd173103],.bp-select-list[data-v-cd173103]{display:grid;gap:8px}.bp-modal-actions[data-v-cd173103]{grid-template-columns:1fr 1fr;margin-top:16px}.bp-modal-actions button[data-v-cd173103],.bp-select-list button[data-v-cd173103]{min-height:57px;padding:9px 15px;border:1px solid #151719;border-radius:4px;background:#3a3f44;color:#f5f5f5;font-size:1.05rem;cursor:pointer}.bp-select-list button[data-v-cd173103]{display:flex;width:100%;align-items:center;gap:8px;justify-content:flex-start;padding:9px 15px}.bp-value-modal[data-v-cd173103]{display:grid;gap:12px;min-width:240px}.bp-value-input[data-v-cd173103]{width:100%;min-height:40px;box-sizing:border-box;padding:8px 10px;border:1px solid #151719;border-radius:4px;outline:none;background:#32383e;color:#fff;font:inherit}.bp-value-input[data-v-cd173103]:focus{border-color:#888;box-shadow:0 0 0 1px #888}.bp-pin-modal[data-v-cd173103]{display:grid;gap:14px;min-width:240px;padding-top:2px}.bp-pin-message[data-v-cd173103]{padding-right:18px;color:#f5f5f5;line-height:1.35}.bp-pin-dots[data-v-cd173103]{display:flex;justify-content:center;gap:10px;padding:4px 0 6px}.bp-pin-dots span[data-v-cd173103]{width:12px;height:12px;border-radius:50%;background:#50565d;box-shadow:inset 0 0 0 1px #181a1c}.bp-pin-dots span.bp-pin-dot-filled[data-v-cd173103]{background:#f0f36a;box-shadow:0 0 8px #f0f36a8c}.bp-pin-keypad[data-v-cd173103]{display:grid;grid-template-columns:repeat(3,52px);gap:8px;justify-content:center}.bp-pin-keypad button[data-v-cd173103]{width:52px;height:44px;border:1px solid #151719;border-radius:4px;background:#3a3f44;color:#f5f5f5;font:inherit;font-size:1.2rem;cursor:pointer}.bp-pin-keypad button[data-v-cd173103]:hover{background:#474d53}.bp-pin-keypad .bp-pin-key-blank[data-v-cd173103]{visibility:hidden;cursor:default}.bp-pin-keypad .bp-pin-backspace[data-v-cd173103]{font-family:Material Icons,sans-serif;font-size:1.35rem}.bp-fader-modal[data-v-cd173103]{--bp-fader-track-left: 52px;--bp-fader-track-top: 42px;--bp-fader-track-width: 48px;--bp-fader-track-height: 320px;position:relative;width:170px;height:428px;margin:0 auto}.bp-fader-modal input[data-v-cd173103]{position:absolute;top:calc(var(--bp-fader-track-top) + (var(--bp-fader-track-height) - var(--bp-fader-track-width)) / 2);left:calc(var(--bp-fader-track-left) - (var(--bp-fader-track-height) - var(--bp-fader-track-width)) / 2);width:var(--bp-fader-track-height);height:var(--bp-fader-track-width);border:1px solid #232628;background-color:var(--bp-fader-color);box-shadow:inset 0 0 0 1px #ffffff14;cursor:pointer;opacity:1;outline:none;touch-action:none;transform-origin:50% 50%;transform:rotate(270deg);appearance:none;-webkit-appearance:none;-moz-appearance:none}.bp-fader-modal input[data-v-cd173103]:hover,.bp-fader-modal input[data-v-cd173103]:active{opacity:1}.bp-fader-modal input[data-v-cd173103]::-webkit-slider-runnable-track{width:var(--bp-fader-track-height);height:var(--bp-fader-track-width);border:0;background:transparent}.bp-fader-modal input[data-v-cd173103]::-moz-range-track{width:var(--bp-fader-track-height);height:var(--bp-fader-track-width);border:0;background:transparent}.bp-fader-modal input[data-v-cd173103]::-webkit-slider-thumb{width:30px;height:60px;margin-top:-6px;border:0;border-radius:10px;background:#fff;cursor:pointer;-webkit-appearance:none;-moz-appearance:none;appearance:none}.bp-fader-modal input[data-v-cd173103]::-moz-range-thumb{width:30px;height:60px;border:0;border-radius:10px;background:#fff;cursor:pointer;-moz-appearance:none}.bp-fader-meta[data-v-cd173103]{position:absolute;top:374px;left:20px;display:flex;align-items:center;gap:6px}.bp-fader-value[data-v-cd173103]{position:absolute;top:190px;right:146px;font-size:1.2rem}.bp-fader-bounds[data-v-cd173103]{position:absolute;top:var(--bp-fader-track-top);left:136px;height:var(--bp-fader-track-height);display:flex;flex-direction:column;justify-content:space-between;color:#aaa}')),document.head.appendChild(t)}}catch(a){console.error("vite-plugin-css-injected-by-js",a)}})();
+import { mapState as C } from "vuex";
+import { openBlock as l, createElementBlock as o, normalizeClass as x, createElementVNode as a, toDisplayString as c, normalizeStyle as f, mergeProps as F, Fragment as v, createCommentVNode as d, createBlock as A, Teleport as N, withModifiers as w, renderList as k, withDirectives as _, withKeys as V, vModelText as S } from "vue";
+const W = (t, e) => {
+  const n = t.__vccOpts || t;
+  for (const [u, r] of e)
+    n[u] = r;
+  return n;
+}, D = [
   { value: "OFF", text: "Off", icon: "toggle_off", color: "#7f8790" },
   { value: "ON", text: "On", icon: "toggle_on", color: "#52D017" }
-], D = [
+], O = [
   { range: [0, 100], text: "", icon: "", color: "#ccc" }
 ];
-function V(e) {
-  const t = String(e).trim();
-  return t ? t.startsWith('"') && t.endsWith('"') || t.startsWith("'") && t.endsWith("'") ? t.slice(1, -1) : t.startsWith("[") && t.endsWith("]") ? t.slice(1, -1).split(",").map((r) => V(r)) : /^-?\d+(\.\d+)?$/.test(t) ? Number(t) : t === "true" ? !0 : t === "false" ? !1 : t === "null" ? null : t : "";
+function I(t) {
+  const e = String(t).trim();
+  return e ? e.startsWith('"') && e.endsWith('"') || e.startsWith("'") && e.endsWith("'") ? e.slice(1, -1) : e.startsWith("[") && e.endsWith("]") ? e.slice(1, -1).split(",").map((n) => I(n)) : /^-?\d+(\.\d+)?$/.test(e) ? Number(e) : e === "true" ? !0 : e === "false" ? !1 : e === "null" ? null : e : "";
 }
-function b(e, t) {
-  const r = t.indexOf(":");
-  if (r === -1)
+function T(t, e) {
+  const n = e.indexOf(":");
+  if (n === -1)
     return;
-  const a = t.slice(0, r).trim(), l = t.slice(r + 1).trim();
-  a && (e[a] = V(l));
+  const u = e.slice(0, n).trim(), r = e.slice(n + 1).trim();
+  u && (t[u] = I(r));
 }
-function F(e) {
-  if (!e || typeof e != "string")
+function L(t) {
+  if (!t || typeof t != "string")
     return {};
-  const t = String(e).split(/\r?\n/), r = {};
-  let a = null, l = null;
-  for (const i of t) {
+  const e = String(t).split(/\r?\n/), n = {};
+  let u = null, r = null;
+  for (const i of e) {
     if (!i.trim() || i.trim().startsWith("#"))
       continue;
-    const n = i.match(/^\s*/)[0].length, h = i.trim();
-    n === 0 && h.endsWith(":") && ["values", "ranges", "attributes"].includes(h.slice(0, -1).trim()) ? (a = h.slice(0, -1).trim(), l = null, r[a] = a === "values" || a === "ranges" ? [] : {}) : n === 0 ? (a = null, l = null, b(r, h)) : a && Array.isArray(r[a]) && h.startsWith("- ") ? (l = {}, r[a].push(l), b(l, h.slice(2))) : a && Array.isArray(r[a]) && l ? b(l, h) : a && r[a] && typeof r[a] == "object" && b(r[a], h);
+    const s = i.match(/^\s*/)[0].length, h = i.trim();
+    s === 0 && h.endsWith(":") && ["values", "ranges", "attributes"].includes(h.slice(0, -1).trim()) ? (u = h.slice(0, -1).trim(), r = null, n[u] = u === "values" || u === "ranges" ? [] : {}) : s === 0 ? (u = null, r = null, T(n, h)) : u && Array.isArray(n[u]) && h.startsWith("- ") ? (r = {}, n[u].push(r), T(r, h.slice(2))) : u && Array.isArray(n[u]) && r ? T(r, h) : u && n[u] && typeof n[u] == "object" && T(n[u], h);
   }
-  return r;
+  return n;
 }
-function f(e) {
-  return e === null || typeof e > "u" ? "" : typeof e == "object" ? JSON.stringify(e) : String(e);
+function g(t) {
+  return t === null || typeof t > "u" ? "" : typeof t == "object" ? JSON.stringify(t) : String(t);
 }
-function x(e) {
-  if (e === "" || e === null || typeof e > "u")
+function M(t) {
+  if (t === "" || t === null || typeof t > "u")
     return null;
-  const t = Number(e);
-  return Number.isFinite(t) ? t : null;
+  const e = Number(t);
+  return Number.isFinite(e) ? e : null;
 }
-function L(e) {
-  return e !== null && typeof e < "u" && String(e) !== "";
+function P(t) {
+  return t !== null && typeof t < "u" && String(t) !== "";
 }
-function g(e) {
-  const t = Number(e);
-  return Number.isInteger(t) && t > 0 ? t : 0;
+function p(t, e) {
+  return Object.prototype.hasOwnProperty.call(t || {}, e);
 }
-const O = {
+function b(t, e) {
+  return p(t, "text") ? g(t.text) : g(e);
+}
+function m(t, e, n) {
+  return p(t, "icon") ? g(t.icon) || (n ? "" : e) : e;
+}
+function y(t) {
+  const e = Number(t);
+  return Number.isInteger(e) && e > 0 ? e : 0;
+}
+const R = {
   name: "UIButtonPanel",
   inject: ["$socket", "$dataTracker"],
   props: ["id", "props", "state"],
@@ -61,6 +70,7 @@ const O = {
       lastSeen: null,
       ticker: Date.now(),
       pending: !1,
+      sending: !1,
       modal: null,
       confirmMessage: "",
       confirmCallback: null,
@@ -73,28 +83,29 @@ const O = {
       editValue: "",
       dialogTimer: null,
       liveTimer: null,
+      sendingTimer: null,
       lastLiveValue: null,
       latestMsg: {}
     };
   },
   computed: {
-    ...S("data", ["messages"]),
+    ...C("data", ["messages"]),
     message() {
-      var e;
+      var t;
       return {
-        ...((e = this.messages) == null ? void 0 : e[this.id]) || {},
+        ...((t = this.messages) == null ? void 0 : t[this.id]) || {},
         ...this.latestMsg || {}
       };
     },
     config() {
-      var t;
-      const e = {
+      var e;
+      const t = {
         ...this.props || {},
-        ...((t = this.state) == null ? void 0 : t.config) || {}
+        ...((e = this.state) == null ? void 0 : e.config) || {}
       };
       return {
-        ...e,
-        ...F(e.config)
+        ...t,
+        ...L(t.config)
       };
     },
     widgetType() {
@@ -103,9 +114,21 @@ const O = {
     title() {
       return this.config.label || "";
     },
+    hasInput() {
+      return !(this.widgetType === "button" || this.widgetType === "select" && this.buttonMode);
+    },
+    hasOutput() {
+      return this.widgetType === "text" ? this.editable : this.widgetType === "fader" ? !this.gaugeMode : this.widgetType === "image" ? this.buttonMode : ["button", "switch", "select"].includes(this.widgetType);
+    },
+    shouldWaitForInput() {
+      return this.hasInput && this.hasOutput ? this.config.waitForInput !== !1 && this.config.waitForInput !== "false" : !1;
+    },
+    isActive() {
+      return !!this.modal;
+    },
     disabled() {
-      var e, t;
-      return ((e = this.state) == null ? void 0 : e.enabled) === !1 || ((t = this.state) == null ? void 0 : t.visible) === !1;
+      var t, e;
+      return ((t = this.state) == null ? void 0 : t.enabled) === !1 || ((e = this.state) == null ? void 0 : e.visible) === !1 || this.hasInput && this.message.enabled === !1;
     },
     editable() {
       return this.config.editable === !0 || this.config.editable === "true";
@@ -120,29 +143,35 @@ const O = {
       return this.config.button === !0 || this.config.button === "true";
     },
     displayValue() {
-      return this.widgetType === "text" ? f(this.message.payload ?? this.config.text) : f(this.message.payload);
+      return this.widgetType === "text" ? g(this.message.payload ?? this.config.text) : g(this.message.payload);
+    },
+    textValue() {
+      return this.displayValue;
+    },
+    textIcon() {
+      return m(this.config, this.editable ? "keyboard" : "article", this.textValue);
     },
     hasValue() {
-      const e = this.message.payload;
-      return e !== null && typeof e < "u" && e !== "";
+      const t = this.message.payload;
+      return t !== null && typeof t < "u" && t !== "";
     },
     numericValue() {
-      const e = Number(this.message.payload);
-      return Number.isFinite(e) ? e : null;
+      const t = Number(this.message.payload);
+      return Number.isFinite(t) ? t : null;
     },
     min() {
-      const e = x(this.config.min);
-      return e !== null ? e : 0;
+      const t = M(this.config.min);
+      return t !== null ? t : 0;
     },
     max() {
-      const e = x(this.config.max);
-      return e !== null ? e : 100;
+      const t = M(this.config.max);
+      return t !== null ? t : 100;
     },
     percent() {
       if (!Number.isFinite(this.numericValue) || this.max === this.min)
         return 0;
-      const e = Math.max(this.min, Math.min(this.max, this.numericValue));
-      return Math.round((e - this.min) / (this.max - this.min) * 100);
+      const t = Math.max(this.min, Math.min(this.max, this.numericValue));
+      return Math.round((t - this.min) / (this.max - this.min) * 100);
     },
     meterStyle() {
       return {
@@ -152,33 +181,37 @@ const O = {
       };
     },
     configuredStates() {
-      const e = (t, r) => Object.prototype.hasOwnProperty.call(t, r);
-      return (Array.isArray(this.config.values) ? this.config.values : A).map((t) => ({
-        value: t.value,
-        valueText: f(t.value),
-        text: t.text || f(t.value),
-        icon: t.icon || this.defaultStateIcon(t),
-        color: t.color || this.defaultStateColor(t),
-        topic: e(t, "topic") ? t.topic : this.config.topic || "",
-        confirm: e(t, "confirm") ? t.confirm : this.config.confirm || "",
-        confirmPin: g(e(t, "confirm_pin") ? t.confirm_pin : this.config.confirm_pin),
-        inputTimeout: e(t, "input_timeout") ? t.input_timeout : this.config.input_timeout
-      }));
+      return (Array.isArray(this.config.values) ? this.config.values : D).map((t) => {
+        const e = b(t, t.value), n = m(this.config, this.defaultStateIcon(t), e);
+        return {
+          value: t.value,
+          valueText: g(t.value),
+          text: e,
+          icon: m(t, n, e),
+          color: t.color || this.defaultStateColor(t),
+          topic: p(t, "topic") ? t.topic : this.config.topic || "",
+          confirm: p(t, "confirm") ? t.confirm : this.config.confirm || "",
+          confirmPin: y(p(t, "confirm_pin") ? t.confirm_pin : this.config.confirm_pin),
+          inputTimeout: p(t, "input_timeout") ? t.input_timeout : this.config.input_timeout
+        };
+      });
     },
     currentState() {
-      if (this.widgetType === "select" && this.buttonMode)
+      if (this.widgetType === "select" && this.buttonMode) {
+        const n = b(this.config, this.config.value || "Select");
         return {
           value: this.config.value,
-          valueText: f(this.config.value),
-          text: this.config.text || f(this.config.value) || "Select",
-          icon: this.config.icon || "radio_button_checked",
+          valueText: g(this.config.value),
+          text: n,
+          icon: m(this.config, "radio_button_checked", n),
           color: this.config.color || void 0
         };
-      const e = f(this.message.payload);
-      return this.configuredStates.find((t) => t.valueText === e) || {
+      }
+      const t = g(this.message.payload), e = b(this.config, "unknown");
+      return this.configuredStates.find((n) => n.valueText === t) || {
         value: "",
-        text: "unknown",
-        icon: this.config.icon || "do_not_disturb",
+        text: e,
+        icon: m(this.config, "do_not_disturb", e),
         color: this.config.color || void 0
       };
     },
@@ -188,16 +221,19 @@ const O = {
     isStateOn() {
       if (!["lamp", "switch", "select"].includes(this.widgetType))
         return !1;
-      const e = `${this.currentState.valueText || f(this.currentState.value)} ${this.currentState.text}`.toLowerCase();
-      return e.includes("true") || e.includes("on");
+      const t = `${this.currentState.valueText || g(this.currentState.value)} ${this.currentState.text}`.toLowerCase();
+      return t.includes("true") || t.includes("on");
     },
     ranges() {
-      return (Array.isArray(this.config.ranges) ? this.config.ranges : D).map((e) => ({
-        range: e.range || [this.min, this.max],
-        text: e.text || this.config.text || "",
-        icon: e.icon || this.config.icon || "",
-        color: e.color || "#ccc"
-      }));
+      return (Array.isArray(this.config.ranges) ? this.config.ranges : O).map((t) => {
+        const e = b(t, p(this.config, "text") ? this.config.text : ""), n = m(this.config, "tune", e);
+        return {
+          range: t.range || [this.min, this.max],
+          text: e,
+          icon: m(t, n, e),
+          color: t.color || "#ccc"
+        };
+      });
     },
     currentRange() {
       return this.rangeFor(this.numericValue);
@@ -206,29 +242,29 @@ const O = {
       return this.rangeFor(Number(this.faderValue));
     },
     faderTrackStyle() {
-      const e = Number(this.faderValue), t = Number.isFinite(e) && this.max !== this.min ? Math.max(0, Math.min(100, (e - this.min) / (this.max - this.min) * 100)) : 0;
+      const t = Number(this.faderValue), e = Number.isFinite(t) && this.max !== this.min ? Math.max(0, Math.min(100, (t - this.min) / (this.max - this.min) * 100)) : 0;
       return {
         "--bp-fader-color": this.faderRange.color || this.currentRange.color || "#ccc",
-        "--bp-fader-percent": `${t}%`
+        "--bp-fader-percent": `${e}%`
       };
     },
     baseStyle() {
       return this.config.color ? { color: this.config.color } : {};
     },
     imageStyle() {
-      const e = this.config.overflow;
-      return ["hidden", "visible", "scroll", "auto"].includes(e) ? { overflow: e } : {};
+      const t = this.config.overflow;
+      return ["hidden", "visible", "scroll", "auto"].includes(t) ? { overflow: t } : {};
     },
     iframeStyle() {
-      var t;
-      return { overflow: ((t = this.config.attributes) == null ? void 0 : t.overflow) || "auto" };
+      var e;
+      return { overflow: ((e = this.config.attributes) == null ? void 0 : e.overflow) || "auto" };
     },
     iframeAttributes() {
-      const e = this.config.attributes && typeof this.config.attributes == "object" ? this.config.attributes : {}, t = ["src", "style", "class", "frameborder", "overflow"];
+      const t = this.config.attributes && typeof this.config.attributes == "object" ? this.config.attributes : {}, e = ["src", "style", "class", "frameborder", "overflow"];
       return {
         scrolling: "auto",
         ...Object.fromEntries(
-          Object.entries(e).filter(([a]) => !t.includes(String(a).toLowerCase())).map(([a, l]) => [a, f(l)])
+          Object.entries(t).filter(([u]) => !e.includes(String(u).toLowerCase())).map(([u, r]) => [u, g(r)])
         )
       };
     },
@@ -236,32 +272,32 @@ const O = {
       return this.widgetType === "fader" ? this.currentRange.color ? { color: this.currentRange.color } : {} : this.currentState.color || this.currentRange.color ? { color: this.currentState.color || this.currentRange.color } : {};
     },
     indicatorStyle() {
-      const e = this.currentState.color || "#7f8790";
-      return this.widgetType === "switch" ? {
-        "--bp-state-color": e,
-        backgroundColor: e
-      } : {
-        "--bp-state-color": e,
-        color: e,
-        borderColor: e
+      const t = this.currentState.color || "#7f8790";
+      return {
+        "--bp-state-color": t,
+        color: t,
+        borderColor: t
       };
     },
     buttonText() {
-      return this.config.text || this.config.value || this.displayValue || "Push";
+      return b(this.config, this.config.value);
+    },
+    buttonIcon() {
+      return m(this.config, "touch_app", this.buttonText);
     },
     lastUpdateText() {
       if (!this.lastSeen)
         return "-";
-      const e = Math.max(0, Math.round((this.ticker - this.lastSeen) / 1e3));
-      return e < 60 ? "0 minutes ago" : e < 3600 ? `${Math.round(e / 60)} minutes ago` : e < 86400 ? `${Math.round(e / 3600)} hours ago` : `${Math.round(e / 86400)} days ago`;
+      const t = Math.max(0, Math.round((this.ticker - this.lastSeen) / 1e3));
+      return t < 60 ? "0 minutes ago" : t < 3600 ? `${Math.round(t / 60)} minutes ago` : t < 86400 ? `${Math.round(t / 3600)} hours ago` : `${Math.round(t / 86400)} days ago`;
     }
   },
   watch: {
     message: {
       deep: !0,
       immediate: !0,
-      handler(e) {
-        e && Object.prototype.hasOwnProperty.call(e, "payload") && (this.lastSeen = Date.now(), this.pending = !1, this.widgetType === "fader" && Number.isFinite(this.numericValue) && (this.faderValue = this.numericValue));
+      handler(t) {
+        t && Object.prototype.hasOwnProperty.call(t, "payload") && (this.lastSeen = Date.now(), this.sending = !1, this.pending = !1, this.widgetType === "fader" && Number.isFinite(this.numericValue) && (this.faderValue = this.numericValue));
       }
     }
   },
@@ -269,89 +305,90 @@ const O = {
     this.$dataTracker(this.id);
   },
   mounted() {
-    this.ensureMaterialIcons(), this.handleIncomingMessage = (e) => {
-      this.latestMsg = e || {};
+    this.ensureMaterialIcons(), this.handleIncomingMessage = (t) => {
+      this.latestMsg = t || {};
     }, this.$socket.on(`msg-input:${this.id}`, this.handleIncomingMessage), this.$socket.on(`widget-load:${this.id}`, this.handleIncomingMessage), this.tickInterval = setInterval(() => {
       this.ticker = Date.now();
     }, 3e4), Number.isFinite(this.numericValue) ? this.faderValue = this.numericValue : this.faderValue = this.min;
   },
   unmounted() {
-    this.$socket.off(`msg-input:${this.id}`, this.handleIncomingMessage), this.$socket.off(`widget-load:${this.id}`, this.handleIncomingMessage), clearInterval(this.tickInterval), clearTimeout(this.liveTimer), clearTimeout(this.dialogTimer);
+    this.$socket.off(`msg-input:${this.id}`, this.handleIncomingMessage), this.$socket.off(`widget-load:${this.id}`, this.handleIncomingMessage), clearInterval(this.tickInterval), clearTimeout(this.liveTimer), clearTimeout(this.sendingTimer), clearTimeout(this.dialogTimer);
   },
   methods: {
     ensureMaterialIcons() {
-      const e = "buttonpanel-material-icons";
-      if (document.getElementById(e))
+      const t = "buttonpanel-material-icons";
+      if (document.getElementById(t))
         return;
-      const t = document.createElement("link");
-      t.id = e, t.rel = "stylesheet", t.href = "https://fonts.googleapis.com/icon?family=Material+Icons", document.head.appendChild(t);
+      const e = document.createElement("link");
+      e.id = t, e.rel = "stylesheet", e.href = "https://fonts.googleapis.com/icon?family=Material+Icons", document.head.appendChild(e);
     },
-    rangeFor(e) {
-      if (Number.isFinite(e)) {
-        const t = this.ranges.find((r) => {
-          var i, n;
-          const a = Number((i = r.range) == null ? void 0 : i[0]), l = Number((n = r.range) == null ? void 0 : n[1]);
-          return a <= e && e <= l;
+    rangeFor(t) {
+      if (Number.isFinite(t)) {
+        const n = this.ranges.find((u) => {
+          var s, h;
+          const r = Number((s = u.range) == null ? void 0 : s[0]), i = Number((h = u.range) == null ? void 0 : h[1]);
+          return r <= t && t <= i;
         });
-        if (t)
-          return t;
+        if (n)
+          return n;
       }
+      const e = b(this.config, "unknown");
       return {
-        text: this.config.text || "unknown",
-        icon: this.config.icon || "do_not_disturb",
+        text: e,
+        icon: m(this.config, "do_not_disturb", e),
         color: this.config.color || void 0
       };
     },
-    defaultStateIcon(e) {
-      const t = `${e.text || ""} ${e.value || ""}`.toLowerCase();
-      return t.includes("on") || t.includes("true") ? this.widgetType === "lamp" ? "emoji_objects" : "toggle_on" : t.includes("off") || t.includes("false") ? this.widgetType === "lamp" ? "emoji_objects" : "toggle_off" : this.widgetType === "select" ? "radio_button_unchecked" : "help_center";
+    defaultStateIcon(t) {
+      const e = `${t.text || ""} ${t.value || ""}`.toLowerCase();
+      return e.includes("on") || e.includes("true") ? this.widgetType === "lamp" ? "emoji_objects" : "toggle_on" : e.includes("off") || e.includes("false") ? this.widgetType === "lamp" ? "emoji_objects" : "toggle_off" : this.widgetType === "select" ? "radio_button_unchecked" : "help_center";
     },
-    defaultStateColor(e) {
-      const t = `${e.text || ""} ${e.value || ""}`.toLowerCase();
-      if (t.includes("on") || t.includes("true")) return this.widgetType === "lamp" ? "yellow" : "#52D017";
-      if (t.includes("off") || t.includes("false")) return "#7f8790";
+    defaultStateColor(t) {
+      const e = `${t.text || ""} ${t.value || ""}`.toLowerCase();
+      if (e.includes("on") || e.includes("true")) return this.widgetType === "lamp" ? "yellow" : "#52D017";
+      if (e.includes("off") || e.includes("false")) return "#7f8790";
     },
     handleClick() {
-      if (!(this.disabled || !this.isActionable || this.pending))
+      if (!(this.disabled || !this.isActionable || this.pending || this.sending))
         if (this.widgetType === "button")
           this.sendWithOptionalConfirm({
             payload: this.config.value,
             ...this.config.topic ? { topic: this.config.topic } : {}
-          }, this.config.confirm, g(this.config.confirm_pin), this.config.input_timeout, !1);
+          }, this.config.confirm, y(this.config.confirm_pin), this.config.input_timeout, !1);
         else if (this.widgetType === "image")
           this.sendWithOptionalConfirm({
             payload: this.config.value,
             ...this.config.topic ? { topic: this.config.topic } : {}
-          }, this.config.confirm, g(this.config.confirm_pin), this.config.input_timeout, !1);
+          }, this.config.confirm, y(this.config.confirm_pin), this.config.input_timeout, this.shouldWaitForInput);
         else if (this.widgetType === "text")
           this.editValue = this.hasValue ? this.displayValue : "", this.modal = "value", this.startDialogTimeout(this.config.input_timeout);
         else if (this.widgetType === "switch") {
-          const e = this.configuredStates.findIndex((r) => r.valueText === this.currentState.valueText), t = this.configuredStates[(e + 1) % this.configuredStates.length];
+          const t = this.configuredStates.findIndex((n) => n.valueText === this.currentState.valueText), e = this.configuredStates[(t + 1) % this.configuredStates.length];
           this.sendWithOptionalConfirm({
-            payload: t.value,
-            ...t.topic ? { topic: t.topic } : {}
-          }, t.confirm, t.confirmPin, t.inputTimeout);
+            payload: e.value,
+            ...e.topic ? { topic: e.topic } : {}
+          }, e.confirm, e.confirmPin, e.inputTimeout);
         } else this.widgetType === "select" ? (this.modal = "select", this.startDialogTimeout(this.config.input_timeout)) : this.widgetType === "fader" && (this.faderValue = Number.isFinite(this.numericValue) ? this.numericValue : this.min, this.modal = "fader", this.startDialogTimeout(this.config.input_timeout));
     },
-    sendSelection(e) {
+    sendSelection(t) {
       this.closeModal(!1), this.sendWithOptionalConfirm({
-        payload: e.value,
-        ...e.topic ? { topic: e.topic } : {}
-      }, e.confirm, e.confirmPin, e.inputTimeout, !this.buttonMode);
+        payload: t.value,
+        ...t.topic ? { topic: t.topic } : {}
+      }, t.confirm, t.confirmPin, t.inputTimeout, this.shouldWaitForInput);
     },
-    sendWithOptionalConfirm(e, t, r = 0, a = this.config.input_timeout, l = !0) {
-      if (r > 0) {
-        this.pinMessage = e, this.pinWaits = l, this.pinLength = r, this.pinValue = "", this.confirmMessage = t || "", this.confirmCallback = null, this.modal = "pin", this.startDialogTimeout(a);
+    sendWithOptionalConfirm(t, e, n = 0, u = this.config.input_timeout, r = this.shouldWaitForInput) {
+      if (n > 0) {
+        this.pinMessage = t, this.pinWaits = r, this.pinLength = n, this.pinValue = "", this.confirmMessage = e || "", this.confirmCallback = null, this.modal = "pin", this.startDialogTimeout(u);
         return;
       }
-      t ? (this.confirmMessage = t, this.confirmCallback = () => this.emitAction(e, l), this.modal = "confirm", this.startDialogTimeout(a)) : this.emitAction(e, l);
+      e ? (this.confirmMessage = e, this.confirmCallback = () => this.emitAction(t, r), this.modal = "confirm", this.startDialogTimeout(u)) : this.emitAction(t, r);
     },
-    appendPinDigit(e) {
-      if (!(this.pinValue.length >= this.pinLength) && (this.pinValue += String(e), this.resetInputTimeout(), this.pinValue.length >= this.pinLength)) {
-        const t = this.pinMessage, r = this.pinValue;
-        this.closeModal(!1), t && this.emitAction({
-          ...t,
-          pin: r
+    appendPinDigit(t) {
+      if (!(this.pinValue.length >= this.pinLength) && (this.pinValue += String(t), this.resetInputTimeout(), this.pinValue.length >= this.pinLength)) {
+        const e = this.pinMessage, n = this.pinValue;
+        this.closeModal(!1), e && this.emitAction({
+          ...e,
+          pin: n
         }, this.pinWaits);
       }
     },
@@ -359,13 +396,15 @@ const O = {
       this.pinValue && (this.pinValue = this.pinValue.slice(0, -1), this.resetInputTimeout());
     },
     confirmProceed() {
-      const e = this.confirmCallback;
-      this.closeModal(!1), e && e();
+      const t = this.confirmCallback;
+      this.closeModal(!1), t && t();
     },
-    emitAction(e, t = !0) {
-      this.pending = t;
-      const r = { ...e };
-      L(r.topic) ? r._buttonpanel_topic = r.topic : delete r.topic, this.$socket.emit("widget-action", this.id, r);
+    emitAction(t, e = this.shouldWaitForInput) {
+      clearTimeout(this.sendingTimer), this.sending = !0, this.pending = !1;
+      const n = { ...t };
+      P(n.topic) ? n._buttonpanel_topic = n.topic : delete n.topic, this.$socket.emit("widget-action", this.id, n), this.sendingTimer = setTimeout(() => {
+        this.sending = !1, this.pending = e;
+      }, 250);
     },
     commitValue() {
       this.closeModal(!1), this.sendWithOptionalConfirm(
@@ -374,19 +413,19 @@ const O = {
           ...this.config.topic ? { topic: this.config.topic } : {}
         },
         this.config.confirm,
-        g(this.config.confirm_pin)
+        y(this.config.confirm_pin)
       );
     },
-    timeoutSeconds(e) {
-      const t = Number(e);
-      return Number.isFinite(t) && t > 0 ? t : 0;
+    timeoutSeconds(t) {
+      const e = Number(t);
+      return Number.isFinite(e) && e > 0 ? e : 0;
     },
-    startDialogTimeout(e) {
+    startDialogTimeout(t) {
       clearTimeout(this.dialogTimer);
-      const t = this.timeoutSeconds(e);
-      t && (this.dialogTimer = setTimeout(() => {
+      const e = this.timeoutSeconds(t);
+      e && (this.dialogTimer = setTimeout(() => {
         this.closeModal(!1);
-      }, t * 1e3));
+      }, e * 1e3));
     },
     resetInputTimeout() {
       this.startDialogTimeout(this.config.input_timeout);
@@ -409,251 +448,263 @@ const O = {
           ...this.config.topic ? { topic: this.config.topic } : {}
         },
         this.config.confirm,
-        g(this.config.confirm_pin)
+        y(this.config.confirm_pin)
       ), this.lastLiveValue = null;
     }
   }
-}, W = { class: "bp-title" }, P = ["src", "alt"], R = {
+}, j = { class: "bp-title" }, U = ["src", "alt"], E = {
   key: 1,
   class: "bp-unknown"
-}, j = ["src"], U = { class: "bp-main bp-gauge-body" }, E = { class: "bp-number" }, B = { class: "bp-meter" }, K = {
+}, B = ["src"], K = { class: "bp-main bp-gauge-body" }, z = { class: "bp-number" }, Y = { class: "bp-meter" }, q = {
   key: 3,
   class: "bp-main bp-state-body"
-}, z = {
+}, G = { class: "bp-icon material-icons" }, H = {
   key: 0,
-  class: "bp-switch-knob"
-}, Y = {
+  class: "bp-button-icon material-icons"
+}, J = {
   key: 1,
-  class: "bp-icon material-icons"
-}, q = { class: "bp-button-icon material-icons" }, G = { class: "bp-button-text" }, H = {
+  class: "bp-button-text"
+}, Q = {
   key: 0,
   class: "bp-text-quote material-icons"
-}, J = { class: "bp-text-value" }, Q = { class: "bp-last-update" }, X = {
+}, X = {
+  key: 1,
+  class: "bp-text-value"
+}, Z = { class: "bp-last-update" }, $ = {
   key: 6,
-  class: "bp-pending-overlay"
-}, Z = { class: "bp-modal-title" }, $ = {
+  class: "bp-status-overlay"
+}, tt = { class: "bp-modal-title" }, et = {
   key: 0,
   class: "bp-confirm"
-}, tt = { class: "bp-modal-actions" }, et = {
+}, it = { class: "bp-modal-actions" }, nt = {
   key: 1,
   class: "bp-pin-modal"
-}, it = {
+}, st = {
   key: 0,
   class: "bp-pin-message"
-}, nt = { class: "bp-pin-dots" }, st = { class: "bp-pin-keypad" }, lt = ["onClick"], rt = {
+}, rt = { class: "bp-pin-dots" }, lt = { class: "bp-pin-keypad" }, at = ["onClick"], ot = {
   key: 2,
   class: "bp-select-list"
-}, at = ["onClick"], ot = { class: "bp-icon material-icons" }, ct = {
+}, ut = ["onClick"], ct = {
+  key: 0,
+  class: "bp-icon material-icons"
+}, dt = { key: 1 }, ht = {
   key: 3,
   class: "bp-value-modal"
-}, ut = { class: "bp-modal-actions" }, dt = {
+}, ft = { class: "bp-modal-actions" }, gt = {
   key: 4,
   class: "bp-fader-modal"
-}, ht = { class: "bp-icon material-icons" }, ft = { class: "bp-fader-value" }, mt = ["min", "max"], gt = { class: "bp-fader-bounds" };
-function pt(e, t, r, a, l, i) {
-  return o(), c("div", {
-    class: v(["bp-widget", [
+}, mt = { class: "bp-icon material-icons" }, pt = { class: "bp-fader-value" }, bt = ["min", "max"], yt = { class: "bp-fader-bounds" };
+function vt(t, e, n, u, r, i) {
+  return l(), o("div", {
+    class: x(["bp-widget", [
       `bp-${i.widgetType}`,
       {
         "bp-clickable": i.isActionable,
         "bp-disabled": i.disabled,
-        "bp-pending": l.pending,
+        "bp-active": i.isActive,
+        "bp-sending": r.sending,
+        "bp-pending": r.pending,
         "bp-unknown-state": i.isUnknown,
         "bp-state-on": i.isStateOn
       }
     ]]),
-    onClick: t[16] || (t[16] = (...n) => i.handleClick && i.handleClick(...n))
+    onClick: e[16] || (e[16] = (...s) => i.handleClick && i.handleClick(...s))
   }, [
-    s("div", W, u(i.title), 1),
-    i.widgetType === "image" ? (o(), c("div", {
+    a("div", j, c(i.title), 1),
+    i.widgetType === "image" ? (l(), o("div", {
       key: 0,
       class: "bp-image",
-      style: d(i.imageStyle)
+      style: f(i.imageStyle)
     }, [
-      i.displayValue ? (o(), c("img", {
+      i.displayValue ? (l(), o("img", {
         key: 0,
         src: i.displayValue,
         alt: i.title
-      }, null, 8, P)) : (o(), c("div", R, "unknown"))
-    ], 4)) : i.widgetType === "iframe" ? (o(), c("iframe", M({
+      }, null, 8, U)) : (l(), o("div", E, "unknown"))
+    ], 4)) : i.widgetType === "iframe" ? (l(), o("iframe", F({
       key: 1,
       class: "bp-iframe",
       src: i.displayValue,
       style: i.iframeStyle
-    }, i.iframeAttributes, { frameborder: "0" }), null, 16, j)) : i.widgetType === "fader" ? (o(), c(p, { key: 2 }, [
-      s("div", U, [
-        s("span", {
+    }, i.iframeAttributes, { frameborder: "0" }), null, 16, B)) : i.widgetType === "fader" ? (l(), o(v, { key: 2 }, [
+      a("div", K, [
+        i.currentRange.icon ? (l(), o("span", {
+          key: 0,
           class: "bp-icon material-icons",
-          style: d(i.stateStyle)
-        }, u(i.currentRange.icon), 5),
-        s("span", {
+          style: f(i.stateStyle)
+        }, c(i.currentRange.icon), 5)) : d("", !0),
+        i.currentRange.text ? (l(), o("span", {
+          key: 1,
           class: "bp-text bp-gauge-label",
-          style: d(i.stateStyle)
-        }, u(i.currentRange.text), 5),
-        s("span", E, u(i.hasValue ? i.numericValue : "?"), 1)
+          style: f(i.stateStyle)
+        }, c(i.currentRange.text), 5)) : d("", !0),
+        a("span", z, c(i.hasValue ? i.numericValue : "?"), 1)
       ]),
-      s("div", B, [
-        s("span", {
-          style: d(i.meterStyle)
+      a("div", Y, [
+        a("span", {
+          style: f(i.meterStyle)
         }, null, 4)
       ])
-    ], 64)) : i.widgetType === "lamp" || i.widgetType === "switch" || i.widgetType === "select" ? (o(), c("div", K, [
-      s("span", {
+    ], 64)) : i.widgetType === "lamp" || i.widgetType === "switch" || i.widgetType === "select" ? (l(), o("div", q, [
+      i.currentState.icon ? (l(), o("span", {
+        key: 0,
         class: "bp-state-indicator",
-        style: d(i.indicatorStyle)
+        style: f(i.indicatorStyle)
       }, [
-        i.widgetType === "switch" ? (o(), c("span", z)) : (o(), c("span", Y, u(i.currentState.icon), 1))
-      ], 4),
-      s("span", {
+        a("span", G, c(i.currentState.icon), 1)
+      ], 4)) : d("", !0),
+      i.currentState.text ? (l(), o("span", {
+        key: 1,
         class: "bp-text bp-state-text",
-        style: d(i.stateStyle)
-      }, u(i.currentState.text), 5)
-    ])) : i.widgetType === "button" ? (o(), c("div", {
+        style: f(i.stateStyle)
+      }, c(i.currentState.text), 5)) : d("", !0)
+    ])) : i.widgetType === "button" ? (l(), o("div", {
       key: 4,
       class: "bp-main bp-button-body",
-      style: d(i.baseStyle)
+      style: f(i.baseStyle)
     }, [
-      s("span", q, u(i.config.icon || "touch_app"), 1),
-      s("span", G, u(i.buttonText), 1)
-    ], 4)) : (o(), c("div", {
+      i.buttonIcon ? (l(), o("span", H, c(i.buttonIcon), 1)) : d("", !0),
+      i.buttonText ? (l(), o("span", J, c(i.buttonText), 1)) : d("", !0)
+    ], 4)) : (l(), o("div", {
       key: 5,
       class: "bp-text-body",
-      style: d(i.baseStyle)
+      style: f(i.baseStyle)
     }, [
-      i.config.icon ? (o(), c("span", H, u(i.config.icon), 1)) : m("", !0),
-      s("span", J, u(i.displayValue || "-"), 1)
+      i.textIcon ? (l(), o("span", Q, c(i.textIcon), 1)) : d("", !0),
+      i.textValue ? (l(), o("span", X, c(i.textValue), 1)) : d("", !0)
     ], 4)),
-    s("div", Q, u(i.lastUpdateText), 1),
-    l.pending ? (o(), c("div", X, [...t[17] || (t[17] = [
-      s("span", { class: "bp-spinner" }, null, -1),
-      s("span", null, "waiting", -1)
-    ])])) : m("", !0),
-    (o(), C(I, { to: "body" }, [
-      l.modal ? (o(), c("div", {
+    a("div", Z, c(i.lastUpdateText), 1),
+    r.sending || r.pending ? (l(), o("div", $, [
+      e[17] || (e[17] = a("span", { class: "bp-spinner" }, null, -1)),
+      a("span", null, c(r.sending ? "sending" : "waiting"), 1)
+    ])) : d("", !0),
+    (l(), A(N, { to: "body" }, [
+      r.modal ? (l(), o("div", {
         key: 0,
         class: "bp-modal-backdrop",
-        onClick: t[15] || (t[15] = T((n) => i.closeModal(!1), ["stop"]))
+        onClick: e[15] || (e[15] = w((s) => i.closeModal(!1), ["stop"]))
       }, [
-        s("div", {
+        a("div", {
           class: "bp-modal",
-          onClick: t[14] || (t[14] = T(() => {
+          onClick: e[14] || (e[14] = w(() => {
           }, ["stop"]))
         }, [
-          s("button", {
+          a("button", {
             class: "bp-modal-close",
             type: "button",
             "aria-label": "Close",
-            onClick: t[0] || (t[0] = (n) => i.closeModal(!1))
-          }, [...t[18] || (t[18] = [
-            s("span", { "aria-hidden": "true" }, null, -1)
+            onClick: e[0] || (e[0] = (s) => i.closeModal(!1))
+          }, [...e[18] || (e[18] = [
+            a("span", { "aria-hidden": "true" }, null, -1)
           ])]),
-          s("div", Z, u(i.title), 1),
-          l.modal === "confirm" ? (o(), c("div", $, [
-            s("div", null, u(l.confirmMessage), 1),
-            s("div", tt, [
-              s("button", {
-                onClick: t[1] || (t[1] = (...n) => i.confirmProceed && i.confirmProceed(...n))
+          a("div", tt, c(i.title), 1),
+          r.modal === "confirm" ? (l(), o("div", et, [
+            a("div", null, c(r.confirmMessage), 1),
+            a("div", it, [
+              a("button", {
+                onClick: e[1] || (e[1] = (...s) => i.confirmProceed && i.confirmProceed(...s))
               }, "OK"),
-              s("button", {
-                onClick: t[2] || (t[2] = (n) => i.closeModal(!1))
+              a("button", {
+                onClick: e[2] || (e[2] = (s) => i.closeModal(!1))
               }, "Cancel")
             ])
-          ])) : l.modal === "pin" ? (o(), c("div", et, [
-            l.confirmMessage ? (o(), c("div", it, u(l.confirmMessage), 1)) : m("", !0),
-            s("div", nt, [
-              (o(!0), c(p, null, y(l.pinLength, (n) => (o(), c("span", {
-                key: n,
-                class: v({ "bp-pin-dot-filled": n <= l.pinValue.length })
+          ])) : r.modal === "pin" ? (l(), o("div", nt, [
+            r.confirmMessage ? (l(), o("div", st, c(r.confirmMessage), 1)) : d("", !0),
+            a("div", rt, [
+              (l(!0), o(v, null, k(r.pinLength, (s) => (l(), o("span", {
+                key: s,
+                class: x({ "bp-pin-dot-filled": s <= r.pinValue.length })
               }, null, 2))), 128))
             ]),
-            s("div", st, [
-              (o(!0), c(p, null, y(l.pinDigits, (n) => (o(), c("button", {
-                key: n,
+            a("div", lt, [
+              (l(!0), o(v, null, k(r.pinDigits, (s) => (l(), o("button", {
+                key: s,
                 type: "button",
-                onClick: (h) => i.appendPinDigit(n)
-              }, u(n), 9, lt))), 128)),
-              t[19] || (t[19] = s("button", {
+                onClick: (h) => i.appendPinDigit(s)
+              }, c(s), 9, at))), 128)),
+              e[19] || (e[19] = a("button", {
                 class: "bp-pin-key-blank",
                 type: "button",
                 disabled: ""
               }, null, -1)),
-              s("button", {
+              a("button", {
                 type: "button",
-                onClick: t[3] || (t[3] = (n) => i.appendPinDigit("0"))
+                onClick: e[3] || (e[3] = (s) => i.appendPinDigit("0"))
               }, "0"),
-              s("button", {
+              a("button", {
                 class: "bp-pin-backspace material-icons",
                 type: "button",
                 "aria-label": "Backspace",
-                onClick: t[4] || (t[4] = (...n) => i.removePinDigit && i.removePinDigit(...n))
+                onClick: e[4] || (e[4] = (...s) => i.removePinDigit && i.removePinDigit(...s))
               }, "backspace")
             ])
-          ])) : l.modal === "select" ? (o(), c("div", rt, [
-            (o(!0), c(p, null, y(i.configuredStates, (n) => (o(), c("button", {
-              key: n.value,
-              style: d({ color: n.color || void 0 }),
-              onClick: (h) => i.sendSelection(n)
+          ])) : r.modal === "select" ? (l(), o("div", ot, [
+            (l(!0), o(v, null, k(i.configuredStates, (s) => (l(), o("button", {
+              key: s.value,
+              style: f({ color: s.color || void 0 }),
+              onClick: (h) => i.sendSelection(s)
             }, [
-              s("span", ot, u(n.icon), 1),
-              s("span", null, u(n.text), 1)
-            ], 12, at))), 128))
-          ])) : l.modal === "value" ? (o(), c("div", ct, [
-            k(s("input", {
-              "onUpdate:modelValue": t[5] || (t[5] = (n) => l.editValue = n),
+              s.icon ? (l(), o("span", ct, c(s.icon), 1)) : d("", !0),
+              s.text ? (l(), o("span", dt, c(s.text), 1)) : d("", !0)
+            ], 12, ut))), 128))
+          ])) : r.modal === "value" ? (l(), o("div", ht, [
+            _(a("input", {
+              "onUpdate:modelValue": e[5] || (e[5] = (s) => r.editValue = s),
               class: "bp-value-input",
               type: "text",
-              onInput: t[6] || (t[6] = (...n) => i.resetInputTimeout && i.resetInputTimeout(...n)),
+              onInput: e[6] || (e[6] = (...s) => i.resetInputTimeout && i.resetInputTimeout(...s)),
               onKeydown: [
-                t[7] || (t[7] = w((...n) => i.commitValue && i.commitValue(...n), ["enter"])),
-                t[8] || (t[8] = w((n) => i.closeModal(!1), ["esc"]))
+                e[7] || (e[7] = V((...s) => i.commitValue && i.commitValue(...s), ["enter"])),
+                e[8] || (e[8] = V((s) => i.closeModal(!1), ["esc"]))
               ]
             }, null, 544), [
-              [_, l.editValue]
+              [S, r.editValue]
             ]),
-            s("div", ut, [
-              s("button", {
-                onClick: t[9] || (t[9] = (...n) => i.commitValue && i.commitValue(...n))
+            a("div", ft, [
+              a("button", {
+                onClick: e[9] || (e[9] = (...s) => i.commitValue && i.commitValue(...s))
               }, "OK"),
-              s("button", {
-                onClick: t[10] || (t[10] = (n) => i.closeModal(!1))
+              a("button", {
+                onClick: e[10] || (e[10] = (s) => i.closeModal(!1))
               }, "Cancel")
             ])
-          ])) : l.modal === "fader" ? (o(), c("div", dt, [
-            s("div", {
+          ])) : r.modal === "fader" ? (l(), o("div", gt, [
+            a("div", {
               class: "bp-fader-meta",
-              style: d({ color: i.faderRange.color || void 0 })
+              style: f({ color: i.faderRange.color || void 0 })
             }, [
-              s("span", ht, u(i.faderRange.icon), 1),
-              s("span", null, u(i.faderRange.text), 1)
+              a("span", mt, c(i.faderRange.icon), 1),
+              a("span", null, c(i.faderRange.text), 1)
             ], 4),
-            s("div", ft, u(l.faderValue), 1),
-            k(s("input", {
-              "onUpdate:modelValue": t[11] || (t[11] = (n) => l.faderValue = n),
+            a("div", pt, c(r.faderValue), 1),
+            _(a("input", {
+              "onUpdate:modelValue": e[11] || (e[11] = (s) => r.faderValue = s),
               type: "range",
-              style: d(i.faderTrackStyle),
+              style: f(i.faderTrackStyle),
               min: i.min,
               max: i.max,
-              onInput: t[12] || (t[12] = (...n) => i.handleFaderInput && i.handleFaderInput(...n)),
-              onChange: t[13] || (t[13] = (...n) => i.commitFader && i.commitFader(...n))
-            }, null, 44, mt), [
+              onInput: e[12] || (e[12] = (...s) => i.handleFaderInput && i.handleFaderInput(...s)),
+              onChange: e[13] || (e[13] = (...s) => i.commitFader && i.commitFader(...s))
+            }, null, 44, bt), [
               [
-                _,
-                l.faderValue,
+                S,
+                r.faderValue,
                 void 0,
                 { number: !0 }
               ]
             ]),
-            s("div", gt, [
-              s("span", null, u(i.max), 1),
-              s("span", null, u(i.min), 1)
+            a("div", yt, [
+              a("span", null, c(i.max), 1),
+              a("span", null, c(i.min), 1)
             ])
-          ])) : m("", !0)
+          ])) : d("", !0)
         ])
-      ])) : m("", !0)
+      ])) : d("", !0)
     ]))
   ], 2);
 }
-const vt = /* @__PURE__ */ N(O, [["render", pt], ["__scopeId", "data-v-50986be2"]]);
+const xt = /* @__PURE__ */ W(R, [["render", vt], ["__scopeId", "data-v-cd173103"]]);
 export {
-  vt as UIButtonPanel
+  xt as UIButtonPanel
 };

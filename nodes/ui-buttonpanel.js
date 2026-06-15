@@ -113,24 +113,6 @@ module.exports = function (RED) {
     callback(new Error('value_from requires dot notation or a Node-RED runtime with JSONata support'))
   }
 
-  function convertValue (value, valueType) {
-    switch (valueType || 'string') {
-      case 'number':
-        return Number(value)
-      case 'boolean':
-        if (typeof value === 'boolean') return value
-        return ['true', 'on', 'yes', '1'].includes(String(value).toLowerCase())
-      case 'json':
-        if (typeof value === 'string') return JSON.parse(value)
-        return value
-      case 'buffer':
-        return Buffer.from(String(value))
-      case 'string':
-      default:
-        return String(value)
-    }
-  }
-
   function hasConfiguredValue (value) {
     return value !== null && typeof value !== 'undefined' && String(value) !== ''
   }
@@ -158,13 +140,6 @@ module.exports = function (RED) {
           }
           const buttonpanelTopic = msg._buttonpanel_topic
           delete msg._buttonpanel_topic
-          if (Object.prototype.hasOwnProperty.call(msg, 'payload')) {
-            try {
-              msg.payload = convertValue(msg.payload, widgetConfig.value_type)
-            } catch (error) {
-              node.error(`Invalid value_type conversion: ${error.message}`, msg)
-            }
-          }
           if (hasConfiguredValue(buttonpanelTopic)) {
             msg.topic = buttonpanelTopic
           } else if (!hasConfiguredValue(msg.topic)) {

@@ -6,6 +6,8 @@
       {
         'bp-clickable': isActionable,
         'bp-disabled': disabled,
+        'bp-active': isActive,
+        'bp-sending': sending,
         'bp-pending': pending,
         'bp-unknown-state': isUnknown,
         'bp-state-on': isStateOn
@@ -31,8 +33,8 @@
 
     <template v-else-if="widgetType === 'fader'">
       <div class="bp-main bp-gauge-body">
-        <span class="bp-icon material-icons" :style="stateStyle">{{ currentRange.icon }}</span>
-        <span class="bp-text bp-gauge-label" :style="stateStyle">{{ currentRange.text }}</span>
+        <span v-if="currentRange.icon" class="bp-icon material-icons" :style="stateStyle">{{ currentRange.icon }}</span>
+        <span v-if="currentRange.text" class="bp-text bp-gauge-label" :style="stateStyle">{{ currentRange.text }}</span>
         <span class="bp-number">{{ hasValue ? numericValue : '?' }}</span>
       </div>
       <div class="bp-meter">
@@ -42,30 +44,29 @@
 
     <template v-else-if="widgetType === 'lamp' || widgetType === 'switch' || widgetType === 'select'">
       <div class="bp-main bp-state-body">
-        <span class="bp-state-indicator" :style="indicatorStyle">
-          <span v-if="widgetType === 'switch'" class="bp-switch-knob" />
-          <span v-else class="bp-icon material-icons">{{ currentState.icon }}</span>
+        <span v-if="currentState.icon" class="bp-state-indicator" :style="indicatorStyle">
+          <span class="bp-icon material-icons">{{ currentState.icon }}</span>
         </span>
-        <span class="bp-text bp-state-text" :style="stateStyle">{{ currentState.text }}</span>
+        <span v-if="currentState.text" class="bp-text bp-state-text" :style="stateStyle">{{ currentState.text }}</span>
       </div>
     </template>
 
     <template v-else-if="widgetType === 'button'">
       <div class="bp-main bp-button-body" :style="baseStyle">
-        <span class="bp-button-icon material-icons">{{ config.icon || 'touch_app' }}</span>
-        <span class="bp-button-text">{{ buttonText }}</span>
+        <span v-if="buttonIcon" class="bp-button-icon material-icons">{{ buttonIcon }}</span>
+        <span v-if="buttonText" class="bp-button-text">{{ buttonText }}</span>
       </div>
     </template>
 
     <div v-else class="bp-text-body" :style="baseStyle">
-      <span v-if="config.icon" class="bp-text-quote material-icons">{{ config.icon }}</span>
-      <span class="bp-text-value">{{ displayValue || '-' }}</span>
+      <span v-if="textIcon" class="bp-text-quote material-icons">{{ textIcon }}</span>
+      <span v-if="textValue" class="bp-text-value">{{ textValue }}</span>
     </div>
 
     <div class="bp-last-update">{{ lastUpdateText }}</div>
-    <div v-if="pending" class="bp-pending-overlay">
+    <div v-if="sending || pending" class="bp-status-overlay">
       <span class="bp-spinner" />
-      <span>waiting</span>
+      <span>{{ sending ? 'sending' : 'waiting' }}</span>
     </div>
 
     <Teleport to="body">
@@ -115,8 +116,8 @@
               :style="{ color: stateOption.color || undefined }"
               @click="sendSelection(stateOption)"
             >
-              <span class="bp-icon material-icons">{{ stateOption.icon }}</span>
-              <span>{{ stateOption.text }}</span>
+              <span v-if="stateOption.icon" class="bp-icon material-icons">{{ stateOption.icon }}</span>
+              <span v-if="stateOption.text">{{ stateOption.text }}</span>
             </button>
           </div>
 
@@ -276,6 +277,22 @@ function hasConfiguredValue (value) {
   return value !== null && typeof value !== 'undefined' && String(value) !== ''
 }
 
+function hasOwn (item, key) {
+  return Object.prototype.hasOwnProperty.call(item || {}, key)
+}
+
+function configuredText (item, fallback) {
+  return hasOwn(item, 'text') ? payloadText(item.text) : payloadText(fallback)
+}
+
+function configuredIcon (item, fallback, text) {
+  if (hasOwn(item, 'icon')) {
+    const icon = payloadText(item.icon)
+    return icon || (text ? '' : fallback)
+  }
+  return fallback
+}
+
 function pinLengthFrom (value) {
   const length = Number(value)
   return Number.isInteger(length) && length > 0 ? length : 0
@@ -290,6 +307,7 @@ export default {
       lastSeen: null,
       ticker: Date.now(),
       pending: false,
+      sending: false,
       modal: null,
       confirmMessage: '',
       confirmCallback: null,
@@ -302,6 +320,7 @@ export default {
       editValue: '',
       dialogTimer: null,
       liveTimer: null,
+      sendingTimer: null,
       lastLiveValue: null,
       latestMsg: {}
     }
@@ -330,8 +349,40 @@ export default {
     title () {
       return this.config.label || ''
     },
+    hasInput () {
+      if (this.widgetType === 'button') {
+        return false
+      }
+      if (this.widgetType === 'select' && this.buttonMode) {
+        return false
+      }
+      return true
+    },
+    hasOutput () {
+      if (this.widgetType === 'text') {
+        return this.editable
+      }
+      if (this.widgetType === 'fader') {
+        return !this.gaugeMode
+      }
+      if (this.widgetType === 'image') {
+        return this.buttonMode
+      }
+      return ['button', 'switch', 'select'].includes(this.widgetType)
+    },
+    shouldWaitForInput () {
+      if (!(this.hasInput && this.hasOutput)) {
+        return false
+      }
+      return this.config.waitForInput !== false && this.config.waitForInput !== 'false'
+    },
+    isActive () {
+      return Boolean(this.modal)
+    },
     disabled () {
-      return this.state?.enabled === false || this.state?.visible === false
+      return this.state?.enabled === false ||
+        this.state?.visible === false ||
+        (this.hasInput && this.message.enabled === false)
     },
     editable () {
       return this.config.editable === true || this.config.editable === 'true'
@@ -359,6 +410,12 @@ export default {
         return payloadText(this.message.payload ?? this.config.text)
       }
       return payloadText(this.message.payload)
+    },
+    textValue () {
+      return this.displayValue
+    },
+    textIcon () {
+      return configuredIcon(this.config, this.editable ? 'keyboard' : 'article', this.textValue)
     },
     hasValue () {
       const value = this.message.payload
@@ -397,34 +454,39 @@ export default {
       }
     },
     configuredStates () {
-      const own = (item, key) => Object.prototype.hasOwnProperty.call(item, key)
-      return (Array.isArray(this.config.values) ? this.config.values : DEFAULT_STATES).map(item => ({
-        value: item.value,
-        valueText: payloadText(item.value),
-        text: item.text || payloadText(item.value),
-        icon: item.icon || this.defaultStateIcon(item),
-        color: item.color || this.defaultStateColor(item),
-        topic: own(item, 'topic') ? item.topic : (this.config.topic || ''),
-        confirm: own(item, 'confirm') ? item.confirm : (this.config.confirm || ''),
-        confirmPin: pinLengthFrom(own(item, 'confirm_pin') ? item.confirm_pin : this.config.confirm_pin),
-        inputTimeout: own(item, 'input_timeout') ? item.input_timeout : this.config.input_timeout
-      }))
+      return (Array.isArray(this.config.values) ? this.config.values : DEFAULT_STATES).map(item => {
+        const text = configuredText(item, item.value)
+        const fallbackIcon = configuredIcon(this.config, this.defaultStateIcon(item), text)
+        return {
+          value: item.value,
+          valueText: payloadText(item.value),
+          text,
+          icon: configuredIcon(item, fallbackIcon, text),
+          color: item.color || this.defaultStateColor(item),
+          topic: hasOwn(item, 'topic') ? item.topic : (this.config.topic || ''),
+          confirm: hasOwn(item, 'confirm') ? item.confirm : (this.config.confirm || ''),
+          confirmPin: pinLengthFrom(hasOwn(item, 'confirm_pin') ? item.confirm_pin : this.config.confirm_pin),
+          inputTimeout: hasOwn(item, 'input_timeout') ? item.input_timeout : this.config.input_timeout
+        }
+      })
     },
     currentState () {
       if (this.widgetType === 'select' && this.buttonMode) {
+        const text = configuredText(this.config, this.config.value || 'Select')
         return {
           value: this.config.value,
           valueText: payloadText(this.config.value),
-          text: this.config.text || payloadText(this.config.value) || 'Select',
-          icon: this.config.icon || 'radio_button_checked',
+          text,
+          icon: configuredIcon(this.config, 'radio_button_checked', text),
           color: this.config.color || undefined
         }
       }
       const value = payloadText(this.message.payload)
+      const fallbackText = configuredText(this.config, 'unknown')
       return this.configuredStates.find(item => item.valueText === value) || {
         value: '',
-        text: 'unknown',
-        icon: this.config.icon || 'do_not_disturb',
+        text: fallbackText,
+        icon: configuredIcon(this.config, 'do_not_disturb', fallbackText),
         color: this.config.color || undefined
       }
     },
@@ -451,12 +513,16 @@ export default {
       return value.includes('true') || value.includes('on')
     },
     ranges () {
-      return (Array.isArray(this.config.ranges) ? this.config.ranges : DEFAULT_RANGES).map(item => ({
-        range: item.range || [this.min, this.max],
-        text: item.text || this.config.text || '',
-        icon: item.icon || this.config.icon || '',
-        color: item.color || '#ccc'
-      }))
+      return (Array.isArray(this.config.ranges) ? this.config.ranges : DEFAULT_RANGES).map(item => {
+        const text = configuredText(item, hasOwn(this.config, 'text') ? this.config.text : '')
+        const fallbackIcon = configuredIcon(this.config, 'tune', text)
+        return {
+          range: item.range || [this.min, this.max],
+          text,
+          icon: configuredIcon(item, fallbackIcon, text),
+          color: item.color || '#ccc'
+        }
+      })
     },
     currentRange () {
       return this.rangeFor(this.numericValue)
@@ -510,12 +576,6 @@ export default {
     },
     indicatorStyle () {
       const color = this.currentState.color || '#7f8790'
-      if (this.widgetType === 'switch') {
-        return {
-          '--bp-state-color': color,
-          backgroundColor: color
-        }
-      }
       return {
         '--bp-state-color': color,
         color,
@@ -523,7 +583,10 @@ export default {
       }
     },
     buttonText () {
-      return this.config.text || this.config.value || this.displayValue || 'Push'
+      return configuredText(this.config, this.config.value)
+    },
+    buttonIcon () {
+      return configuredIcon(this.config, 'touch_app', this.buttonText)
     },
     lastUpdateText () {
       if (!this.lastSeen) {
@@ -549,6 +612,7 @@ export default {
       handler (msg) {
         if (msg && Object.prototype.hasOwnProperty.call(msg, 'payload')) {
           this.lastSeen = Date.now()
+          this.sending = false
           this.pending = false
           if (this.widgetType === 'fader' && Number.isFinite(this.numericValue)) {
             this.faderValue = this.numericValue
@@ -582,6 +646,7 @@ export default {
     this.$socket.off(`widget-load:${this.id}`, this.handleIncomingMessage)
     clearInterval(this.tickInterval)
     clearTimeout(this.liveTimer)
+    clearTimeout(this.sendingTimer)
     clearTimeout(this.dialogTimer)
   },
   methods: {
@@ -607,9 +672,10 @@ export default {
           return match
         }
       }
+      const text = configuredText(this.config, 'unknown')
       return {
-        text: this.config.text || 'unknown',
-        icon: this.config.icon || 'do_not_disturb',
+        text,
+        icon: configuredIcon(this.config, 'do_not_disturb', text),
         color: this.config.color || undefined
       }
     },
@@ -626,7 +692,7 @@ export default {
       return undefined
     },
     handleClick () {
-      if (this.disabled || !this.isActionable || this.pending) {
+      if (this.disabled || !this.isActionable || this.pending || this.sending) {
         return
       }
       if (this.widgetType === 'button') {
@@ -638,7 +704,7 @@ export default {
         this.sendWithOptionalConfirm({
           payload: this.config.value,
           ...(this.config.topic ? { topic: this.config.topic } : {})
-        }, this.config.confirm, pinLengthFrom(this.config.confirm_pin), this.config.input_timeout, false)
+        }, this.config.confirm, pinLengthFrom(this.config.confirm_pin), this.config.input_timeout, this.shouldWaitForInput)
       } else if (this.widgetType === 'text') {
         this.editValue = this.hasValue ? this.displayValue : ''
         this.modal = 'value'
@@ -664,9 +730,9 @@ export default {
       this.sendWithOptionalConfirm({
         payload: option.value,
         ...(option.topic ? { topic: option.topic } : {})
-      }, option.confirm, option.confirmPin, option.inputTimeout, !this.buttonMode)
+      }, option.confirm, option.confirmPin, option.inputTimeout, this.shouldWaitForInput)
     },
-    sendWithOptionalConfirm (msg, confirm, confirmPin = 0, inputTimeout = this.config.input_timeout, waitsForFeedback = true) {
+    sendWithOptionalConfirm (msg, confirm, confirmPin = 0, inputTimeout = this.config.input_timeout, waitsForFeedback = this.shouldWaitForInput) {
       if (confirmPin > 0) {
         this.pinMessage = msg
         this.pinWaits = waitsForFeedback
@@ -719,8 +785,10 @@ export default {
         callback()
       }
     },
-    emitAction (msg, waitsForFeedback = true) {
-      this.pending = waitsForFeedback
+    emitAction (msg, waitsForFeedback = this.shouldWaitForInput) {
+      clearTimeout(this.sendingTimer)
+      this.sending = true
+      this.pending = false
       const output = { ...msg }
       if (hasConfiguredValue(output.topic)) {
         output._buttonpanel_topic = output.topic
@@ -728,6 +796,10 @@ export default {
         delete output.topic
       }
       this.$socket.emit('widget-action', this.id, output)
+      this.sendingTimer = setTimeout(() => {
+        this.sending = false
+        this.pending = waitsForFeedback
+      }, 250)
     },
     commitValue () {
       this.closeModal(false)
@@ -812,18 +884,23 @@ export default {
   --bp-font-muted: #969696;
   --bp-bg: #32383e;
   --bp-bg-disabled: #232628;
+  --bp-disabled-color: #606060;
   --bp-meter-bg: #444;
   --bp-fader-empty: #25292d;
   --bp-waiting: #f89406;
+  --bp-sending: #26c6da;
+  --bp-active: #26c6da;
 
   position: relative;
   display: flex;
   flex-direction: column;
-  min-width: 100px;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
   min-height: 65px;
   height: 100%;
   box-sizing: border-box;
-  padding: 7px 10px 16px;
+  padding: 6px 8px 14px;
   overflow: hidden;
   border-radius: 4px;
   border: 0;
@@ -840,18 +917,20 @@ export default {
   overflow: hidden;
   text-align: left;
   color: var(--bp-title-color);
-  font-size: 1.2rem;
-  font-weight: 700;
+  font-size: 1rem;
+  font-weight: 400;
   white-space: nowrap;
-  text-overflow: ellipsis;
+  text-overflow: clip;
 }
 
 .bp-main {
   display: flex;
+  flex: 1 1 auto;
   align-items: center;
-  min-height: 32px;
-  gap: 12px;
-  padding-top: 8px;
+  min-width: 0;
+  min-height: 0;
+  gap: 6px;
+  padding-top: 0;
   color: #f5f5f5;
   font-size: 1.25rem;
 }
@@ -881,18 +960,25 @@ export default {
   font-size: 32px;
 }
 
+.bp-gauge-body > .bp-icon {
+  grid-column: 1;
+}
+
 .bp-text,
 .bp-text-value {
   overflow: hidden;
   white-space: nowrap;
-  text-overflow: ellipsis;
+  text-overflow: clip;
 }
 
 .bp-text-body {
   display: flex;
+  flex: 1 1 auto;
   align-items: center;
-  gap: 10px;
-  padding-top: 9px;
+  min-width: 0;
+  min-height: 0;
+  gap: 6px;
+  padding-top: 0;
 }
 
 .bp-text-quote {
@@ -908,8 +994,8 @@ export default {
 }
 
 .bp-state-body {
-  gap: 12px;
-  padding-top: 9px;
+  gap: 6px;
+  padding-top: 0;
 }
 
 .bp-state-indicator {
@@ -928,33 +1014,6 @@ export default {
   font-size: 34px;
 }
 
-.bp-switch .bp-state-indicator {
-  position: relative;
-  width: 40px;
-  height: 18px;
-  border: 0;
-  border-radius: 999px;
-  opacity: 0.95;
-}
-
-.bp-switch-knob {
-  position: absolute;
-  top: 5px;
-  left: 25px;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #232628;
-}
-
-.bp-switch.bp-state-on .bp-switch-knob {
-  left: 25px;
-}
-
-.bp-switch:not(.bp-state-on) .bp-switch-knob {
-  left: 7px;
-}
-
 .bp-state-text {
   font-size: 1.25rem;
   font-weight: 400;
@@ -969,51 +1028,67 @@ export default {
 
 .bp-button-body {
   display: flex;
+  flex: 1 1 auto;
   align-items: center;
-  gap: 12px;
-  min-height: 36px;
-  padding-top: 8px;
+  gap: 6px;
+  min-width: 0;
+  min-height: 0;
+  padding-top: 0;
   border: 0;
   background: transparent;
 }
 
 .bp-button-icon {
-  min-width: 42px;
-  font-size: 34px;
+  flex: 0 0 auto;
+  min-width: 30px;
+  font-size: 31px;
 }
 
 .bp-button-text {
+  flex: 1 1 auto;
+  min-width: 0;
   overflow: hidden;
   font-size: 1.25rem;
   font-weight: 400;
   white-space: nowrap;
-  text-overflow: ellipsis;
+  text-overflow: clip;
 }
 
 .bp-gauge-body {
   display: grid;
-  grid-template-columns: 26px minmax(0, 1fr) 52px;
-  padding-right: 42px;
+  grid-template-columns: auto minmax(0, 1fr) max-content;
+  align-items: center;
+  align-content: center;
+  padding-right: 26px;
 }
 
 .bp-gauge-label {
-  font-weight: 700;
+  grid-column: 2;
+  min-width: 0;
+  font-weight: 400;
 }
 
 .bp-number {
-  margin-left: auto;
+  grid-column: 3;
+  justify-self: end;
+  min-width: 3ch;
+  max-width: 100%;
   padding-right: 0;
+  overflow: hidden;
   color: #bdbdbd;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   font-weight: 400;
+  text-align: right;
+  text-overflow: clip;
+  white-space: nowrap;
 }
 
 .bp-last-update {
   position: absolute;
-  right: 8px;
+  right: 6px;
   bottom: 4px;
   color: var(--bp-font-muted);
-  font-size: 11px;
+  font-size: 9px;
 }
 
 .bp-clickable {
@@ -1027,9 +1102,45 @@ export default {
 
 .bp-disabled {
   background: var(--bp-bg-disabled);
-  color: #606060;
+  color: var(--bp-disabled-color);
   cursor: not-allowed;
   filter: none;
+}
+
+.bp-disabled .bp-title,
+.bp-disabled .bp-last-update,
+.bp-disabled .bp-icon,
+.bp-disabled .bp-button-icon,
+.bp-disabled .bp-text-quote,
+.bp-disabled .bp-text,
+.bp-disabled .bp-text-value,
+.bp-disabled .bp-state-text,
+.bp-disabled .bp-gauge-label,
+.bp-disabled .bp-number,
+.bp-disabled .bp-button-body,
+.bp-disabled .bp-button-text {
+  color: var(--bp-disabled-color) !important;
+}
+
+.bp-disabled .bp-state-indicator {
+  color: var(--bp-disabled-color) !important;
+  border-color: var(--bp-disabled-color) !important;
+  background-color: transparent !important;
+}
+
+.bp-disabled .bp-meter > span {
+  background-color: var(--bp-disabled-color) !important;
+}
+
+.bp-active {
+  outline: 2px solid var(--bp-active);
+  outline-offset: -2px;
+}
+
+.bp-sending {
+  outline: 2px solid var(--bp-sending);
+  outline-offset: -2px;
+  cursor: progress;
 }
 
 .bp-pending {
@@ -1039,11 +1150,12 @@ export default {
   cursor: wait;
 }
 
-.bp-pending > :not(.bp-pending-overlay):not(.bp-modal-backdrop) {
+.bp-sending > :not(.bp-status-overlay):not(.bp-modal-backdrop),
+.bp-pending > :not(.bp-status-overlay):not(.bp-modal-backdrop) {
   opacity: 0.46;
 }
 
-.bp-pending-overlay {
+.bp-status-overlay {
   position: absolute;
   right: 7px;
   top: 7px;
@@ -1059,6 +1171,10 @@ export default {
   font-size: 0.68rem;
   font-weight: 800;
   text-transform: uppercase;
+}
+
+.bp-sending .bp-status-overlay {
+  background: var(--bp-sending);
 }
 
 .bp-spinner {
@@ -1077,9 +1193,9 @@ export default {
 .bp-meter {
   position: absolute;
   top: 9px;
-  right: 9px;
-  width: 22px;
-  height: calc(100% - 28px);
+  right: 7px;
+  width: 20px;
+  height: calc(100% - 26px);
   border: 1px solid rgba(0, 0, 0, 0.45);
   background: var(--bp-meter-bg);
 }

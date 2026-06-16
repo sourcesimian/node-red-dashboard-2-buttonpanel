@@ -34,12 +34,6 @@ pack-dry-run: check build
 pack: check build
 	npm pack --cache $(NPM_CACHE)
 
-publish-dry-run: check build
-	npm publish --dry-run --access public --cache $(NPM_CACHE)
-
-publish: check build
-	npm publish --access public --cache $(NPM_CACHE)
-
 link: build
 	mkdir -p $(NODE_RED_DIR)/node_modules/@sourcesimian
 	cd $(NODE_RED_DIR) && npm install "$(CURDIR)"

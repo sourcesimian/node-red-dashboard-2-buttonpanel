@@ -11,7 +11,6 @@ const WIDGET_NAMES = [
   'ui-buttonpanel-switch',
   'ui-buttonpanel-fader',
   'ui-buttonpanel-select',
-  'ui-buttonpanel-lamp',
   'ui-buttonpanel-image',
   'ui-buttonpanel-iframe'
 ]

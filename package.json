@@ -1,6 +1,6 @@
 {
   "name": "@sourcesimian/node-red-dashboard-2-buttonpanel",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Compact Node-RED Dashboard 2.0 button panel widgets.",
   "author": "Source Simian",
   "repository": {
@@ -75,10 +75,6 @@
         "component": "UIButtonPanel"
       },
       "ui-buttonpanel-select": {
-        "output": "ui-buttonpanel.umd.js",
-        "component": "UIButtonPanel"
-      },
-      "ui-buttonpanel-lamp": {
         "output": "ui-buttonpanel.umd.js",
         "component": "UIButtonPanel"
       },

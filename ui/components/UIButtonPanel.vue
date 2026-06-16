@@ -17,32 +17,39 @@
   >
     <div class="bp-title">{{ title }}</div>
 
-    <div v-if="widgetType === 'image'" class="bp-image" :style="imageStyle">
-      <img v-if="displayValue" :src="displayValue" :alt="title">
-      <div v-else class="bp-unknown">unknown</div>
+    <div v-if="widgetType === 'image' || widgetType === 'iframe'" class="bp-media-frame">
+      <div v-if="widgetType === 'image'" class="bp-image" :style="imageStyle">
+        <img v-if="displayValue" :src="displayValue" :alt="title">
+        <div v-else class="bp-unknown">unknown</div>
+      </div>
+
+      <iframe
+        v-else
+        class="bp-iframe"
+        :src="displayValue"
+        :style="iframeStyle"
+        v-bind="iframeAttributes"
+        frameborder="0"
+      />
+
+      <div v-if="disabled" class="bp-media-disabled" aria-hidden="true">
+      </div>
     </div>
 
-    <iframe
-      v-else-if="widgetType === 'iframe'"
-      class="bp-iframe"
-      :src="displayValue"
-      :style="iframeStyle"
-      v-bind="iframeAttributes"
-      frameborder="0"
-    />
-
     <template v-else-if="widgetType === 'fader'">
-      <div class="bp-main bp-gauge-body">
-        <span v-if="currentRange.icon" class="bp-icon material-icons" :style="stateStyle">{{ currentRange.icon }}</span>
-        <span v-if="currentRange.text" class="bp-text bp-gauge-label" :style="stateStyle">{{ currentRange.text }}</span>
-        <span class="bp-number">{{ hasValue ? numericValue : '?' }}</span>
+      <div class="bp-main bp-gauge-body" :class="{ 'bp-gauge-metered': showMeter }">
+        <div v-if="currentRange.icon || currentRange.text" class="bp-gauge-meta" :style="stateStyle">
+          <span v-if="currentRange.icon" class="bp-icon material-icons">{{ currentRange.icon }}</span>
+          <span v-if="currentRange.text" class="bp-text bp-gauge-label">{{ currentRange.text }}</span>
+        </div>
+        <span class="bp-number">{{ hasValue ? formattedNumericValue : '?' }}</span>
       </div>
-      <div class="bp-meter">
+      <div v-if="showMeter" class="bp-meter">
         <span :style="meterStyle" />
       </div>
     </template>
 
-    <template v-else-if="widgetType === 'lamp' || widgetType === 'switch' || widgetType === 'select'">
+    <template v-else-if="widgetType === 'switch' || widgetType === 'select'">
       <div class="bp-main bp-state-body">
         <span v-if="currentState.icon" class="bp-state-indicator" :style="indicatorStyle">
           <span class="bp-icon material-icons">{{ currentState.icon }}</span>
@@ -137,11 +144,11 @@
           </div>
 
           <div v-else-if="modal === 'fader'" class="bp-fader-modal">
-            <div class="bp-fader-meta" :style="{ color: faderRange.color || undefined }">
-              <span class="bp-icon material-icons">{{ faderRange.icon }}</span>
-              <span>{{ faderRange.text }}</span>
+            <div v-if="faderRange.icon || faderRange.text" class="bp-fader-meta" :style="{ color: faderRange.color || undefined }">
+              <span v-if="faderRange.icon" class="bp-icon material-icons">{{ faderRange.icon }}</span>
+              <span v-if="faderRange.text">{{ faderRange.text }}</span>
             </div>
-            <div class="bp-fader-value">{{ faderValue }}</div>
+            <div class="bp-fader-value">{{ formattedFaderValue }}</div>
             <input
               v-model.number="faderValue"
               type="range"
@@ -152,8 +159,8 @@
               @change="commitFader"
             >
             <div class="bp-fader-bounds">
-              <span>{{ max }}</span>
-              <span>{{ min }}</span>
+              <span>{{ formattedMax }}</span>
+              <span>{{ formattedMin }}</span>
             </div>
           </div>
         </div>
@@ -298,6 +305,41 @@ function pinLengthFrom (value) {
   return Number.isInteger(length) && length > 0 ? length : 0
 }
 
+function pad2 (value) {
+  return String(value).padStart(2, '0')
+}
+
+function formatSeconds (value, showSeconds) {
+  const number = Number(value)
+  if (!Number.isFinite(number)) {
+    return payloadText(value)
+  }
+  const sign = number < 0 ? '-' : ''
+  let total = Math.floor(Math.abs(number))
+  const days = Math.floor(total / 86400)
+  total %= 86400
+  const hours = Math.floor(total / 3600)
+  total %= 3600
+  const minutes = Math.floor(total / 60)
+  const seconds = total % 60
+
+  if (!showSeconds) {
+    return days > 0
+      ? `${sign}${days}d ${hours}:${pad2(minutes)}`
+      : `${sign}${hours}:${pad2(minutes)}`
+  }
+  if (days > 0) {
+    return `${sign}${days}d ${hours}:${pad2(minutes)}:${pad2(seconds)}`
+  }
+  if (hours > 0) {
+    return `${sign}${hours}:${pad2(minutes)}:${pad2(seconds)}`
+  }
+  if (minutes > 0) {
+    return `${sign}${minutes}:${pad2(seconds)}`
+  }
+  return `${sign}0:${pad2(seconds)}`
+}
+
 export default {
   name: 'UIButtonPanel',
   inject: ['$socket', '$dataTracker'],
@@ -349,32 +391,25 @@ export default {
     title () {
       return this.config.label || ''
     },
+    readOnlyCapable () {
+      return ['text', 'switch', 'fader', 'image'].includes(this.widgetType)
+    },
+    readOnlyDefault () {
+      return this.widgetType === 'text' || this.widgetType === 'image'
+    },
     hasInput () {
-      if (this.widgetType === 'button') {
-        return false
-      }
-      if (this.widgetType === 'select' && this.buttonMode) {
-        return false
-      }
       return true
     },
     hasOutput () {
-      if (this.widgetType === 'text') {
-        return this.editable
+      if (this.readOnlyCapable) {
+        return !this.readOnlyMode
       }
-      if (this.widgetType === 'fader') {
-        return !this.gaugeMode
-      }
-      if (this.widgetType === 'image') {
-        return this.buttonMode
-      }
-      return ['button', 'switch', 'select'].includes(this.widgetType)
+      return ['button', 'select'].includes(this.widgetType)
     },
     shouldWaitForInput () {
-      if (!(this.hasInput && this.hasOutput)) {
-        return false
-      }
-      return this.config.waitForInput !== false && this.config.waitForInput !== 'false'
+      return this.hasInput && this.hasOutput
+        ? this.config.waitForInput !== false && this.config.waitForInput !== 'false'
+        : false
     },
     isActive () {
       return Boolean(this.modal)
@@ -382,28 +417,20 @@ export default {
     disabled () {
       return this.state?.enabled === false ||
         this.state?.visible === false ||
-        (this.hasInput && this.message.enabled === false)
+        this.message.enabled === false
     },
-    editable () {
-      return this.config.editable === true || this.config.editable === 'true'
+    readOnlyMode () {
+      return this.readOnlyCapable &&
+        (this.config.readOnly === true || this.config.readOnly === 'true')
     },
-    gaugeMode () {
-      return this.config.gauge === true || this.config.gauge === 'true'
+    showMeter () {
+      return this.widgetType === 'fader' && this.config.showMeter !== false && this.config.showMeter !== 'false'
     },
     isActionable () {
-      if (this.widgetType === 'text') {
-        return this.editable
+      if (this.readOnlyCapable) {
+        return !this.readOnlyMode
       }
-      if (this.widgetType === 'fader') {
-        return !this.gaugeMode
-      }
-      if (this.widgetType === 'image') {
-        return this.buttonMode
-      }
-      return ['button', 'switch', 'select'].includes(this.widgetType)
-    },
-    buttonMode () {
-      return this.config.button === true || this.config.button === 'true'
+      return ['button', 'select'].includes(this.widgetType)
     },
     displayValue () {
       if (this.widgetType === 'text') {
@@ -415,7 +442,7 @@ export default {
       return this.displayValue
     },
     textIcon () {
-      return configuredIcon(this.config, this.editable ? 'keyboard' : 'article', this.textValue)
+      return configuredIcon(this.config, this.readOnlyMode ? 'article' : 'keyboard', this.textValue)
     },
     hasValue () {
       const value = this.message.payload
@@ -424,6 +451,18 @@ export default {
     numericValue () {
       const value = Number(this.message.payload)
       return Number.isFinite(value) ? value : null
+    },
+    formattedNumericValue () {
+      return this.formatFaderValue(this.numericValue)
+    },
+    formattedFaderValue () {
+      return this.formatFaderValue(this.faderValue)
+    },
+    formattedMin () {
+      return this.formatFaderValue(this.min)
+    },
+    formattedMax () {
+      return this.formatFaderValue(this.max)
     },
     min () {
       const configured = optionalNumber(this.config.min)
@@ -471,16 +510,6 @@ export default {
       })
     },
     currentState () {
-      if (this.widgetType === 'select' && this.buttonMode) {
-        const text = configuredText(this.config, this.config.value || 'Select')
-        return {
-          value: this.config.value,
-          valueText: payloadText(this.config.value),
-          text,
-          icon: configuredIcon(this.config, 'radio_button_checked', text),
-          color: this.config.color || undefined
-        }
-      }
       const value = payloadText(this.message.payload)
       const fallbackText = configuredText(this.config, 'unknown')
       return this.configuredStates.find(item => item.valueText === value) || {
@@ -491,10 +520,7 @@ export default {
       }
     },
     isUnknown () {
-      if (['lamp', 'switch', 'select'].includes(this.widgetType)) {
-        if (this.widgetType === 'select' && this.buttonMode) {
-          return false
-        }
+      if (['switch', 'select'].includes(this.widgetType)) {
         return this.currentState.valueText === '' || this.currentState.value === ''
       }
       if (this.widgetType === 'text') {
@@ -506,7 +532,7 @@ export default {
       return false
     },
     isStateOn () {
-      if (!['lamp', 'switch', 'select'].includes(this.widgetType)) {
+      if (!['switch', 'select'].includes(this.widgetType)) {
         return false
       }
       const value = `${this.currentState.valueText || payloadText(this.currentState.value)} ${this.currentState.text}`.toLowerCase()
@@ -619,18 +645,21 @@ export default {
           }
         }
       }
+    },
+    messages: {
+      deep: true,
+      immediate: true,
+      handler () {
+        this.syncStoredMessage()
+      }
     }
   },
   created () {
-    this.$dataTracker(this.id)
+    this.$dataTracker(this.id, this.handleIncomingMessage)
   },
   mounted () {
     this.ensureMaterialIcons()
-    this.handleIncomingMessage = msg => {
-      this.latestMsg = msg || {}
-    }
-    this.$socket.on(`msg-input:${this.id}`, this.handleIncomingMessage)
-    this.$socket.on(`widget-load:${this.id}`, this.handleIncomingMessage)
+    this.syncStoredMessage()
 
     this.tickInterval = setInterval(() => {
       this.ticker = Date.now()
@@ -642,14 +671,48 @@ export default {
     }
   },
   unmounted () {
-    this.$socket.off(`msg-input:${this.id}`, this.handleIncomingMessage)
-    this.$socket.off(`widget-load:${this.id}`, this.handleIncomingMessage)
     clearInterval(this.tickInterval)
     clearTimeout(this.liveTimer)
     clearTimeout(this.sendingTimer)
     clearTimeout(this.dialogTimer)
   },
   methods: {
+    syncStoredMessage () {
+      const stored = this.messages?.[this.id]
+      if (stored && Object.prototype.hasOwnProperty.call(stored, 'payload')) {
+        this.latestMsg = {
+          ...stored,
+          ...(this.latestMsg || {})
+        }
+      }
+    },
+    handleIncomingMessage (msg) {
+      if (!msg) {
+        this.latestMsg = {}
+        return
+      }
+      if (Object.prototype.hasOwnProperty.call(msg, 'payload')) {
+        this.latestMsg = msg
+        return
+      }
+      this.latestMsg = {
+        ...this.message,
+        ...msg
+      }
+    },
+    formatFaderValue (value) {
+      const formatter = payloadText(this.config.value_as)
+      if (!formatter) {
+        return payloadText(value)
+      }
+      if (formatter === 's2DHHMMSS') {
+        return formatSeconds(value, true)
+      }
+      if (formatter === 's2DHHMM') {
+        return formatSeconds(value, false)
+      }
+      return formatter.replaceAll('{value}', payloadText(value))
+    },
     ensureMaterialIcons () {
       const id = 'buttonpanel-material-icons'
       if (document.getElementById(id)) {
@@ -681,13 +744,13 @@ export default {
     },
     defaultStateIcon (item) {
       const value = `${item.text || ''} ${item.value || ''}`.toLowerCase()
-      if (value.includes('on') || value.includes('true')) return this.widgetType === 'lamp' ? 'emoji_objects' : 'toggle_on'
-      if (value.includes('off') || value.includes('false')) return this.widgetType === 'lamp' ? 'emoji_objects' : 'toggle_off'
+      if (value.includes('on') || value.includes('true')) return 'toggle_on'
+      if (value.includes('off') || value.includes('false')) return 'toggle_off'
       return this.widgetType === 'select' ? 'radio_button_unchecked' : 'help_center'
     },
     defaultStateColor (item) {
       const value = `${item.text || ''} ${item.value || ''}`.toLowerCase()
-      if (value.includes('on') || value.includes('true')) return this.widgetType === 'lamp' ? 'yellow' : '#52D017'
+      if (value.includes('on') || value.includes('true')) return '#52D017'
       if (value.includes('off') || value.includes('false')) return '#7f8790'
       return undefined
     },
@@ -699,7 +762,7 @@ export default {
         this.sendWithOptionalConfirm({
           payload: this.config.value,
           ...(this.config.topic ? { topic: this.config.topic } : {})
-        }, this.config.confirm, pinLengthFrom(this.config.confirm_pin), this.config.input_timeout, false)
+        }, this.config.confirm, pinLengthFrom(this.config.confirm_pin), this.config.input_timeout, this.shouldWaitForInput)
       } else if (this.widgetType === 'image') {
         this.sendWithOptionalConfirm({
           payload: this.config.value,
@@ -840,29 +903,63 @@ export default {
       this.pinLength = 0
       this.pinValue = ''
     },
-    handleFaderInput () {
-      this.resetInputTimeout()
-      if (this.config.live !== true && this.config.live !== 'true') {
+    faderEventValue (event) {
+      const value = Number(event?.target?.value ?? this.faderValue)
+      if (!Number.isFinite(value)) {
+        return null
+      }
+      this.faderValue = value
+      return value
+    },
+    isLiveFader () {
+      return this.config.live === true || this.config.live === 'true'
+    },
+    emitFaderValue (value) {
+      if (!Number.isFinite(Number(value))) {
         return
       }
-      this.lastLiveValue = this.faderValue
+      this.emitAction({
+        payload: value,
+        ...(this.config.topic ? { topic: this.config.topic } : {})
+      })
+    },
+    handleFaderInput (event) {
+      this.resetInputTimeout()
+      const value = this.faderEventValue(event)
+      if (value === null || !this.isLiveFader()) {
+        return
+      }
+      this.lastLiveValue = value
       if (this.liveTimer) {
         return
       }
       this.liveTimer = setTimeout(() => {
-        this.emitAction({
-          payload: this.lastLiveValue,
-          ...(this.config.topic ? { topic: this.config.topic } : {})
-        })
+        const liveValue = this.lastLiveValue
         this.liveTimer = null
+        this.lastLiveValue = null
+        this.emitFaderValue(liveValue)
       }, 200)
     },
-    commitFader () {
+    commitFader (event) {
+      const value = this.faderEventValue(event)
       this.closeModal(false)
-      if (this.lastLiveValue !== this.faderValue) {
+      if (value === null) {
+        this.lastLiveValue = null
+        return
+      }
+      if (this.isLiveFader()) {
+        if (this.liveTimer) {
+          clearTimeout(this.liveTimer)
+          this.liveTimer = null
+        }
+        this.lastLiveValue = null
+        this.emitFaderValue(value)
+        return
+      }
+      if (this.lastLiveValue !== value) {
         this.sendWithOptionalConfirm(
           {
-            payload: this.faderValue,
+            payload: value,
             ...(this.config.topic ? { topic: this.config.topic } : {})
           },
           this.config.confirm,
@@ -900,7 +997,7 @@ export default {
   min-height: 65px;
   height: 100%;
   box-sizing: border-box;
-  padding: 6px 8px 14px;
+  padding: 6px 6px 14px;
   overflow: hidden;
   border-radius: 4px;
   border: 0;
@@ -929,7 +1026,7 @@ export default {
   align-items: center;
   min-width: 0;
   min-height: 0;
-  gap: 6px;
+  gap: 4px;
   padding-top: 0;
   color: #f5f5f5;
   font-size: 1.25rem;
@@ -956,12 +1053,8 @@ export default {
 }
 
 .bp-icon {
-  min-width: 28px;
+  min-width: 26px;
   font-size: 32px;
-}
-
-.bp-gauge-body > .bp-icon {
-  grid-column: 1;
 }
 
 .bp-text,
@@ -977,12 +1070,12 @@ export default {
   align-items: center;
   min-width: 0;
   min-height: 0;
-  gap: 6px;
+  gap: 4px;
   padding-top: 0;
 }
 
 .bp-text-quote {
-  min-width: 28px;
+  min-width: 26px;
   font-size: 32px;
 }
 
@@ -994,7 +1087,7 @@ export default {
 }
 
 .bp-state-body {
-  gap: 6px;
+  gap: 4px;
   padding-top: 0;
 }
 
@@ -1003,7 +1096,7 @@ export default {
   flex: 0 0 auto;
   align-items: center;
   justify-content: center;
-  width: 42px;
+  width: 36px;
   height: 34px;
   border: 0;
   background: transparent;
@@ -1030,7 +1123,7 @@ export default {
   display: flex;
   flex: 1 1 auto;
   align-items: center;
-  gap: 6px;
+  gap: 4px;
   min-width: 0;
   min-height: 0;
   padding-top: 0;
@@ -1040,7 +1133,7 @@ export default {
 
 .bp-button-icon {
   flex: 0 0 auto;
-  min-width: 30px;
+  min-width: 26px;
   font-size: 31px;
 }
 
@@ -1056,20 +1149,30 @@ export default {
 
 .bp-gauge-body {
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr) max-content;
+  grid-template-columns: minmax(0, 1fr) max-content;
   align-items: center;
   align-content: center;
+  padding-right: 0;
+}
+
+.bp-gauge-metered {
   padding-right: 26px;
 }
 
+.bp-gauge-meta {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  gap: 4px;
+}
+
 .bp-gauge-label {
-  grid-column: 2;
   min-width: 0;
   font-weight: 400;
 }
 
 .bp-number {
-  grid-column: 3;
+  grid-column: 2;
   justify-self: end;
   min-width: 3ch;
   max-width: 100%;
@@ -1236,6 +1339,21 @@ export default {
   object-position: center center;
 }
 
+.bp-media-frame {
+  position: relative;
+  display: flex;
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: 0;
+  margin-top: 6px;
+  overflow: hidden;
+}
+
+.bp-media-frame .bp-image,
+.bp-media-frame .bp-iframe {
+  margin-top: 0;
+}
+
 .bp-iframe {
   flex: 1 1 auto;
   min-height: 0;
@@ -1244,6 +1362,18 @@ export default {
   margin-top: 6px;
   border: 0;
   overflow: auto;
+}
+
+.bp-media-disabled {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(36, 39, 42, 0.56);
+  backdrop-filter: saturate(0.8) blur(1px);
+  pointer-events: none;
 }
 
 .bp-unknown {
@@ -1520,7 +1650,7 @@ export default {
   left: 20px;
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 4px;
 }
 
 .bp-fader-value {

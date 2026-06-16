@@ -5,7 +5,6 @@ module.exports = function (RED) {
     'switch',
     'fader',
     'select',
-    'lamp',
     'image',
     'iframe'
   ]
@@ -156,8 +155,12 @@ module.exports = function (RED) {
               }
               return
             }
-            msg.payload = value
-            base.stores.data.save(base, node, msg)
+            if (typeof value !== 'undefined') {
+              msg.payload = value
+              base.stores.data.save(base, node, msg)
+            } else {
+              delete msg.payload
+            }
             if (done) {
               done()
             }

@@ -1,6 +1,6 @@
 # ButtonPanel Manual
 
-ButtonPanel provides compact Dashboard 2.0 widgets for building tactile button, switch, fader, lamp, image, and iframe panels in Node-RED Dashboard 2.0. The button tile style and interaction model were inspired by [`sourcesimian/mqtt-panel`](https://github.com/sourcesimian/mqtt-panel).
+ButtonPanel provides compact Dashboard 2.0 widgets for building tactile button, switch, fader, image, and iframe panels in Node-RED Dashboard 2.0. The button tile style and interaction model were inspired by [`sourcesimian/mqtt-panel`](https://github.com/sourcesimian/mqtt-panel).
 
 ## ButtonPanel Config
 
@@ -35,11 +35,13 @@ topic: device/command
 to `msg.payload`, supports dot notation such as `msg.device.state`, and can use
 JSONata expressions when supported by the Node-RED runtime. Output values are
 emitted as their natural values: configured YAML values are emitted as parsed,
-faders emit numbers, and editable text emits strings. `topic` is optional and
+faders emit numbers, and interactive text emits strings. `topic` is optional and
 is only included on output messages when configured.
 
 Widgets with inputs also observe `msg.enabled`. If `msg.enabled` is `false`, the
 widget is disabled. Messages without `enabled` leave the widget enabled.
+
+If an input message changes dynamic state such as `enabled` but `value_from` resolves to `undefined`, the widget keeps its current displayed value.
 
 Widgets with both input and output provide a **Wait for input** property. When it
 is enabled, the widget shows a waiting state after sending until the next input
@@ -51,8 +53,8 @@ and `input_timeout` values are inherited unless the entry provides its own.
 ## ButtonPanel Text Config
 
 Text displays the incoming value. If no value has arrived, it displays `text`
-from the config. When **Editable** is checked, tapping the widget opens an edit
-dialog and emits the entered value.
+from the config. When **Read Only** is not checked, tapping the widget opens an edit
+dialog and emits the entered value. When **Read Only** is checked, the widget is display-only.
 
 ```yaml
 text:
@@ -63,7 +65,7 @@ input_timeout: 0
 
 ## ButtonPanel Button Config
 
-Button has no input and emits the configured `value`. `confirm` shows a confirmation dialog.
+Button emits the configured `value` when tapped. Incoming messages can enable or disable it. `confirm` shows a confirmation dialog.
 `confirm_pin` can be set to a positive digit count to require PIN entry before
 the value is sent.
 
@@ -79,8 +81,8 @@ input_timeout: 0
 
 ## ButtonPanel Switch Config
 
-Switch maps incoming values to `values`. Tapping the widget cycles to the next
-configured value and emits that value. Each value can have its own
+Switch maps incoming values to `values`. Non-read-only switches cycle to the next
+configured value and emit that value when tapped. Read-only switches are display-only. Each value can have its own
 `topic`, `confirm`, `confirm_pin`, and `input_timeout`.
 
 ```yaml
@@ -119,33 +121,22 @@ values:
     confirm_pin: 4
 ```
 
-When **Button** is checked, Select does not use an input. It displays the
-top-level `text`, `icon`, and `color`; tapping it opens the configured `values`
-dialog and emits the selected value.
-
-```yaml
-text: Scene
-icon: radio_button_checked
-color: "#26c6da"
-input_timeout: 0
-values:
-  - value: MOUNTAIN
-    text: Mountain
-    icon: landscape
-    color: "#bdbdbd"
-  - value: COAST
-    text: Coast
-    icon: waves
-    color: "#26c6da"
-    confirm: Switch to coast?
-    confirm_pin: 4
-```
 
 ## ButtonPanel Fader Config
 
 Fader displays an incoming numeric value against configured `ranges`. By
 default, tapping the widget opens the vertical fader dialog and emits the
-selected numeric value. When **Gauge** is checked, the widget is display-only.
+selected numeric value. When **Read Only** is checked, the widget is display-only.
+
+The Fader node property **Show Meter** controls the compact side meter. It is enabled by default; disabling it hides only the side meter and does not change displayed values or emitted payloads.
+
+Use top-level `value_as` to format displayed fader values without changing the
+emitted numeric payload. It applies to the widget value and the fader dialog
+current, min, and max values. Supported predefined formatters are
+`s2DHHMMSS` for seconds as `1d 12:34:56`, `12:34:56`, `34:56`, or
+`0:56`, and `s2DHHMM` for seconds as `1d 12:34`, `12:34`, or
+`0:34`. Any other string is treated as a template where `{value}` is replaced
+with the numeric value.
 
 ```yaml
 text: Level
@@ -153,6 +144,7 @@ icon: tune
 color: "#62a8ea"
 min: 0
 max: 100
+value_as: "{value} %"
 live: false
 input_timeout: 0
 ranges:
@@ -170,33 +162,18 @@ ranges:
     color: "#f89406"
 ```
 
-## ButtonPanel Lamp Config
-
-Lamp is display-only. It maps incoming values to `values`.
-
-```yaml
-values:
-  - value: OFF
-    text: OFF
-    icon: emoji_objects
-    color: "#7f8790"
-  - value: ON
-    text: ON
-    icon: emoji_objects
-    color: "#ffd84d"
-```
-
 ## ButtonPanel Image Config
 
-Image is display-only. The incoming value is used as the image URL. `overflow`
-can be `hidden`, `visible`, `scroll`, or `auto`. Sizing is controlled by the
-Dashboard grid item.
+Image uses the incoming value as the image URL. `overflow` can be `hidden`,
+`visible`, `scroll`, or `auto`. Sizing is controlled by the Dashboard grid item.
+When **Read Only** is checked, Image is display-only. When **Read Only** is not
+checked, tapping the image emits a button-style message.
 
 ```yaml
 overflow: hidden
 ```
 
-When **Button** is checked, Image also emits a button-style message when tapped:
+For interactive Image widgets:
 
 ```yaml
 overflow: hidden

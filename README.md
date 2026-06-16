@@ -1,16 +1,15 @@
 # Node-RED Dashboard 2.0 ButtonPanel
 
-Compact Node-RED Dashboard 2.0 button panel widgets for building tactile button, switch, fader, lamp, image, and iframe panels.
+Compact Node-RED Dashboard 2.0 button panel widgets for building tactile button, switch, fader, image, and iframe panels.
 
 ## Nodes
 
-- `buttonpanel text`: display text values, optionally editable
+- `buttonpanel text`: display text values, optionally read-only
 - `buttonpanel button`: emit a configured command value
 - `buttonpanel switch`: cycle through configured states
-- `buttonpanel select`: choose one configured state from a dialog, optionally as a button
-- `buttonpanel fader`: edit a numeric range value, or display it as a gauge
-- `buttonpanel lamp`: display a mapped state
-- `buttonpanel image`: display an image URL, optionally as a button
+- `buttonpanel select`: choose one configured state from a dialog
+- `buttonpanel fader`: edit a numeric range value, or display it as read-only
+- `buttonpanel image`: display an image URL, optionally interactive
 - `buttonpanel iframe`: embed a URL
 
 See [MANUAL.md](MANUAL.md) for configuration details and examples.

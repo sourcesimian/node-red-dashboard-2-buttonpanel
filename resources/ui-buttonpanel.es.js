@@ -1,11 +1,11 @@
-(function(){"use strict";try{if(typeof document<"u"){var t=document.createElement("style");t.appendChild(document.createTextNode('@import"https://fonts.googleapis.com/icon?family=Material+Icons";.bp-widget[data-v-2d2431f5]{--bp-font-color: #aaa;--bp-title-color: #bdbdbd;--bp-font-muted: #969696;--bp-bg: #32383e;--bp-bg-disabled: #232628;--bp-disabled-color: #606060;--bp-meter-bg: #444;--bp-fader-empty: #25292d;--bp-waiting: #f89406;--bp-sending: #26c6da;--bp-active: #26c6da;position:relative;display:flex;flex-direction:column;width:100%;min-width:0;max-width:100%;min-height:65px;height:100%;box-sizing:border-box;padding:6px 6px 14px;overflow:hidden;border-radius:4px;border:0;background:var(--bp-bg);color:var(--bp-font-color);font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Arial,sans-serif;line-height:1.25;-webkit-user-select:none;user-select:none}.bp-title[data-v-2d2431f5]{width:100%;flex:0 0 auto;overflow:hidden;text-align:left;color:var(--bp-title-color);font-size:1rem;font-weight:400;white-space:nowrap;text-overflow:clip}.bp-main[data-v-2d2431f5]{display:flex;flex:1 1 auto;align-items:center;min-width:0;min-height:0;gap:4px;padding-top:0;color:#f5f5f5;font-size:1.25rem}.bp-icon[data-v-2d2431f5],.bp-button-icon[data-v-2d2431f5],.bp-text-quote[data-v-2d2431f5]{display:inline-block;font-family:Material Icons,sans-serif;font-weight:400;font-style:normal;line-height:1;text-align:center;text-transform:none;letter-spacing:normal;white-space:nowrap;direction:ltr;word-wrap:normal;-webkit-font-feature-settings:"liga";-webkit-font-smoothing:antialiased;font-feature-settings:"liga";text-rendering:optimizeLegibility}.bp-icon[data-v-2d2431f5]{min-width:26px;font-size:32px}.bp-text[data-v-2d2431f5],.bp-text-value[data-v-2d2431f5]{overflow:hidden;white-space:nowrap;text-overflow:clip}.bp-text-body[data-v-2d2431f5]{display:flex;flex:1 1 auto;align-items:center;min-width:0;min-height:0;gap:4px;padding-top:0}.bp-text-quote[data-v-2d2431f5]{min-width:26px;font-size:32px}.bp-text-value[data-v-2d2431f5]{padding-top:1px;color:#fff;font-size:1.25rem;line-height:1.2}.bp-state-body[data-v-2d2431f5]{gap:4px;padding-top:0}.bp-state-indicator[data-v-2d2431f5]{display:inline-flex;flex:0 0 auto;align-items:center;justify-content:center;width:36px;height:34px;border:0;background:transparent}.bp-state-indicator .bp-icon[data-v-2d2431f5]{min-width:0;font-size:34px}.bp-state-text[data-v-2d2431f5]{font-size:1.25rem;font-weight:400;text-transform:none}.bp-select-caret[data-v-2d2431f5]{margin-left:auto;color:var(--bp-font-muted);font-size:22px}.bp-button-body[data-v-2d2431f5]{display:flex;flex:1 1 auto;align-items:center;gap:4px;min-width:0;min-height:0;padding-top:0;border:0;background:transparent}.bp-button-icon[data-v-2d2431f5]{flex:0 0 auto;min-width:26px;font-size:31px}.bp-button-text[data-v-2d2431f5]{flex:1 1 auto;min-width:0;overflow:hidden;font-size:1.25rem;font-weight:400;white-space:nowrap;text-overflow:clip}.bp-gauge-body[data-v-2d2431f5]{display:grid;grid-template-columns:minmax(0,1fr) max-content;align-items:center;align-content:center;padding-right:0}.bp-gauge-metered[data-v-2d2431f5]{padding-right:26px}.bp-gauge-meta[data-v-2d2431f5]{display:flex;align-items:center;min-width:0;gap:4px}.bp-gauge-label[data-v-2d2431f5]{min-width:0;font-weight:400}.bp-number[data-v-2d2431f5]{grid-column:2;justify-self:end;min-width:3ch;max-width:100%;padding-right:0;overflow:hidden;color:#bdbdbd;font-size:1.2rem;font-weight:400;text-align:right;text-overflow:clip;white-space:nowrap}.bp-last-update[data-v-2d2431f5]{position:absolute;right:6px;bottom:4px;color:var(--bp-font-muted);font-size:9px}.bp-clickable[data-v-2d2431f5]{cursor:pointer}.bp-clickable[data-v-2d2431f5]:hover{cursor:pointer;filter:brightness(1.05)}.bp-disabled[data-v-2d2431f5]{background:var(--bp-bg-disabled);color:var(--bp-disabled-color);cursor:not-allowed;filter:none}.bp-disabled .bp-title[data-v-2d2431f5],.bp-disabled .bp-last-update[data-v-2d2431f5],.bp-disabled .bp-icon[data-v-2d2431f5],.bp-disabled .bp-button-icon[data-v-2d2431f5],.bp-disabled .bp-text-quote[data-v-2d2431f5],.bp-disabled .bp-text[data-v-2d2431f5],.bp-disabled .bp-text-value[data-v-2d2431f5],.bp-disabled .bp-state-text[data-v-2d2431f5],.bp-disabled .bp-gauge-label[data-v-2d2431f5],.bp-disabled .bp-number[data-v-2d2431f5],.bp-disabled .bp-button-body[data-v-2d2431f5],.bp-disabled .bp-button-text[data-v-2d2431f5]{color:var(--bp-disabled-color)!important}.bp-disabled .bp-state-indicator[data-v-2d2431f5]{color:var(--bp-disabled-color)!important;border-color:var(--bp-disabled-color)!important;background-color:transparent!important}.bp-disabled .bp-meter>span[data-v-2d2431f5]{background-color:var(--bp-disabled-color)!important}.bp-active[data-v-2d2431f5]{outline:2px solid var(--bp-active);outline-offset:-2px}.bp-sending[data-v-2d2431f5]{outline:2px solid var(--bp-sending);outline-offset:-2px;cursor:progress}.bp-pending[data-v-2d2431f5]{outline:2px solid var(--bp-waiting);outline-offset:-2px;background:#35383a;cursor:wait}.bp-sending[data-v-2d2431f5]>:not(.bp-status-overlay):not(.bp-modal-backdrop),.bp-pending[data-v-2d2431f5]>:not(.bp-status-overlay):not(.bp-modal-backdrop){opacity:.46}.bp-status-overlay[data-v-2d2431f5]{position:absolute;right:7px;top:7px;z-index:4;display:flex;align-items:center;justify-content:center;gap:5px;padding:4px 6px;border-radius:3px;color:#1f2124;background:var(--bp-waiting);font-size:.68rem;font-weight:800;text-transform:uppercase}.bp-sending .bp-status-overlay[data-v-2d2431f5]{background:var(--bp-sending)}.bp-spinner[data-v-2d2431f5]{width:11px;height:11px;border:2px solid rgba(31,33,36,.35);border-top-color:#1f2124;border-radius:50%;animation:bp-spin-2d2431f5 .8s linear infinite}.bp-unknown-state[data-v-2d2431f5]{opacity:.78}.bp-meter[data-v-2d2431f5]{position:absolute;top:9px;right:7px;width:20px;height:calc(100% - 26px);border:1px solid rgba(0,0,0,.45);background:var(--bp-meter-bg)}@keyframes bp-spin-2d2431f5{to{transform:rotate(360deg)}}.bp-meter>span[data-v-2d2431f5]{position:absolute;bottom:0;left:0;display:block;width:100%}.bp-image[data-v-2d2431f5]{display:flex;flex:1 1 auto;align-items:center;justify-content:center;min-height:0;margin-top:6px;overflow:hidden;line-height:1.2}.bp-image img[data-v-2d2431f5]{display:block;max-width:100%;max-height:100%;width:auto;height:auto;margin:0;object-fit:contain;object-position:center center}.bp-media-frame[data-v-2d2431f5]{position:relative;display:flex;flex:1 1 auto;min-width:0;min-height:0;margin-top:6px;overflow:hidden}.bp-media-frame .bp-image[data-v-2d2431f5],.bp-media-frame .bp-iframe[data-v-2d2431f5]{margin-top:0}.bp-iframe[data-v-2d2431f5]{flex:1 1 auto;min-height:0;width:100%;height:100%;margin-top:6px;border:0;overflow:auto}.bp-media-disabled[data-v-2d2431f5]{position:absolute;top:0;right:0;bottom:0;left:0;z-index:2;display:flex;align-items:center;justify-content:center;background:#24272a8f;-webkit-backdrop-filter:saturate(.8) blur(1px);backdrop-filter:saturate(.8) blur(1px);pointer-events:none}.bp-unknown[data-v-2d2431f5]{align-self:flex-start;padding-top:2px;color:var(--bp-font-muted);font-size:1rem;line-height:1.2}.bp-modal-backdrop[data-v-2d2431f5]{position:fixed;top:0;right:0;bottom:0;left:0;z-index:1000;display:flex;align-items:center;justify-content:center;background:#00000080}.bp-modal[data-v-2d2431f5]{position:relative;min-width:330px;max-width:min(90vw,420px);padding:18px;border-radius:4px;background:#272b30;color:#ddd;box-shadow:0 12px 30px #00000059}.bp-modal-title[data-v-2d2431f5]{margin-bottom:12px;color:#f5f5f5;font-weight:700}.bp-modal-close[data-v-2d2431f5]{position:absolute;top:8px;right:8px;width:24px;height:24px;min-height:0;padding:0;border:0;background:transparent;cursor:pointer}.bp-modal-close span[data-v-2d2431f5],.bp-modal-close[data-v-2d2431f5]:before{position:absolute;top:11px;left:3px;width:18px;height:2px;border-radius:2px;background:#ddd;content:""}.bp-modal-close span[data-v-2d2431f5]{transform:rotate(45deg)}.bp-modal-close[data-v-2d2431f5]:before{transform:rotate(-45deg)}.bp-modal-close:hover span[data-v-2d2431f5],.bp-modal-close[data-v-2d2431f5]:hover:before{background:#fff}.bp-modal-actions[data-v-2d2431f5],.bp-select-list[data-v-2d2431f5]{display:grid;gap:8px}.bp-modal-actions[data-v-2d2431f5]{grid-template-columns:1fr 1fr;margin-top:16px}.bp-modal-actions button[data-v-2d2431f5],.bp-select-list button[data-v-2d2431f5]{min-height:57px;padding:9px 15px;border:1px solid #151719;border-radius:4px;background:#3a3f44;color:#f5f5f5;font-size:1.05rem;cursor:pointer}.bp-select-list button[data-v-2d2431f5]{display:flex;width:100%;align-items:center;gap:8px;justify-content:flex-start;padding:9px 15px}.bp-value-modal[data-v-2d2431f5]{display:grid;gap:12px;min-width:240px}.bp-value-input[data-v-2d2431f5]{width:100%;min-height:40px;box-sizing:border-box;padding:8px 10px;border:1px solid #151719;border-radius:4px;outline:none;background:#32383e;color:#fff;font:inherit}.bp-value-input[data-v-2d2431f5]:focus{border-color:#888;box-shadow:0 0 0 1px #888}.bp-pin-modal[data-v-2d2431f5]{display:grid;gap:14px;min-width:240px;padding-top:2px}.bp-pin-message[data-v-2d2431f5]{padding-right:18px;color:#f5f5f5;line-height:1.35}.bp-pin-dots[data-v-2d2431f5]{display:flex;justify-content:center;gap:10px;padding:4px 0 6px}.bp-pin-dots span[data-v-2d2431f5]{width:12px;height:12px;border-radius:50%;background:#50565d;box-shadow:inset 0 0 0 1px #181a1c}.bp-pin-dots span.bp-pin-dot-filled[data-v-2d2431f5]{background:#f0f36a;box-shadow:0 0 8px #f0f36a8c}.bp-pin-keypad[data-v-2d2431f5]{display:grid;grid-template-columns:repeat(3,52px);gap:8px;justify-content:center}.bp-pin-keypad button[data-v-2d2431f5]{width:52px;height:44px;border:1px solid #151719;border-radius:4px;background:#3a3f44;color:#f5f5f5;font:inherit;font-size:1.2rem;cursor:pointer}.bp-pin-keypad button[data-v-2d2431f5]:hover{background:#474d53}.bp-pin-keypad .bp-pin-key-blank[data-v-2d2431f5]{visibility:hidden;cursor:default}.bp-pin-keypad .bp-pin-backspace[data-v-2d2431f5]{font-family:Material Icons,sans-serif;font-size:1.35rem}.bp-fader-modal[data-v-2d2431f5]{--bp-fader-track-left: 52px;--bp-fader-track-top: 42px;--bp-fader-track-width: 48px;--bp-fader-track-height: 320px;position:relative;width:170px;height:428px;margin:0 auto}.bp-fader-modal input[data-v-2d2431f5]{position:absolute;top:calc(var(--bp-fader-track-top) + (var(--bp-fader-track-height) - var(--bp-fader-track-width)) / 2);left:calc(var(--bp-fader-track-left) - (var(--bp-fader-track-height) - var(--bp-fader-track-width)) / 2);width:var(--bp-fader-track-height);height:var(--bp-fader-track-width);border:1px solid #232628;background-color:var(--bp-fader-color);box-shadow:inset 0 0 0 1px #ffffff14;cursor:pointer;opacity:1;outline:none;touch-action:none;transform-origin:50% 50%;transform:rotate(270deg);appearance:none;-webkit-appearance:none;-moz-appearance:none}.bp-fader-modal input[data-v-2d2431f5]:hover,.bp-fader-modal input[data-v-2d2431f5]:active{opacity:1}.bp-fader-modal input[data-v-2d2431f5]::-webkit-slider-runnable-track{width:var(--bp-fader-track-height);height:var(--bp-fader-track-width);border:0;background:transparent}.bp-fader-modal input[data-v-2d2431f5]::-moz-range-track{width:var(--bp-fader-track-height);height:var(--bp-fader-track-width);border:0;background:transparent}.bp-fader-modal input[data-v-2d2431f5]::-webkit-slider-thumb{width:30px;height:60px;margin-top:-6px;border:0;border-radius:10px;background:#fff;cursor:pointer;-webkit-appearance:none;-moz-appearance:none;appearance:none}.bp-fader-modal input[data-v-2d2431f5]::-moz-range-thumb{width:30px;height:60px;border:0;border-radius:10px;background:#fff;cursor:pointer;-moz-appearance:none}.bp-fader-meta[data-v-2d2431f5]{position:absolute;top:374px;left:20px;display:flex;align-items:center;gap:4px}.bp-fader-value[data-v-2d2431f5]{position:absolute;top:190px;right:146px;font-size:1.2rem}.bp-fader-bounds[data-v-2d2431f5]{position:absolute;top:var(--bp-fader-track-top);left:136px;height:var(--bp-fader-track-height);display:flex;flex-direction:column;justify-content:space-between;color:#aaa}')),document.head.appendChild(t)}}catch(a){console.error("vite-plugin-css-injected-by-js",a)}})();
-import { mapState as N } from "vuex";
-import { openBlock as a, createElementBlock as l, normalizeClass as x, createElementVNode as u, toDisplayString as c, normalizeStyle as m, mergeProps as A, createCommentVNode as h, Fragment as k, createBlock as D, Teleport as L, withModifiers as w, renderList as _, withDirectives as M, withKeys as S, vModelText as C } from "vue";
+(function(){"use strict";try{if(typeof document<"u"){var e=document.createElement("style");e.appendChild(document.createTextNode('@import"https://fonts.googleapis.com/icon?family=Material+Icons";.bp-widget[data-v-e1c0e340]{--bp-font-color: #aaa;--bp-title-color: #bdbdbd;--bp-font-muted: #969696;--bp-bg: #32383e;--bp-bg-disabled: #232628;--bp-disabled-color: #606060;--bp-meter-bg: #444;--bp-fader-empty: #25292d;--bp-waiting: #f89406;--bp-sending: #26c6da;--bp-active: #26c6da;position:relative;display:flex;flex-direction:column;width:100%;min-width:0;max-width:100%;height:100%;box-sizing:border-box;padding:6px;overflow:hidden;border-radius:4px;border:0;background:var(--bp-bg);color:var(--bp-font-color);font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Arial,sans-serif;line-height:1.25;-webkit-user-select:none;user-select:none}.bp-title[data-v-e1c0e340]{width:100%;flex:0 0 auto;overflow:hidden;text-align:left;color:var(--bp-title-color);font-size:1rem;font-weight:400;white-space:nowrap;text-overflow:clip}.bp-main[data-v-e1c0e340]{display:flex;flex:1 1 auto;align-items:center;min-width:0;min-height:0;gap:4px;padding-top:0;color:#f5f5f5;font-size:1.25rem}.bp-icon[data-v-e1c0e340],.bp-button-icon[data-v-e1c0e340],.bp-text-quote[data-v-e1c0e340]{display:inline-block;font-family:Material Icons,sans-serif;font-weight:400;font-style:normal;line-height:1;text-align:center;text-transform:none;letter-spacing:normal;white-space:nowrap;direction:ltr;word-wrap:normal;-webkit-font-feature-settings:"liga";-webkit-font-smoothing:antialiased;font-feature-settings:"liga";text-rendering:optimizeLegibility}.bp-icon[data-v-e1c0e340]{min-width:26px;font-size:32px}.bp-text[data-v-e1c0e340],.bp-text-value[data-v-e1c0e340]{overflow:hidden;white-space:nowrap;text-overflow:clip}.bp-text-body[data-v-e1c0e340]{display:flex;flex:1 1 auto;align-items:center;min-width:0;min-height:0;gap:4px;padding-top:0}.bp-text-quote[data-v-e1c0e340]{min-width:26px;font-size:32px}.bp-text-value[data-v-e1c0e340]{padding-top:1px;color:#fff;font-size:1.25rem;line-height:1.2}.bp-state-body[data-v-e1c0e340]{gap:4px;padding-top:0}.bp-state-indicator[data-v-e1c0e340]{display:inline-flex;flex:0 0 auto;align-items:center;justify-content:center;width:36px;height:34px;border:0;background:transparent}.bp-state-indicator .bp-icon[data-v-e1c0e340]{min-width:0;font-size:34px}.bp-state-text[data-v-e1c0e340]{font-size:1.25rem;font-weight:400;text-transform:none}.bp-select-caret[data-v-e1c0e340]{margin-left:auto;color:var(--bp-font-muted);font-size:22px}.bp-button-body[data-v-e1c0e340]{display:flex;flex:1 1 auto;align-items:center;gap:4px;min-width:0;min-height:0;padding-top:0;border:0;background:transparent}.bp-button-icon[data-v-e1c0e340]{flex:0 0 auto;min-width:26px;font-size:31px}.bp-button-text[data-v-e1c0e340]{flex:1 1 auto;min-width:0;overflow:hidden;font-size:1.25rem;font-weight:400;white-space:nowrap;text-overflow:clip}.bp-gauge-body[data-v-e1c0e340]{display:grid;grid-template-columns:minmax(0,1fr) max-content;align-items:center;align-content:center;padding-right:0}.bp-gauge-metered[data-v-e1c0e340]{padding-right:18px}.bp-gauge-meta[data-v-e1c0e340]{display:flex;align-items:center;min-width:0;gap:4px}.bp-gauge-label[data-v-e1c0e340]{min-width:0;font-weight:400}.bp-number[data-v-e1c0e340]{grid-column:2;justify-self:end;min-width:3ch;max-width:100%;padding-right:0;overflow:hidden;color:#bdbdbd;font-size:1.2rem;font-weight:400;text-align:right;text-overflow:clip;white-space:nowrap}.bp-last-update[data-v-e1c0e340]{position:absolute;right:6px;bottom:4px;color:var(--bp-font-muted);font-size:9px}.bp-clickable[data-v-e1c0e340]{cursor:pointer}.bp-clickable[data-v-e1c0e340]:hover{cursor:pointer;filter:brightness(1.05)}.bp-disabled[data-v-e1c0e340]{background:var(--bp-bg-disabled);color:var(--bp-disabled-color);cursor:not-allowed;filter:none}.bp-disabled .bp-title[data-v-e1c0e340],.bp-disabled .bp-last-update[data-v-e1c0e340],.bp-disabled .bp-icon[data-v-e1c0e340],.bp-disabled .bp-button-icon[data-v-e1c0e340],.bp-disabled .bp-text-quote[data-v-e1c0e340],.bp-disabled .bp-text[data-v-e1c0e340],.bp-disabled .bp-text-value[data-v-e1c0e340],.bp-disabled .bp-state-text[data-v-e1c0e340],.bp-disabled .bp-gauge-label[data-v-e1c0e340],.bp-disabled .bp-number[data-v-e1c0e340],.bp-disabled .bp-button-body[data-v-e1c0e340],.bp-disabled .bp-button-text[data-v-e1c0e340]{color:var(--bp-disabled-color)!important}.bp-disabled .bp-state-indicator[data-v-e1c0e340]{color:var(--bp-disabled-color)!important;border-color:var(--bp-disabled-color)!important;background-color:transparent!important}.bp-disabled .bp-meter>span[data-v-e1c0e340]{background-color:var(--bp-disabled-color)!important}.bp-active[data-v-e1c0e340]{outline:2px solid var(--bp-active);outline-offset:-2px}.bp-sending[data-v-e1c0e340]{outline:2px solid var(--bp-sending);outline-offset:-2px;cursor:progress}.bp-pending[data-v-e1c0e340]{outline:2px solid var(--bp-waiting);outline-offset:-2px;background:#35383a;cursor:wait}.bp-sending[data-v-e1c0e340]>:not(.bp-status-overlay):not(.bp-modal-backdrop),.bp-pending[data-v-e1c0e340]>:not(.bp-status-overlay):not(.bp-modal-backdrop){opacity:.46}.bp-status-overlay[data-v-e1c0e340]{position:absolute;right:7px;top:7px;z-index:4;display:flex;align-items:center;justify-content:center;gap:5px;padding:4px 6px;border-radius:3px;color:#1f2124;background:var(--bp-waiting);font-size:.68rem;font-weight:800;text-transform:uppercase}.bp-sending .bp-status-overlay[data-v-e1c0e340]{background:var(--bp-sending)}.bp-failed .bp-status-overlay[data-v-e1c0e340]{background:#d9534f}.bp-failed-mark[data-v-e1c0e340]{font-size:12px}.bp-spinner[data-v-e1c0e340]{width:11px;height:11px;border:2px solid rgba(31,33,36,.35);border-top-color:#1f2124;border-radius:50%;animation:bp-spin-e1c0e340 .8s linear infinite}.bp-unknown-state[data-v-e1c0e340]{opacity:.78}.bp-meter[data-v-e1c0e340]{position:absolute;top:9px;right:7px;width:16px;height:calc(100% - 22px);border:1px solid rgba(0,0,0,.45);background:var(--bp-meter-bg)}@keyframes bp-spin-e1c0e340{to{transform:rotate(360deg)}}.bp-meter>span[data-v-e1c0e340]{position:absolute;bottom:0;left:0;display:block;width:100%}.bp-image[data-v-e1c0e340]{display:flex;flex:1 1 0;align-items:center;justify-content:center;min-height:0;overflow:hidden;line-height:1.2}.bp-image img[data-v-e1c0e340]{display:block;max-width:100%;max-height:100%;width:auto;height:auto;margin:0;object-fit:contain;object-position:center center}.bp-media-frame[data-v-e1c0e340]{position:relative;display:flex;flex:1 1 0;min-width:0;min-height:0;overflow:hidden}.bp-media-frame .bp-image[data-v-e1c0e340],.bp-media-frame .bp-iframe[data-v-e1c0e340]{margin-top:0}.bp-iframe[data-v-e1c0e340]{flex:1 1 0;min-height:0;width:100%;height:100%;border:0;overflow:auto}.bp-media-disabled[data-v-e1c0e340]{position:absolute;top:0;right:0;bottom:0;left:0;z-index:2;display:flex;align-items:center;justify-content:center;background:#24272a8f;-webkit-backdrop-filter:saturate(.8) blur(1px);backdrop-filter:saturate(.8) blur(1px);pointer-events:none}.bp-unknown[data-v-e1c0e340]{align-self:flex-start;padding-top:2px;color:var(--bp-font-muted);font-size:1rem;line-height:1.2}.bp-modal-backdrop[data-v-e1c0e340]{position:fixed;top:0;right:0;bottom:0;left:0;z-index:1000;display:flex;align-items:center;justify-content:center;background:#00000080}.bp-modal[data-v-e1c0e340]{position:relative;min-width:330px;max-width:min(90vw,420px);padding:18px;border-radius:4px;background:#272b30;color:#ddd;box-shadow:0 12px 30px #00000059}.bp-modal-title[data-v-e1c0e340]{margin-bottom:12px;color:#f5f5f5;font-weight:700}.bp-modal-close[data-v-e1c0e340]{position:absolute;top:8px;right:8px;width:24px;height:24px;min-height:0;padding:0;border:0;background:transparent;cursor:pointer}.bp-modal-close span[data-v-e1c0e340],.bp-modal-close[data-v-e1c0e340]:before{position:absolute;top:11px;left:3px;width:18px;height:2px;border-radius:2px;background:#ddd;content:""}.bp-modal-close span[data-v-e1c0e340]{transform:rotate(45deg)}.bp-modal-close[data-v-e1c0e340]:before{transform:rotate(-45deg)}.bp-modal-close:hover span[data-v-e1c0e340],.bp-modal-close[data-v-e1c0e340]:hover:before{background:#fff}.bp-modal-actions[data-v-e1c0e340],.bp-select-list[data-v-e1c0e340]{display:grid;gap:8px}.bp-modal-actions[data-v-e1c0e340]{grid-template-columns:1fr 1fr;margin-top:16px}.bp-modal-actions button[data-v-e1c0e340],.bp-select-list button[data-v-e1c0e340]{min-height:57px;padding:9px 15px;border:1px solid #151719;border-radius:4px;background:#3a3f44;color:#f5f5f5;font-size:1.05rem;cursor:pointer}.bp-select-list button[data-v-e1c0e340]{display:flex;width:100%;align-items:center;gap:8px;justify-content:flex-start;padding:9px 15px}.bp-value-modal[data-v-e1c0e340]{display:grid;gap:12px;min-width:240px}.bp-value-input[data-v-e1c0e340]{width:100%;min-height:40px;box-sizing:border-box;padding:8px 10px;border:1px solid #151719;border-radius:4px;outline:none;background:#32383e;color:#fff;font:inherit}.bp-value-input[data-v-e1c0e340]:focus{border-color:#888;box-shadow:0 0 0 1px #888}.bp-pin-modal[data-v-e1c0e340]{display:grid;gap:14px;min-width:240px;padding-top:2px}.bp-pin-message[data-v-e1c0e340]{padding-right:18px;color:#f5f5f5;line-height:1.35}.bp-pin-dots[data-v-e1c0e340]{display:flex;justify-content:center;gap:10px;padding:4px 0 6px}.bp-pin-dots span[data-v-e1c0e340]{width:12px;height:12px;border-radius:50%;background:#50565d;box-shadow:inset 0 0 0 1px #181a1c}.bp-pin-dots span.bp-pin-dot-filled[data-v-e1c0e340]{background:#f0f36a;box-shadow:0 0 8px #f0f36a8c}.bp-pin-keypad[data-v-e1c0e340]{display:grid;grid-template-columns:repeat(3,52px);gap:8px;justify-content:center}.bp-pin-keypad button[data-v-e1c0e340]{width:52px;height:44px;border:1px solid #151719;border-radius:4px;background:#3a3f44;color:#f5f5f5;font:inherit;font-size:1.2rem;cursor:pointer}.bp-pin-keypad button[data-v-e1c0e340]:hover{background:#474d53}.bp-pin-keypad .bp-pin-key-blank[data-v-e1c0e340]{visibility:hidden;cursor:default}.bp-pin-keypad .bp-pin-backspace[data-v-e1c0e340]{font-family:Material Icons,sans-serif;font-size:1.35rem}.bp-fader-modal[data-v-e1c0e340]{--bp-fader-track-left: 52px;--bp-fader-track-top: 42px;--bp-fader-track-width: 48px;--bp-fader-track-height: 320px;position:relative;width:170px;height:428px;margin:0 auto}.bp-fader-modal input[data-v-e1c0e340]{position:absolute;top:calc(var(--bp-fader-track-top) + (var(--bp-fader-track-height) - var(--bp-fader-track-width)) / 2);left:calc(var(--bp-fader-track-left) - (var(--bp-fader-track-height) - var(--bp-fader-track-width)) / 2);width:var(--bp-fader-track-height);height:var(--bp-fader-track-width);border:1px solid #232628;background-color:var(--bp-fader-color);box-shadow:inset 0 0 0 1px #ffffff14;cursor:pointer;opacity:1;outline:none;touch-action:none;transform-origin:50% 50%;transform:rotate(270deg);appearance:none;-webkit-appearance:none;-moz-appearance:none}.bp-fader-modal input[data-v-e1c0e340]:hover,.bp-fader-modal input[data-v-e1c0e340]:active{opacity:1}.bp-fader-modal input[data-v-e1c0e340]::-webkit-slider-runnable-track{width:var(--bp-fader-track-height);height:var(--bp-fader-track-width);border:0;background:transparent}.bp-fader-modal input[data-v-e1c0e340]::-moz-range-track{width:var(--bp-fader-track-height);height:var(--bp-fader-track-width);border:0;background:transparent}.bp-fader-modal input[data-v-e1c0e340]::-webkit-slider-thumb{width:30px;height:60px;margin-top:-6px;border:0;border-radius:10px;background:#fff;cursor:pointer;-webkit-appearance:none;-moz-appearance:none;appearance:none}.bp-fader-modal input[data-v-e1c0e340]::-moz-range-thumb{width:30px;height:60px;border:0;border-radius:10px;background:#fff;cursor:pointer;-moz-appearance:none}.bp-fader-meta[data-v-e1c0e340]{position:absolute;top:374px;left:20px;display:flex;align-items:center;gap:4px}.bp-fader-value[data-v-e1c0e340]{position:absolute;top:190px;right:146px;font-size:1.2rem}.bp-fader-bounds[data-v-e1c0e340]{position:absolute;top:var(--bp-fader-track-top);left:136px;height:var(--bp-fader-track-height);display:flex;flex-direction:column;justify-content:space-between;color:#aaa}')),document.head.appendChild(e)}}catch(t){console.error("vite-plugin-css-injected-by-js",t)}})();
+import { mapState as A } from "vuex";
+import { openBlock as a, createElementBlock as l, normalizeClass as x, createElementVNode as u, toDisplayString as c, normalizeStyle as m, mergeProps as N, createCommentVNode as h, Fragment as k, withModifiers as _, createBlock as D, Teleport as L, renderList as S, withDirectives as w, withKeys as M, vModelText as C } from "vue";
 const W = (e, t) => {
-  const n = e.__vccOpts || e;
-  for (const [o, r] of t)
-    n[o] = r;
-  return n;
+  const r = e.__vccOpts || e;
+  for (const [o, s] of t)
+    r[o] = s;
+  return r;
 }, R = [
   { value: "OFF", text: "Off", icon: "toggle_off", color: "#7f8790" },
   { value: "ON", text: "On", icon: "toggle_on", color: "#52D017" }
@@ -14,27 +14,27 @@ const W = (e, t) => {
 ];
 function O(e) {
   const t = String(e).trim();
-  return t ? t.startsWith('"') && t.endsWith('"') || t.startsWith("'") && t.endsWith("'") ? t.slice(1, -1) : t.startsWith("[") && t.endsWith("]") ? t.slice(1, -1).split(",").map((n) => O(n)) : /^-?\d+(\.\d+)?$/.test(t) ? Number(t) : t === "true" ? !0 : t === "false" ? !1 : t === "null" ? null : t : "";
+  return t ? t.startsWith('"') && t.endsWith('"') || t.startsWith("'") && t.endsWith("'") ? t.slice(1, -1) : t.startsWith("[") && t.endsWith("]") ? t.slice(1, -1).split(",").map((r) => O(r)) : /^-?\d+(\.\d+)?$/.test(t) ? Number(t) : t === "true" ? !0 : t === "false" ? !1 : t === "null" ? null : t : "";
 }
 function V(e, t) {
-  const n = t.indexOf(":");
-  if (n === -1)
+  const r = t.indexOf(":");
+  if (r === -1)
     return;
-  const o = t.slice(0, n).trim(), r = t.slice(n + 1).trim();
-  o && (e[o] = O(r));
+  const o = t.slice(0, r).trim(), s = t.slice(r + 1).trim();
+  o && (e[o] = O(s));
 }
 function E(e) {
   if (!e || typeof e != "string")
     return {};
-  const t = String(e).split(/\r?\n/), n = {};
-  let o = null, r = null;
+  const t = String(e).split(/\r?\n/), r = {};
+  let o = null, s = null;
   for (const i of t) {
     if (!i.trim() || i.trim().startsWith("#"))
       continue;
-    const s = i.match(/^\s*/)[0].length, d = i.trim();
-    s === 0 && d.endsWith(":") && ["values", "ranges", "attributes"].includes(d.slice(0, -1).trim()) ? (o = d.slice(0, -1).trim(), r = null, n[o] = o === "values" || o === "ranges" ? [] : {}) : s === 0 ? (o = null, r = null, V(n, d)) : o && Array.isArray(n[o]) && d.startsWith("- ") ? (r = {}, n[o].push(r), V(r, d.slice(2))) : o && Array.isArray(n[o]) && r ? V(r, d) : o && n[o] && typeof n[o] == "object" && V(n[o], d);
+    const n = i.match(/^\s*/)[0].length, d = i.trim();
+    n === 0 && d.endsWith(":") && ["values", "ranges", "attributes"].includes(d.slice(0, -1).trim()) ? (o = d.slice(0, -1).trim(), s = null, r[o] = o === "values" || o === "ranges" ? [] : {}) : n === 0 ? (o = null, s = null, V(r, d)) : o && Array.isArray(r[o]) && d.startsWith("- ") ? (s = {}, r[o].push(s), V(s, d.slice(2))) : o && Array.isArray(r[o]) && s ? V(s, d) : o && r[o] && typeof r[o] == "object" && V(r[o], d);
   }
-  return n;
+  return r;
 }
 function f(e) {
   return e === null || typeof e > "u" ? "" : typeof e == "object" ? JSON.stringify(e) : String(e);
@@ -54,10 +54,10 @@ function b(e, t) {
 function y(e, t) {
   return b(e, "text") ? f(e.text) : f(t);
 }
-function g(e, t, n) {
-  return b(e, "icon") ? f(e.icon) || (n ? "" : t) : t;
+function g(e, t, r) {
+  return b(e, "icon") ? f(e.icon) || (r ? "" : t) : t;
 }
-function v(e) {
+function T(e) {
   const t = Number(e);
   return Number.isInteger(t) && t > 0 ? t : 0;
 }
@@ -65,17 +65,17 @@ function p(e) {
   return String(e).padStart(2, "0");
 }
 function F(e, t) {
-  const n = Number(e);
-  if (!Number.isFinite(n))
+  const r = Number(e);
+  if (!Number.isFinite(r))
     return f(e);
-  const o = n < 0 ? "-" : "";
-  let r = Math.floor(Math.abs(n));
-  const i = Math.floor(r / 86400);
-  r %= 86400;
-  const s = Math.floor(r / 3600);
-  r %= 3600;
-  const d = Math.floor(r / 60), T = r % 60;
-  return t ? i > 0 ? `${o}${i}d ${s}:${p(d)}:${p(T)}` : s > 0 ? `${o}${s}:${p(d)}:${p(T)}` : d > 0 ? `${o}${d}:${p(T)}` : `${o}0:${p(T)}` : i > 0 ? `${o}${i}d ${s}:${p(d)}` : `${o}${s}:${p(d)}`;
+  const o = r < 0 ? "-" : "";
+  let s = Math.floor(Math.abs(r));
+  const i = Math.floor(s / 86400);
+  s %= 86400;
+  const n = Math.floor(s / 3600);
+  s %= 3600;
+  const d = Math.floor(s / 60), v = s % 60;
+  return t ? i > 0 ? `${o}${i}d ${n}:${p(d)}:${p(v)}` : n > 0 ? `${o}${n}:${p(d)}:${p(v)}` : d > 0 ? `${o}${d}:${p(v)}` : `${o}0:${p(v)}` : i > 0 ? `${o}${i}d ${n}:${p(d)}` : `${o}${n}:${p(d)}`;
 }
 const U = {
   name: "UIButtonPanel",
@@ -87,6 +87,7 @@ const U = {
       ticker: Date.now(),
       pending: !1,
       sending: !1,
+      failed: !1,
       modal: null,
       confirmMessage: "",
       confirmCallback: null,
@@ -100,12 +101,13 @@ const U = {
       dialogTimer: null,
       liveTimer: null,
       sendingTimer: null,
+      failureTimer: null,
       lastLiveValue: null,
       latestMsg: {}
     };
   },
   computed: {
-    ...N("data", ["messages"]),
+    ...A("data", ["messages"]),
     message() {
       var e;
       return {
@@ -128,10 +130,11 @@ const U = {
       return this.config.widgetType || "text";
     },
     title() {
-      return this.config.label || "";
+      var e;
+      return Object.prototype.hasOwnProperty.call(this.config || {}, "label") ? f(this.config.label) : f(((e = this.props) == null ? void 0 : e.name) || "");
     },
     readOnlyCapable() {
-      return ["text", "switch", "fader", "image"].includes(this.widgetType);
+      return ["text", "switch", "fader", "image", "select"].includes(this.widgetType);
     },
     readOnlyDefault() {
       return this.widgetType === "text" || this.widgetType === "image";
@@ -154,6 +157,10 @@ const U = {
     },
     readOnlyMode() {
       return this.readOnlyCapable && (this.config.readOnly === !0 || this.config.readOnly === "true");
+    },
+    dialogTitle() {
+      var e;
+      return f(((e = this.config.dialog) == null ? void 0 : e.label) || this.title);
     },
     showMeter() {
       return this.widgetType === "fader" && this.config.showMeter !== !1 && this.config.showMeter !== "false";
@@ -213,23 +220,23 @@ const U = {
     },
     configuredStates() {
       return (Array.isArray(this.config.values) ? this.config.values : R).map((e) => {
-        const t = y(e, e.value), n = g(this.config, this.defaultStateIcon(e), t);
+        const t = y(e, e.value), r = g(this.config, this.defaultStateIcon(e), t);
         return {
           value: e.value,
           valueText: f(e.value),
           text: t,
-          icon: g(e, n, t),
+          icon: g(e, r, t),
           color: e.color || this.defaultStateColor(e),
           topic: b(e, "topic") ? e.topic : this.config.topic || "",
           confirm: b(e, "confirm") ? e.confirm : this.config.confirm || "",
-          confirmPin: v(b(e, "confirm_pin") ? e.confirm_pin : this.config.confirm_pin),
+          confirmPin: T(b(e, "confirm_pin") ? e.confirm_pin : this.config.confirm_pin),
           inputTimeout: b(e, "input_timeout") ? e.input_timeout : this.config.input_timeout
         };
       });
     },
     currentState() {
       const e = f(this.message.payload), t = y(this.config, "unknown");
-      return this.configuredStates.find((n) => n.valueText === e) || {
+      return this.configuredStates.find((r) => r.valueText === e) || {
         value: "",
         text: t,
         icon: g(this.config, "do_not_disturb", t),
@@ -247,12 +254,12 @@ const U = {
     },
     ranges() {
       return (Array.isArray(this.config.ranges) ? this.config.ranges : P).map((e) => {
-        const t = y(e, b(this.config, "text") ? this.config.text : ""), n = g(this.config, "tune", t);
+        const t = y(e, b(this.config, "text") ? this.config.text : "");
         return {
           range: e.range || [this.min, this.max],
           text: t,
-          icon: g(e, n, t),
-          color: e.color || "#ccc"
+          icon: g(e, g(this.config, "do_not_disturb", t), t),
+          color: e.color || this.config.color || void 0
         };
       });
     },
@@ -265,7 +272,7 @@ const U = {
     faderTrackStyle() {
       const e = Number(this.faderValue), t = Number.isFinite(e) && this.max !== this.min ? Math.max(0, Math.min(100, (e - this.min) / (this.max - this.min) * 100)) : 0;
       return {
-        "--bp-fader-color": this.faderRange.color || this.currentRange.color || "#ccc",
+        "--bp-fader-color": this.faderRange.color || this.currentRange.color || this.config.color || "#ccc",
         "--bp-fader-percent": `${t}%`
       };
     },
@@ -285,7 +292,7 @@ const U = {
       return {
         scrolling: "auto",
         ...Object.fromEntries(
-          Object.entries(e).filter(([o]) => !t.includes(String(o).toLowerCase())).map(([o, r]) => [o, f(r)])
+          Object.entries(e).filter(([o]) => !t.includes(String(o).toLowerCase())).map(([o, s]) => [o, f(s)])
         )
       };
     },
@@ -318,7 +325,7 @@ const U = {
       deep: !0,
       immediate: !0,
       handler(e) {
-        e && Object.prototype.hasOwnProperty.call(e, "payload") && (this.lastSeen = Date.now(), this.sending = !1, this.pending = !1, this.widgetType === "fader" && Number.isFinite(this.numericValue) && (this.faderValue = this.numericValue));
+        e && Object.prototype.hasOwnProperty.call(e, "payload") && (this.lastSeen = Date.now(), this.sending = !1, this.pending = !1, this.failed = !1, clearTimeout(this.failureTimer), this.widgetType === "fader" && Number.isFinite(this.numericValue) && (this.faderValue = this.numericValue));
       }
     },
     messages: {
@@ -338,7 +345,7 @@ const U = {
     }, 3e4), Number.isFinite(this.numericValue) ? this.faderValue = this.numericValue : this.faderValue = this.min;
   },
   unmounted() {
-    clearInterval(this.tickInterval), clearTimeout(this.liveTimer), clearTimeout(this.sendingTimer), clearTimeout(this.dialogTimer);
+    clearInterval(this.tickInterval), clearTimeout(this.liveTimer), clearTimeout(this.sendingTimer), clearTimeout(this.dialogTimer), clearTimeout(this.failureTimer);
   },
   methods: {
     syncStoredMessage() {
@@ -376,13 +383,13 @@ const U = {
     },
     rangeFor(e) {
       if (Number.isFinite(e)) {
-        const n = this.ranges.find((o) => {
-          var s, d;
-          const r = Number((s = o.range) == null ? void 0 : s[0]), i = Number((d = o.range) == null ? void 0 : d[1]);
-          return r <= e && e <= i;
+        const r = this.ranges.find((o) => {
+          var n, d;
+          const s = Number((n = o.range) == null ? void 0 : n[0]), i = Number((d = o.range) == null ? void 0 : d[1]);
+          return s <= e && e <= i;
         });
-        if (n)
-          return n;
+        if (r)
+          return r;
       }
       const t = y(this.config, "unknown");
       return {
@@ -401,21 +408,25 @@ const U = {
       if (t.includes("off") || t.includes("false")) return "#7f8790";
     },
     handleClick() {
-      if (!(this.disabled || !this.isActionable || this.pending || this.sending))
+      if (this.pending || this.failed || this.sending) {
+        this.clearActionState();
+        return;
+      }
+      if (!(this.disabled || !this.isActionable))
         if (this.widgetType === "button")
           this.sendWithOptionalConfirm({
             payload: this.config.value,
             ...this.config.topic ? { topic: this.config.topic } : {}
-          }, this.config.confirm, v(this.config.confirm_pin), this.config.input_timeout, this.shouldWaitForInput);
+          }, this.config.confirm, T(this.config.confirm_pin), this.config.input_timeout, this.shouldWaitForInput);
         else if (this.widgetType === "image")
           this.sendWithOptionalConfirm({
             payload: this.config.value,
             ...this.config.topic ? { topic: this.config.topic } : {}
-          }, this.config.confirm, v(this.config.confirm_pin), this.config.input_timeout, this.shouldWaitForInput);
+          }, this.config.confirm, T(this.config.confirm_pin), this.config.input_timeout, this.shouldWaitForInput);
         else if (this.widgetType === "text")
           this.editValue = this.hasValue ? this.displayValue : "", this.modal = "value", this.startDialogTimeout(this.config.input_timeout);
         else if (this.widgetType === "switch") {
-          const e = this.configuredStates.findIndex((n) => n.valueText === this.currentState.valueText), t = this.configuredStates[(e + 1) % this.configuredStates.length];
+          const e = this.configuredStates.findIndex((r) => r.valueText === this.currentState.valueText), t = this.configuredStates[(e + 1) % this.configuredStates.length];
           this.sendWithOptionalConfirm({
             payload: t.value,
             ...t.topic ? { topic: t.topic } : {}
@@ -428,19 +439,19 @@ const U = {
         ...e.topic ? { topic: e.topic } : {}
       }, e.confirm, e.confirmPin, e.inputTimeout, this.shouldWaitForInput);
     },
-    sendWithOptionalConfirm(e, t, n = 0, o = this.config.input_timeout, r = this.shouldWaitForInput) {
-      if (n > 0) {
-        this.pinMessage = e, this.pinWaits = r, this.pinLength = n, this.pinValue = "", this.confirmMessage = t || "", this.confirmCallback = null, this.modal = "pin", this.startDialogTimeout(o);
+    sendWithOptionalConfirm(e, t, r = 0, o = this.config.input_timeout, s = this.shouldWaitForInput) {
+      if (r > 0) {
+        this.pinMessage = e, this.pinWaits = s, this.pinLength = r, this.pinValue = "", this.confirmMessage = t || "", this.confirmCallback = null, this.modal = "pin", this.startDialogTimeout(o);
         return;
       }
-      t ? (this.confirmMessage = t, this.confirmCallback = () => this.emitAction(e, r), this.modal = "confirm", this.startDialogTimeout(o)) : this.emitAction(e, r);
+      t ? (this.confirmMessage = t, this.confirmCallback = () => this.emitAction(e, s), this.modal = "confirm", this.startDialogTimeout(o)) : this.emitAction(e, s);
     },
     appendPinDigit(e) {
       if (!(this.pinValue.length >= this.pinLength) && (this.pinValue += String(e), this.resetInputTimeout(), this.pinValue.length >= this.pinLength)) {
-        const t = this.pinMessage, n = this.pinValue;
+        const t = this.pinMessage, r = this.pinValue;
         this.closeModal(!1), t && this.emitAction({
           ...t,
-          pin: n
+          pin: r
         }, this.pinWaits);
       }
     },
@@ -452,11 +463,19 @@ const U = {
       this.closeModal(!1), e && e();
     },
     emitAction(e, t = this.shouldWaitForInput) {
-      clearTimeout(this.sendingTimer), this.sending = !0, this.pending = !1;
-      const n = { ...e };
-      j(n.topic) ? n._buttonpanel_topic = n.topic : delete n.topic, this.$socket.emit("widget-action", this.id, n), this.sendingTimer = setTimeout(() => {
-        this.sending = !1, this.pending = t;
-      }, 250);
+      clearTimeout(this.sendingTimer), clearTimeout(this.failureTimer), this.sending = !0, this.pending = t, this.failed = !1;
+      const r = { ...e };
+      j(r.topic) ? r._buttonpanel_topic = r.topic : delete r.topic, this.$socket.emit("widget-action", this.id, r), this.sendingTimer = setTimeout(() => {
+        this.sending = !1, this.pending = t && this.pending;
+      }, 250), this.failureTimer = setTimeout(() => {
+        (this.sending || this.pending) && this.failAction();
+      }, 3e4);
+    },
+    failAction() {
+      clearTimeout(this.sendingTimer), clearTimeout(this.failureTimer), this.sending = !1, this.pending = !1, this.failed = !0;
+    },
+    clearActionState() {
+      clearTimeout(this.sendingTimer), clearTimeout(this.failureTimer), this.sending = !1, this.pending = !1, this.failed = !1;
     },
     commitValue() {
       this.closeModal(!1), this.sendWithOptionalConfirm(
@@ -465,7 +484,7 @@ const U = {
           ...this.config.topic ? { topic: this.config.topic } : {}
         },
         this.config.confirm,
-        v(this.config.confirm_pin)
+        T(this.config.confirm_pin)
       );
     },
     timeoutSeconds(e) {
@@ -486,8 +505,8 @@ const U = {
       clearTimeout(this.dialogTimer), this.dialogTimer = null, this.modal = null, this.confirmCallback = null, this.confirmMessage = "", this.pinMessage = null, this.pinWaits = !0, this.pinLength = 0, this.pinValue = "";
     },
     faderEventValue(e) {
-      var n;
-      const t = Number(((n = e == null ? void 0 : e.target) == null ? void 0 : n.value) ?? this.faderValue);
+      var r;
+      const t = Number(((r = e == null ? void 0 : e.target) == null ? void 0 : r.value) ?? this.faderValue);
       return Number.isFinite(t) ? (this.faderValue = t, t) : null;
     },
     isLiveFader() {
@@ -503,8 +522,8 @@ const U = {
       this.resetInputTimeout();
       const t = this.faderEventValue(e);
       t === null || !this.isLiveFader() || (this.lastLiveValue = t, !this.liveTimer && (this.liveTimer = setTimeout(() => {
-        const n = this.lastLiveValue;
-        this.liveTimer = null, this.lastLiveValue = null, this.emitFaderValue(n);
+        const r = this.lastLiveValue;
+        this.liveTimer = null, this.lastLiveValue = null, this.emitFaderValue(r);
       }, 200)));
     },
     commitFader(e) {
@@ -523,7 +542,7 @@ const U = {
           ...this.config.topic ? { topic: this.config.topic } : {}
         },
         this.config.confirm,
-        v(this.config.confirm_pin)
+        T(this.config.confirm_pin)
       ), this.lastLiveValue = null;
     }
   }
@@ -562,34 +581,37 @@ const U = {
   key: 1,
   class: "bp-text-value"
 }, se = { class: "bp-last-update" }, re = {
-  key: 5,
-  class: "bp-status-overlay"
-}, ae = { class: "bp-modal-title" }, le = {
+  key: 0,
+  class: "bp-spinner"
+}, ae = {
+  key: 1,
+  class: "bp-failed-mark material-icons"
+}, le = { class: "bp-modal-title" }, oe = {
   key: 0,
   class: "bp-confirm"
-}, oe = { class: "bp-modal-actions" }, ue = {
+}, ue = { class: "bp-modal-actions" }, ce = {
   key: 1,
   class: "bp-pin-modal"
-}, ce = {
+}, de = {
   key: 0,
   class: "bp-pin-message"
-}, de = { class: "bp-pin-dots" }, he = { class: "bp-pin-keypad" }, fe = ["onClick"], me = {
+}, he = { class: "bp-pin-dots" }, fe = { class: "bp-pin-keypad" }, me = ["onClick"], ge = {
   key: 2,
   class: "bp-select-list"
-}, ge = ["onClick"], pe = {
+}, pe = ["onClick"], be = {
   key: 0,
   class: "bp-icon material-icons"
-}, be = { key: 1 }, ye = {
+}, ye = { key: 1 }, Te = {
   key: 3,
   class: "bp-value-modal"
-}, ve = { class: "bp-modal-actions" }, Te = {
+}, ve = { class: "bp-modal-actions" }, ke = {
   key: 4,
   class: "bp-fader-modal"
-}, ke = {
+}, Ve = {
   key: 0,
   class: "bp-icon material-icons"
-}, Ve = { key: 1 }, xe = { class: "bp-fader-value" }, _e = ["min", "max"], we = { class: "bp-fader-bounds" };
-function Me(e, t, n, o, r, i) {
+}, xe = { key: 1 }, _e = { class: "bp-fader-value" }, Se = ["min", "max"], we = { class: "bp-fader-bounds" };
+function Me(e, t, r, o, s, i) {
   return a(), l("div", {
     class: x(["bp-widget", [
       `bp-${i.widgetType}`,
@@ -597,13 +619,14 @@ function Me(e, t, n, o, r, i) {
         "bp-clickable": i.isActionable,
         "bp-disabled": i.disabled,
         "bp-active": i.isActive,
-        "bp-sending": r.sending,
-        "bp-pending": r.pending,
+        "bp-sending": s.sending,
+        "bp-pending": s.pending,
+        "bp-failed": s.failed,
         "bp-unknown-state": i.isUnknown,
         "bp-state-on": i.isStateOn
       }
     ]]),
-    onClick: t[16] || (t[16] = (...s) => i.handleClick && i.handleClick(...s))
+    onClick: t[17] || (t[17] = (...n) => i.handleClick && i.handleClick(...n))
   }, [
     u("div", B, c(i.title), 1),
     i.widgetType === "image" || i.widgetType === "iframe" ? (a(), l("div", H, [
@@ -617,7 +640,7 @@ function Me(e, t, n, o, r, i) {
           src: i.displayValue,
           alt: i.title
         }, null, 8, K)) : (a(), l("div", z, "unknown"))
-      ], 4)) : (a(), l("iframe", A({
+      ], 4)) : (a(), l("iframe", N({
         key: 1,
         class: "bp-iframe",
         src: i.displayValue,
@@ -672,54 +695,58 @@ function Me(e, t, n, o, r, i) {
       i.textValue ? (a(), l("span", ne, c(i.textValue), 1)) : h("", !0)
     ], 4)),
     u("div", se, c(i.lastUpdateText), 1),
-    r.sending || r.pending ? (a(), l("div", re, [
-      t[17] || (t[17] = u("span", { class: "bp-spinner" }, null, -1)),
-      u("span", null, c(r.sending ? "sending" : "waiting"), 1)
+    s.sending || s.pending || s.failed ? (a(), l("div", {
+      key: 5,
+      class: "bp-status-overlay",
+      onClick: t[0] || (t[0] = _((...n) => i.clearActionState && i.clearActionState(...n), ["stop"]))
+    }, [
+      s.sending || s.pending ? (a(), l("span", re)) : (a(), l("span", ae, "error_outline")),
+      u("span", null, c(s.failed ? "failed" : s.sending ? "sending" : "waiting"), 1)
     ])) : h("", !0),
     (a(), D(L, { to: "body" }, [
-      r.modal ? (a(), l("div", {
+      s.modal ? (a(), l("div", {
         key: 0,
         class: "bp-modal-backdrop",
-        onClick: t[15] || (t[15] = w((s) => i.closeModal(!1), ["stop"]))
+        onClick: t[16] || (t[16] = _((n) => i.closeModal(!1), ["stop"]))
       }, [
         u("div", {
           class: "bp-modal",
-          onClick: t[14] || (t[14] = w(() => {
+          onClick: t[15] || (t[15] = _(() => {
           }, ["stop"]))
         }, [
           u("button", {
             class: "bp-modal-close",
             type: "button",
             "aria-label": "Close",
-            onClick: t[0] || (t[0] = (s) => i.closeModal(!1))
+            onClick: t[1] || (t[1] = (n) => i.closeModal(!1))
           }, [...t[18] || (t[18] = [
             u("span", { "aria-hidden": "true" }, null, -1)
           ])]),
-          u("div", ae, c(i.title), 1),
-          r.modal === "confirm" ? (a(), l("div", le, [
-            u("div", null, c(r.confirmMessage), 1),
-            u("div", oe, [
+          u("div", le, c(i.dialogTitle), 1),
+          s.modal === "confirm" ? (a(), l("div", oe, [
+            u("div", null, c(s.confirmMessage), 1),
+            u("div", ue, [
               u("button", {
-                onClick: t[1] || (t[1] = (...s) => i.confirmProceed && i.confirmProceed(...s))
+                onClick: t[2] || (t[2] = (...n) => i.confirmProceed && i.confirmProceed(...n))
               }, "OK"),
               u("button", {
-                onClick: t[2] || (t[2] = (s) => i.closeModal(!1))
+                onClick: t[3] || (t[3] = (n) => i.closeModal(!1))
               }, "Cancel")
             ])
-          ])) : r.modal === "pin" ? (a(), l("div", ue, [
-            r.confirmMessage ? (a(), l("div", ce, c(r.confirmMessage), 1)) : h("", !0),
-            u("div", de, [
-              (a(!0), l(k, null, _(r.pinLength, (s) => (a(), l("span", {
-                key: s,
-                class: x({ "bp-pin-dot-filled": s <= r.pinValue.length })
+          ])) : s.modal === "pin" ? (a(), l("div", ce, [
+            s.confirmMessage ? (a(), l("div", de, c(s.confirmMessage), 1)) : h("", !0),
+            u("div", he, [
+              (a(!0), l(k, null, S(s.pinLength, (n) => (a(), l("span", {
+                key: n,
+                class: x({ "bp-pin-dot-filled": n <= s.pinValue.length })
               }, null, 2))), 128))
             ]),
-            u("div", he, [
-              (a(!0), l(k, null, _(r.pinDigits, (s) => (a(), l("button", {
-                key: s,
+            u("div", fe, [
+              (a(!0), l(k, null, S(s.pinDigits, (n) => (a(), l("button", {
+                key: n,
                 type: "button",
-                onClick: (d) => i.appendPinDigit(s)
-              }, c(s), 9, fe))), 128)),
+                onClick: (d) => i.appendPinDigit(n)
+              }, c(n), 9, me))), 128)),
               t[19] || (t[19] = u("button", {
                 class: "bp-pin-key-blank",
                 type: "button",
@@ -727,67 +754,67 @@ function Me(e, t, n, o, r, i) {
               }, null, -1)),
               u("button", {
                 type: "button",
-                onClick: t[3] || (t[3] = (s) => i.appendPinDigit("0"))
+                onClick: t[4] || (t[4] = (n) => i.appendPinDigit("0"))
               }, "0"),
               u("button", {
                 class: "bp-pin-backspace material-icons",
                 type: "button",
                 "aria-label": "Backspace",
-                onClick: t[4] || (t[4] = (...s) => i.removePinDigit && i.removePinDigit(...s))
+                onClick: t[5] || (t[5] = (...n) => i.removePinDigit && i.removePinDigit(...n))
               }, "backspace")
             ])
-          ])) : r.modal === "select" ? (a(), l("div", me, [
-            (a(!0), l(k, null, _(i.configuredStates, (s) => (a(), l("button", {
-              key: s.value,
-              style: m({ color: s.color || void 0 }),
-              onClick: (d) => i.sendSelection(s)
+          ])) : s.modal === "select" ? (a(), l("div", ge, [
+            (a(!0), l(k, null, S(i.configuredStates, (n) => (a(), l("button", {
+              key: n.value,
+              style: m({ color: n.color || void 0 }),
+              onClick: (d) => i.sendSelection(n)
             }, [
-              s.icon ? (a(), l("span", pe, c(s.icon), 1)) : h("", !0),
-              s.text ? (a(), l("span", be, c(s.text), 1)) : h("", !0)
-            ], 12, ge))), 128))
-          ])) : r.modal === "value" ? (a(), l("div", ye, [
-            M(u("input", {
-              "onUpdate:modelValue": t[5] || (t[5] = (s) => r.editValue = s),
+              n.icon ? (a(), l("span", be, c(n.icon), 1)) : h("", !0),
+              n.text ? (a(), l("span", ye, c(n.text), 1)) : h("", !0)
+            ], 12, pe))), 128))
+          ])) : s.modal === "value" ? (a(), l("div", Te, [
+            w(u("input", {
+              "onUpdate:modelValue": t[6] || (t[6] = (n) => s.editValue = n),
               class: "bp-value-input",
               type: "text",
-              onInput: t[6] || (t[6] = (...s) => i.resetInputTimeout && i.resetInputTimeout(...s)),
+              onInput: t[7] || (t[7] = (...n) => i.resetInputTimeout && i.resetInputTimeout(...n)),
               onKeydown: [
-                t[7] || (t[7] = S((...s) => i.commitValue && i.commitValue(...s), ["enter"])),
-                t[8] || (t[8] = S((s) => i.closeModal(!1), ["esc"]))
+                t[8] || (t[8] = M((...n) => i.commitValue && i.commitValue(...n), ["enter"])),
+                t[9] || (t[9] = M((n) => i.closeModal(!1), ["esc"]))
               ]
             }, null, 544), [
-              [C, r.editValue]
+              [C, s.editValue]
             ]),
             u("div", ve, [
               u("button", {
-                onClick: t[9] || (t[9] = (...s) => i.commitValue && i.commitValue(...s))
+                onClick: t[10] || (t[10] = (...n) => i.commitValue && i.commitValue(...n))
               }, "OK"),
               u("button", {
-                onClick: t[10] || (t[10] = (s) => i.closeModal(!1))
+                onClick: t[11] || (t[11] = (n) => i.closeModal(!1))
               }, "Cancel")
             ])
-          ])) : r.modal === "fader" ? (a(), l("div", Te, [
+          ])) : s.modal === "fader" ? (a(), l("div", ke, [
             i.faderRange.icon || i.faderRange.text ? (a(), l("div", {
               key: 0,
               class: "bp-fader-meta",
               style: m({ color: i.faderRange.color || void 0 })
             }, [
-              i.faderRange.icon ? (a(), l("span", ke, c(i.faderRange.icon), 1)) : h("", !0),
-              i.faderRange.text ? (a(), l("span", Ve, c(i.faderRange.text), 1)) : h("", !0)
+              i.faderRange.icon ? (a(), l("span", Ve, c(i.faderRange.icon), 1)) : h("", !0),
+              i.faderRange.text ? (a(), l("span", xe, c(i.faderRange.text), 1)) : h("", !0)
             ], 4)) : h("", !0),
-            u("div", xe, c(i.formattedFaderValue), 1),
-            M(u("input", {
-              "onUpdate:modelValue": t[11] || (t[11] = (s) => r.faderValue = s),
+            u("div", _e, c(i.formattedFaderValue), 1),
+            w(u("input", {
+              "onUpdate:modelValue": t[12] || (t[12] = (n) => s.faderValue = n),
               type: "range",
               style: m(i.faderTrackStyle),
               min: i.min,
               max: i.max,
-              onInput: t[12] || (t[12] = (...s) => i.handleFaderInput && i.handleFaderInput(...s)),
-              onChange: t[13] || (t[13] = (...s) => i.commitFader && i.commitFader(...s))
-            }, null, 44, _e), [
+              onInput: t[13] || (t[13] = (...n) => i.handleFaderInput && i.handleFaderInput(...n)),
+              onChange: t[14] || (t[14] = (...n) => i.commitFader && i.commitFader(...n))
+            }, null, 44, Se), [
               [
                 C,
-                r.faderValue,
+                s.faderValue,
                 void 0,
                 { number: !0 }
               ]
@@ -802,7 +829,7 @@ function Me(e, t, n, o, r, i) {
     ]))
   ], 2);
 }
-const Ie = /* @__PURE__ */ W(U, [["render", Me], ["__scopeId", "data-v-2d2431f5"]]);
+const Fe = /* @__PURE__ */ W(U, [["render", Me], ["__scopeId", "data-v-e1c0e340"]]);
 export {
-  Ie as UIButtonPanel
+  Fe as UIButtonPanel
 };

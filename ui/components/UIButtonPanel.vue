@@ -9,6 +9,7 @@
         'bp-active': isActive,
         'bp-sending': sending,
         'bp-pending': pending,
+        'bp-failed': failed,
         'bp-unknown-state': isUnknown,
         'bp-state-on': isStateOn
       }
@@ -71,9 +72,10 @@
     </div>
 
     <div class="bp-last-update">{{ lastUpdateText }}</div>
-    <div v-if="sending || pending" class="bp-status-overlay">
-      <span class="bp-spinner" />
-      <span>{{ sending ? 'sending' : 'waiting' }}</span>
+    <div v-if="sending || pending || failed" class="bp-status-overlay" @click.stop="clearActionState">
+      <span v-if="sending || pending" class="bp-spinner" />
+      <span v-else class="bp-failed-mark material-icons">error_outline</span>
+      <span>{{ failed ? 'failed' : sending ? 'sending' : 'waiting' }}</span>
     </div>
 
     <Teleport to="body">
@@ -82,7 +84,7 @@
           <button class="bp-modal-close" type="button" aria-label="Close" @click="closeModal(false)">
             <span aria-hidden="true" />
           </button>
-          <div class="bp-modal-title">{{ title }}</div>
+          <div class="bp-modal-title">{{ dialogTitle }}</div>
 
           <div v-if="modal === 'confirm'" class="bp-confirm">
             <div>{{ confirmMessage }}</div>
@@ -350,6 +352,7 @@ export default {
       ticker: Date.now(),
       pending: false,
       sending: false,
+      failed: false,
       modal: null,
       confirmMessage: '',
       confirmCallback: null,
@@ -363,6 +366,7 @@ export default {
       dialogTimer: null,
       liveTimer: null,
       sendingTimer: null,
+      failureTimer: null,
       lastLiveValue: null,
       latestMsg: {}
     }
@@ -389,10 +393,13 @@ export default {
       return this.config.widgetType || 'text'
     },
     title () {
-      return this.config.label || ''
+      if (Object.prototype.hasOwnProperty.call(this.config || {}, 'label')) {
+        return payloadText(this.config.label)
+      }
+      return payloadText(this.props?.name || '')
     },
     readOnlyCapable () {
-      return ['text', 'switch', 'fader', 'image'].includes(this.widgetType)
+      return ['text', 'switch', 'fader', 'image', 'select'].includes(this.widgetType)
     },
     readOnlyDefault () {
       return this.widgetType === 'text' || this.widgetType === 'image'
@@ -422,6 +429,9 @@ export default {
     readOnlyMode () {
       return this.readOnlyCapable &&
         (this.config.readOnly === true || this.config.readOnly === 'true')
+    },
+    dialogTitle () {
+      return payloadText(this.config.dialog?.label || this.title)
     },
     showMeter () {
       return this.widgetType === 'fader' && this.config.showMeter !== false && this.config.showMeter !== 'false'
@@ -541,12 +551,11 @@ export default {
     ranges () {
       return (Array.isArray(this.config.ranges) ? this.config.ranges : DEFAULT_RANGES).map(item => {
         const text = configuredText(item, hasOwn(this.config, 'text') ? this.config.text : '')
-        const fallbackIcon = configuredIcon(this.config, 'tune', text)
         return {
           range: item.range || [this.min, this.max],
           text,
-          icon: configuredIcon(item, fallbackIcon, text),
-          color: item.color || '#ccc'
+          icon: configuredIcon(item, configuredIcon(this.config, 'do_not_disturb', text), text),
+          color: item.color || this.config.color || undefined
         }
       })
     },
@@ -562,7 +571,7 @@ export default {
         ? Math.max(0, Math.min(100, ((value - this.min) / (this.max - this.min)) * 100))
         : 0
       return {
-        '--bp-fader-color': this.faderRange.color || this.currentRange.color || '#ccc',
+        '--bp-fader-color': this.faderRange.color || this.currentRange.color || this.config.color || '#ccc',
         '--bp-fader-percent': `${percent}%`
       }
     },
@@ -640,6 +649,8 @@ export default {
           this.lastSeen = Date.now()
           this.sending = false
           this.pending = false
+          this.failed = false
+          clearTimeout(this.failureTimer)
           if (this.widgetType === 'fader' && Number.isFinite(this.numericValue)) {
             this.faderValue = this.numericValue
           }
@@ -675,6 +686,7 @@ export default {
     clearTimeout(this.liveTimer)
     clearTimeout(this.sendingTimer)
     clearTimeout(this.dialogTimer)
+    clearTimeout(this.failureTimer)
   },
   methods: {
     syncStoredMessage () {
@@ -755,7 +767,11 @@ export default {
       return undefined
     },
     handleClick () {
-      if (this.disabled || !this.isActionable || this.pending || this.sending) {
+      if (this.pending || this.failed || this.sending) {
+        this.clearActionState()
+        return
+      }
+      if (this.disabled || !this.isActionable) {
         return
       }
       if (this.widgetType === 'button') {
@@ -850,8 +866,10 @@ export default {
     },
     emitAction (msg, waitsForFeedback = this.shouldWaitForInput) {
       clearTimeout(this.sendingTimer)
+      clearTimeout(this.failureTimer)
       this.sending = true
-      this.pending = false
+      this.pending = waitsForFeedback
+      this.failed = false
       const output = { ...msg }
       if (hasConfiguredValue(output.topic)) {
         output._buttonpanel_topic = output.topic
@@ -861,8 +879,27 @@ export default {
       this.$socket.emit('widget-action', this.id, output)
       this.sendingTimer = setTimeout(() => {
         this.sending = false
-        this.pending = waitsForFeedback
+        this.pending = waitsForFeedback && this.pending
       }, 250)
+      this.failureTimer = setTimeout(() => {
+        if (this.sending || this.pending) {
+          this.failAction()
+        }
+      }, 30000)
+    },
+    failAction () {
+      clearTimeout(this.sendingTimer)
+      clearTimeout(this.failureTimer)
+      this.sending = false
+      this.pending = false
+      this.failed = true
+    },
+    clearActionState () {
+      clearTimeout(this.sendingTimer)
+      clearTimeout(this.failureTimer)
+      this.sending = false
+      this.pending = false
+      this.failed = false
     },
     commitValue () {
       this.closeModal(false)
@@ -994,10 +1031,9 @@ export default {
   width: 100%;
   min-width: 0;
   max-width: 100%;
-  min-height: 65px;
   height: 100%;
   box-sizing: border-box;
-  padding: 6px 6px 14px;
+  padding: 6px 6px 6px;
   overflow: hidden;
   border-radius: 4px;
   border: 0;
@@ -1156,7 +1192,7 @@ export default {
 }
 
 .bp-gauge-metered {
-  padding-right: 26px;
+  padding-right: 18px;
 }
 
 .bp-gauge-meta {
@@ -1280,6 +1316,14 @@ export default {
   background: var(--bp-sending);
 }
 
+.bp-failed .bp-status-overlay {
+  background: #d9534f;
+}
+
+.bp-failed-mark {
+  font-size: 12px;
+}
+
 .bp-spinner {
   width: 11px;
   height: 11px;
@@ -1297,8 +1341,8 @@ export default {
   position: absolute;
   top: 9px;
   right: 7px;
-  width: 20px;
-  height: calc(100% - 26px);
+  width: 16px;
+  height: calc(100% - 22px);
   border: 1px solid rgba(0, 0, 0, 0.45);
   background: var(--bp-meter-bg);
 }
@@ -1319,11 +1363,10 @@ export default {
 
 .bp-image {
   display: flex;
-  flex: 1 1 auto;
+  flex: 1 1 0;
   align-items: center;
   justify-content: center;
   min-height: 0;
-  margin-top: 6px;
   overflow: hidden;
   line-height: 1.2;
 }
@@ -1342,10 +1385,9 @@ export default {
 .bp-media-frame {
   position: relative;
   display: flex;
-  flex: 1 1 auto;
+  flex: 1 1 0;
   min-width: 0;
   min-height: 0;
-  margin-top: 6px;
   overflow: hidden;
 }
 
@@ -1355,11 +1397,10 @@ export default {
 }
 
 .bp-iframe {
-  flex: 1 1 auto;
+  flex: 1 1 0;
   min-height: 0;
   width: 100%;
   height: 100%;
-  margin-top: 6px;
   border: 0;
   overflow: auto;
 }

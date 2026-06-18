@@ -11,13 +11,13 @@
     { type: 'iframe', nodeType: 'ui-buttonpanel-iframe', label: 'iframe', color: BUTTONPANEL_NODE_COLOR, icon: 'font-awesome/fa-window-maximize' }
   ]
 
-  const BUTTONPANEL_READ_ONLY_TYPES = ['text', 'switch', 'fader', 'image']
+  const BUTTONPANEL_READ_ONLY_TYPES = ['text', 'switch', 'fader', 'image', 'select']
   const BUTTONPANEL_METER_TYPES = ['fader']
   const BUTTONPANEL_ACTION_TYPES = ['text', 'button', 'switch', 'fader', 'select', 'image']
   const BUTTONPANEL_DISPLAY_ONLY_TYPES = ['iframe']
 
   function readOnlyDefaultFor (widgetType) {
-    return widgetType === 'text'
+    return widgetType === 'text' || widgetType === 'image'
   }
 
   function waitForInputDefaultFor (widgetType) {
@@ -39,7 +39,6 @@
       order: { value: 0 },
       width: { value: 0 },
       height: { value: 0 },
-      label: { value: '' },
       config: { value: '' },
       widgetType: { value: widgetType, required: true },
       waitForInput: { value: waitForInputDefaultFor(widgetType) },
@@ -117,6 +116,33 @@
         rows.push(`  ${objectKey}: ${stringifyScalar(objectValue)}`)
       })
       return rows
+    }
+
+    function validateConfig (value) {
+      if (!value) {
+        return true
+      }
+      const lines = String(value).split(/\r?\n/)
+      let section = null
+      for (const rawLine of lines) {
+        const line = rawLine.trim()
+        if (!line || line.startsWith('#')) {
+          continue
+        }
+        const indent = rawLine.match(/^\s*/)[0].length
+        if (indent === 0 && line.endsWith(':')) {
+          section = line.slice(0, -1).trim()
+          continue
+        }
+        if (indent > 0 && section) {
+          continue
+        }
+        if (line.includes(':')) {
+          continue
+        }
+        return false
+      }
+      return true
     }
 
     function sampleConfig (type) {
@@ -197,7 +223,6 @@
     }
 
     $('#node-input-name').val(nodeConfig.name || '')
-    $('#node-input-label').val(nodeConfig.label || '')
     $('#node-input-readOnly').prop('checked', nodeConfig.readOnly === undefined
       ? readOnlyDefaultFor(fixedType)
       : (nodeConfig.readOnly === true || nodeConfig.readOnly === 'true'))
@@ -209,10 +234,17 @@
       : (nodeConfig.waitForInput === true || nodeConfig.waitForInput === 'true'))
     $('#node-input-config').val(nodeConfig.config || '')
     updateByType()
+    $('#buttonpanel-config-status').text(validateConfig($('#node-input-config').val()) ? 'YAML looks valid' : 'YAML looks invalid')
+    $('#node-input-config').toggleClass('buttonpanel-config-invalid', !validateConfig($('#node-input-config').val()))
 
     $('#node-input-readOnly').on('change', updateByType)
     $('#node-input-showMeter').on('change', updateByType)
     $('#node-input-waitForInput').on('change', updateByType)
+    $('#node-input-config').on('input change', function () {
+      const ok = validateConfig($(this).val())
+      $('#buttonpanel-config-status').text(ok ? 'YAML looks valid' : 'YAML looks invalid')
+      $(this).toggleClass('buttonpanel-config-invalid', !ok)
+    })
 
     $('#buttonpanel-example-config').on('click', function (event) {
       event.preventDefault()
@@ -296,10 +328,6 @@
     <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
     <input type="text" id="node-input-name">
   </div>
-  <div class="form-row">
-    <label for="node-input-label"><i class="fa fa-header"></i> Label</label>
-    <input type="text" id="node-input-label">
-  </div>
   <div class="form-row" id="buttonpanel-readOnly-row">
     <label for="node-input-readOnly"><i class="fa fa-lock"></i> Read Only</label>
     <input type="checkbox" id="node-input-readOnly" style="display:inline-block; width:auto; vertical-align:top;">
@@ -323,6 +351,10 @@
     <a id="buttonpanel-config-help" class="red-ui-button buttonpanel-editor-button" href="https://github.com/sourcesimian/node-red-dashboard-2-buttonpanel/blob/main/MANUAL.md#buttonpanel-config" target="_blank" rel="noopener noreferrer">Config Help</a>
   </div>
   <div class="form-row">
+    <label></label>
+    <span id="buttonpanel-config-status" style="display:inline-block; max-width:70%; color:var(--red-ui-secondary-text-color);"></span>
+  </div>
+  <div class="form-row">
     <label><i class="fa fa-random"></i> Output</label>
     <span id="buttonpanel-output-hint" style="display:inline-block; max-width:70%; color:var(--red-ui-secondary-text-color);"></span>
   </div>
@@ -337,6 +369,11 @@
     min-height: 240px;
     font-family: Menlo, Consolas, "Liberation Mono", monospace;
     font-size: 12px;
+  }
+
+  .buttonpanel-config-invalid {
+    border-color: #d9534f !important;
+    box-shadow: 0 0 0 1px rgba(217, 83, 79, 0.35) !important;
   }
 
   .buttonpanel-editor-button {

@@ -1,15 +1,15 @@
 [
     {
-        "id": "buttonpanel-demo-tab",
+        "id": "62c0589774be3f36",
         "type": "tab",
-        "label": "ButtonPanel Demo",
+        "label": "ButtonPanel Demo (Plain)",
         "disabled": false,
-        "info": "Interactive ButtonPanel demo flow. In/out widgets feed back through one-second delays so pending state is visible."
+        "info": "Interactive ButtonPanel demo flow without widget size tuning. In/out widgets feed back through one-second delays so pending state is visible."
     },
     {
-        "id": "demo-initial-values",
+        "id": "01af7a33e98550de",
         "type": "function",
-        "z": "buttonpanel-demo-tab",
+        "z": "62c0589774be3f36",
         "name": "init",
         "func": "const image = imageValue('LOGO');\nconst iframe = iframeValue('STATUS');\n\nreturn [\n    { payload: 'AUTO' },\n    { payload: 'OFF' },\n    { payload: 'MOUNTAIN' },\n    { payload: 35 },\n    { payload: 20 },\n    { payload: 72 },\n    { payload: 'OFF' },\n    { payload: image },\n    { payload: image },\n    { payload: iframe },\n    { payload: 'Ready' },\n    { enabled: false }\n];\n\nfunction imageValue(value) {\n    const images = {\n        LOGO: { title: 'BUTTONPANEL', subtitle: 'image value', color: '#52D017', symbol: '<path d=\"M70 80h32M86 64v32\" stroke=\"#172015\" stroke-width=\"10\" stroke-linecap=\"round\"/>' },\n        ALERT: { title: 'ALERT', subtitle: 'selected image', color: '#f89406', symbol: '<path d=\"M86 54l38 66H48z\" fill=\"#23180a\"/><rect x=\"82\" y=\"74\" width=\"8\" height=\"24\" fill=\"#f89406\"/><circle cx=\"86\" cy=\"108\" r=\"4\" fill=\"#f89406\"/>' }\n    };\n    const item = images[value] || images.LOGO;\n    const svg = [\n        '<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"360\" height=\"160\" viewBox=\"0 0 360 160\">',\n        '<rect width=\"360\" height=\"160\" fill=\"#20262b\"/>',\n        '<rect x=\"18\" y=\"18\" width=\"324\" height=\"124\" rx=\"8\" fill=\"#303940\"/>',\n        '<circle cx=\"86\" cy=\"80\" r=\"42\" fill=\"' + item.color + '\"/>',\n        item.symbol,\n        '<text x=\"150\" y=\"72\" fill=\"#f5f5f5\" font-family=\"Arial\" font-size=\"28\" font-weight=\"700\">' + item.title + '</text>',\n        '<text x=\"150\" y=\"106\" fill=\"#bdbdbd\" font-family=\"Arial\" font-size=\"18\">' + item.subtitle + '</text>',\n        '</svg>'\n    ].join('');\n    return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);\n}\n\nfunction iframeValue(value) {\n    const panels = {\n        STATUS: { title: 'Iframe', detail: 'value driven panel', color: '#52D017' },\n        METRICS: { title: 'Metrics', detail: 'selected iframe content', color: '#26c6da' }\n    };\n    const panel = panels[value] || panels.STATUS;\n    const html = [\n        '<!doctype html><html><head><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"><style>html,body{margin:0;min-height:100%;background:#32383e;color:#f5f5f5;font:16px Arial;}body{box-sizing:border-box;display:flex;align-items:center;justify-content:center;padding:12px;text-align:center;}</style></head><body>',\n        '<div><strong style=\"color:' + panel.color + '\">' + panel.title + '</strong><br><span style=\"color:#bdbdbd\">' + panel.detail + '</span></div>',\n        '</body></html>'\n    ].join('');\n    return 'data:text/html;charset=utf-8,' + encodeURIComponent(html);\n}",
         "outputs": 12,
@@ -22,54 +22,54 @@
         "y": 300,
         "wires": [
             [
-                "widget-text-edit"
+                "f71b7ea745c7b5ed"
             ],
             [
-                "widget-switch"
+                "03068f64c52ddad8",
+                "1dfd0ec5b08fb609",
+                "b31721ea3ef5e2cd"
             ],
             [
-                "widget-select"
+                "e576067f9a2c6ef7"
             ],
             [
-                "widget-fader"
+                "c3076047ef12ca03"
             ],
             [
-                "widget-fader-live"
+                "01b5eed6538cb59d"
             ],
             [
-                "widget-gauge"
+                "39050c5138c1c394"
             ],
             [
-                "d6760ff6d2ceb53c"
+                "35d3d7a80a999747"
             ],
             [
-                "widget-image"
+                "ecee06ef3f1d8caa"
             ],
             [
-                "widget-image-button"
+                "606b1137d69e198f"
             ],
             [
-                "widget-iframe"
+                "608a163e3fed7114"
             ],
             [
-                "widget-event-text"
+                "e8a0d2d34857d23b"
             ],
             [
-                "49cc0f4309976433"
+                "d8f396ebf2eefa15"
             ]
         ]
     },
     {
-        "id": "widget-text-edit",
+        "id": "f71b7ea745c7b5ed",
         "type": "ui-buttonpanel-text",
-        "z": "buttonpanel-demo-tab",
+        "z": "62c0589774be3f36",
         "name": "Editable text",
         "group": "demo-dashboard-group-controls",
-        "order": 4,
+        "order": 3,
         "width": 2,
-        "height": 2,
-        "label": "Text",
-        "config": "text: \nicon: keyboard\ncolor: \"#f6f26b\"\nconfirm: Set text?\ninput_timeout: 10",
+        "config": "label: Text (editable)\ntext: \nicon: keyboard\ncolor: \"#f6f26b\"\ninput_timeout: 10",
         "widgetType": "text",
         "waitForInput": false,
         "inputs": 1,
@@ -79,22 +79,20 @@
         "y": 480,
         "wires": [
             [
-                "format-event-output",
-                "debug-widget-output"
+                "033982503286a1bc",
+                "74f592f5673339c9"
             ]
         ]
     },
     {
-        "id": "widget-event-text",
+        "id": "e8a0d2d34857d23b",
         "type": "ui-buttonpanel-text",
-        "z": "buttonpanel-demo-tab",
+        "z": "62c0589774be3f36",
         "name": "Event text",
         "group": "demo-dashboard-group-controls",
-        "order": 3,
-        "width": 4,
-        "height": 2,
-        "label": "Events",
-        "config": "text: Waiting\nicon: event_note\ncolor: \"#ffffff\"",
+        "order": 15,
+        "width": 6,
+        "config": "label: Text (r/o)\ntext: Waiting\nicon: event_note\ncolor: \"#ffffff\"",
         "widgetType": "text",
         "waitForInput": true,
         "inputs": 1,
@@ -105,16 +103,14 @@
         "wires": []
     },
     {
-        "id": "widget-button",
+        "id": "d8cf9197b30b7599",
         "type": "ui-buttonpanel-button",
-        "z": "buttonpanel-demo-tab",
+        "z": "62c0589774be3f36",
         "name": "Play button",
         "group": "demo-dashboard-group-controls",
-        "order": 5,
+        "order": 4,
         "width": 2,
-        "height": 2,
-        "label": "Button",
-        "config": "text: Play\nvalue: PLAY\ntopic: demo/button\nicon: play_arrow\ncolor: \"#52D017\"\nconfirm: Run command?\ninput_timeout: 10",
+        "config": "label: Button\ntext: Play\nvalue: PLAY\ntopic: demo/button\nicon: play_arrow\ncolor: \"#52D017\"\nconfirm: Run command?\ninput_timeout: 10",
         "widgetType": "button",
         "waitForInput": false,
         "inputs": 1,
@@ -123,39 +119,39 @@
         "y": 540,
         "wires": [
             [
-                "format-event-output",
-                "debug-widget-output"
+                "033982503286a1bc",
+                "74f592f5673339c9"
             ]
         ]
     },
     {
-        "id": "widget-switch",
+        "id": "03068f64c52ddad8",
         "type": "ui-buttonpanel-switch",
-        "z": "buttonpanel-demo-tab",
+        "z": "62c0589774be3f36",
         "name": "Switch",
         "group": "demo-dashboard-group-controls",
-        "order": 6,
+        "order": 5,
         "width": 2,
-        "height": 2,
-        "label": "Switch",
-        "config": "topic: demo/switch\ninput_timeout: 10\nvalues:\n  - value: OFF\n    text: Off\n    icon: toggle_off\n    color: \"#7f8790\"\n  - value: ON\n    text: On\n    icon: toggle_on\n    color: \"#52D017\"\n    confirm: Turn this on?\n    confirm_pin: 4",
+        "config": "label: Switch\ntopic: demo/switch\ninput_timeout: 10\nvalues:\n  - value: OFF\n    text: Off\n    icon: toggle_off\n    color: \"#7f8790\"\n  - value: ON\n    text: On\n    icon: toggle_on\n    color: \"#52D017\"\n    confirm: Turn this on?\n    confirm_pin: 4",
         "widgetType": "switch",
+        "waitForInput": true,
         "inputs": 1,
         "outputs": 1,
+        "readOnly": false,
         "x": 830,
         "y": 600,
         "wires": [
             [
-                "delay-switch-feedback",
-                "format-event-output",
-                "debug-widget-output"
+                "886135385148e539",
+                "033982503286a1bc",
+                "74f592f5673339c9"
             ]
         ]
     },
     {
-        "id": "delay-switch-feedback",
+        "id": "886135385148e539",
         "type": "delay",
-        "z": "buttonpanel-demo-tab",
+        "z": "62c0589774be3f36",
         "name": "1s delay",
         "pauseType": "delay",
         "timeout": "1",
@@ -173,38 +169,38 @@
         "y": 600,
         "wires": [
             [
-                "widget-switch"
+                "03068f64c52ddad8"
             ]
         ]
     },
     {
-        "id": "widget-select",
+        "id": "e576067f9a2c6ef7",
         "type": "ui-buttonpanel-select",
-        "z": "buttonpanel-demo-tab",
+        "z": "62c0589774be3f36",
         "name": "Select",
         "group": "demo-dashboard-group-controls",
-        "order": 7,
-        "width": 2,
-        "height": 2,
-        "label": "Select",
-        "config": "topic: demo/select\ninput_timeout: 10\nvalues:\n  - value: MOUNTAIN\n    text: Mountain\n    icon: landscape\n    color: \"#bdbdbd\"\n  - value: COAST\n    text: Coast\n    icon: waves\n    color: \"#26c6da\"\n  - value: CITY\n    text: City\n    icon: location_city\n    color: \"#f0b44c\"",
+        "order": 8,
+        "width": 3,
+        "config": "label: Select\ntopic: demo/select\ninput_timeout: 10\nvalues:\n  - value: MOUNTAIN\n    text: Mountain\n    icon: landscape\n    color: \"#bdbdbd\"\n  - value: COAST\n    text: Coast\n    icon: waves\n    color: \"#26c6da\"\n  - value: CITY\n    text: City\n    icon: location_city\n    color: \"#f0b44c\"",
         "widgetType": "select",
+        "waitForInput": true,
         "inputs": 1,
         "outputs": 1,
+        "readOnly": false,
         "x": 830,
         "y": 660,
         "wires": [
             [
-                "delay-select-feedback",
-                "format-event-output",
-                "debug-widget-output"
+                "bca06e2ae6478656",
+                "033982503286a1bc",
+                "74f592f5673339c9"
             ]
         ]
     },
     {
-        "id": "delay-select-feedback",
+        "id": "bca06e2ae6478656",
         "type": "delay",
-        "z": "buttonpanel-demo-tab",
+        "z": "62c0589774be3f36",
         "name": "1s delay",
         "pauseType": "delay",
         "timeout": "1",
@@ -222,64 +218,62 @@
         "y": 660,
         "wires": [
             [
-                "widget-select"
+                "e576067f9a2c6ef7"
             ]
         ]
     },
     {
-        "id": "widget-select-button",
+        "id": "1d7ded44c1434acb",
         "type": "ui-buttonpanel-select",
-        "z": "buttonpanel-demo-tab",
-        "name": "Scene button",
+        "z": "62c0589774be3f36",
+        "name": "Scene",
         "group": "demo-dashboard-group-controls",
-        "order": 8,
-        "width": 2,
-        "height": 2,
-        "label": "Scene",
-        "config": "text: Scene\ntopic: demo/scene\nicon: radio_button_checked\ncolor: \"#26c6da\"\ninput_timeout: 10\nvalues:\n  - value: MOUNTAIN\n    text: Mountain\n    icon: landscape\n    color: \"#bdbdbd\"\n  - value: COAST\n    text: Coast\n    icon: waves\n    color: \"#26c6da\"\n  - value: CITY\n    text: City\n    icon: location_city\n    color: \"#f0b44c\"",
+        "order": 9,
+        "width": 3,
+        "config": "label: Select (read-only)\ntext: Scene\ntopic: demo/scene\nicon: radio_button_checked\ncolor: \"#26c6da\"\ninput_timeout: 10\nvalues:\n  - value: MOUNTAIN\n    text: Mountain\n    icon: landscape\n    color: \"#bdbdbd\"\n  - value: COAST\n    text: Coast\n    icon: waves\n    color: \"#26c6da\"\n  - value: CITY\n    text: City\n    icon: location_city\n    color: \"#f0b44c\"",
         "widgetType": "select",
         "waitForInput": false,
         "inputs": 1,
         "outputs": 1,
-        "x": 800,
-        "y": 730,
+        "readOnly": false,
+        "x": 830,
+        "y": 740,
         "wires": [
             [
-                "format-event-output",
-                "debug-widget-output"
+                "033982503286a1bc",
+                "74f592f5673339c9"
             ]
         ]
     },
     {
-        "id": "widget-fader",
+        "id": "c3076047ef12ca03",
         "type": "ui-buttonpanel-fader",
-        "z": "buttonpanel-demo-tab",
+        "z": "62c0589774be3f36",
         "name": "Fader",
         "group": "demo-dashboard-group-controls",
-        "order": 10,
+        "order": 11,
         "width": 2,
-        "height": 2,
-        "label": "Fader",
-        "config": "text: Level\ntopic: demo/fader\nicon: tune\ncolor: \"#62a8ea\"\nmin: 0\nmax: 100\nlive: false\ninput_timeout: 10\nvalue_as: s2DHHMMSS\nranges:\n  - range: [0, 40]\n    text: Low\n    icon: battery_1_bar\n    color: \"#91c900\"\n  - range: [41, 75]\n    text: Good\n    icon: battery_4_bar\n    color: \"#00c000\"\n  - range: [76, 100]\n    text: High\n    icon: warning\n    color: \"#f89406\"",
+        "config": "label: Fader ->\ntext: Level\ntopic: demo/fader\nicon: tune\ncolor: \"#62a8ea\"\nmin: 0\nmax: 100\nlive: false\ninput_timeout: 10\nvalue_as: s2DHHMMSS\nranges:\n  - range: [0, 40]\n    text: Low\n    icon: battery_1_bar\n    color: \"#91c900\"\n  - range: [41, 75]\n    text: Good\n    icon: battery_4_bar\n    color: \"#00c000\"\n  - range: [76, 100]\n    text: High\n    icon: warning\n    color: \"#f89406\"",
         "widgetType": "fader",
         "waitForInput": true,
         "inputs": 1,
         "outputs": 1,
+        "readOnly": false,
         "showMeter": true,
         "x": 830,
         "y": 800,
         "wires": [
             [
-                "delay-fader-feedback",
-                "format-event-output",
-                "debug-widget-output"
+                "20448aa0c125c9bb",
+                "033982503286a1bc",
+                "74f592f5673339c9"
             ]
         ]
     },
     {
-        "id": "delay-fader-feedback",
+        "id": "20448aa0c125c9bb",
         "type": "delay",
-        "z": "buttonpanel-demo-tab",
+        "z": "62c0589774be3f36",
         "name": "1s delay",
         "pauseType": "delay",
         "timeout": "1",
@@ -297,42 +291,41 @@
         "y": 800,
         "wires": [
             [
-                "widget-fader",
-                "widget-gauge"
+                "c3076047ef12ca03",
+                "39050c5138c1c394"
             ]
         ]
     },
     {
-        "id": "widget-fader-live",
+        "id": "01b5eed6538cb59d",
         "type": "ui-buttonpanel-fader",
-        "z": "buttonpanel-demo-tab",
+        "z": "62c0589774be3f36",
         "name": "Live fader",
         "group": "demo-dashboard-group-controls",
-        "order": 11,
+        "order": 12,
         "width": 2,
-        "height": 2,
-        "label": "Live",
-        "config": "text: Live\ntopic: demo/live\nicon: speed\ncolor: \"#62a8ea\"\nmin: 0\nmax: 100\nlive: true\ninput_timeout: 10\nranges:\n  - range: [0, 40]\n    text: Low\n    icon: vertical_align_bottom\n    color: \"#91c900\"\n  - range: [41, 75]\n    text: Mid\n    icon: vertical_align_center\n    color: \"#00c000\"\n  - range: [76, 100]\n    text: High\n    icon: vertical_align_top\n    color: \"#f89406\"",
+        "config": "label: Fader (live) ->\ntext: Live\ntopic: demo/live\nicon: speed\ncolor: \"#62a8ea\"\nmin: 0\nmax: 100\nlive: true\ninput_timeout: 10\nranges:\n  - range: [0, 40]\n    text: Low\n    icon: vertical_align_bottom\n    color: \"#91c900\"\n  - range: [41, 75]\n    text: Mid\n    icon: vertical_align_center\n    color: \"#00c000\"\n  - range: [76, 100]\n    text: High\n    icon: vertical_align_top\n    color: \"#f89406\"",
         "widgetType": "fader",
         "waitForInput": true,
         "inputs": 1,
         "outputs": 1,
+        "readOnly": false,
         "showMeter": true,
         "x": 820,
         "y": 860,
         "wires": [
             [
-                "delay-fader-live-feedback",
-                "format-event-output",
-                "debug-widget-output",
-                "widget-gauge"
+                "d7702ec490889eea",
+                "033982503286a1bc",
+                "74f592f5673339c9",
+                "39050c5138c1c394"
             ]
         ]
     },
     {
-        "id": "delay-fader-live-feedback",
+        "id": "d7702ec490889eea",
         "type": "delay",
-        "z": "buttonpanel-demo-tab",
+        "z": "62c0589774be3f36",
         "name": "1s delay",
         "pauseType": "delay",
         "timeout": "1",
@@ -350,21 +343,19 @@
         "y": 860,
         "wires": [
             [
-                "widget-fader-live"
+                "01b5eed6538cb59d"
             ]
         ]
     },
     {
-        "id": "widget-gauge",
+        "id": "39050c5138c1c394",
         "type": "ui-buttonpanel-fader",
-        "z": "buttonpanel-demo-tab",
+        "z": "62c0589774be3f36",
         "name": "Gauge",
         "group": "demo-dashboard-group-display",
         "order": 2,
         "width": 3,
-        "height": 1,
-        "label": "Gauge",
-        "config": "text: Gauge\nmin: 0\nmax: 100\nvalue_as: s2DHHMMSS\nranges:\n  - range: [0, 40]\n    text: Low\n    icon: battery_1_bar\n    color: \"#91c900\"\n  - range: [41, 75]\n    text: Good\n    icon: battery_4_bar\n    color: \"#00c000\"\n  - range: [76, 100]\n    text: High\n    icon: warning\n    color: \"#f89406\"",
+        "config": "label: Fader (r/o)\ntext: Gauge\nmin: 0\nmax: 100\nvalue_as: s2DHHMMSS\nranges:\n  - range: [0, 40]\n    text: Low\n    icon: battery_1_bar\n    color: \"#91c900\"\n  - range: [41, 75]\n    text: Good\n    icon: battery_4_bar\n    color: \"#00c000\"\n  - range: [76, 100]\n    text: High\n    icon: warning\n    color: \"#f89406\"",
         "widgetType": "fader",
         "waitForInput": true,
         "inputs": 1,
@@ -376,16 +367,15 @@
         "wires": []
     },
     {
-        "id": "widget-image",
+        "id": "ecee06ef3f1d8caa",
         "type": "ui-buttonpanel-image",
-        "z": "buttonpanel-demo-tab",
+        "z": "62c0589774be3f36",
         "name": "Image",
         "group": "demo-dashboard-group-display",
         "order": 3,
         "width": 3,
-        "height": 4,
-        "label": "Image",
-        "config": "overflow: hidden",
+        "height": 3,
+        "config": "label: Image (r/o)\noverflow: hidden",
         "widgetType": "image",
         "waitForInput": false,
         "inputs": 1,
@@ -396,41 +386,37 @@
         "wires": []
     },
     {
-        "id": "widget-image-button",
+        "id": "606b1137d69e198f",
         "type": "ui-buttonpanel-image",
-        "z": "buttonpanel-demo-tab",
+        "z": "62c0589774be3f36",
         "name": "Image button",
         "group": "demo-dashboard-group-display",
         "order": 4,
         "width": 3,
-        "height": 4,
-        "label": "Image Button",
-        "config": "overflow: hidden\nvalue: IMAGE\ntopic: demo/image\nconfirm: Send image command?\ninput_timeout: 10",
+        "height": 3,
+        "config": "label: Image (button)\noverflow: hidden\nvalue: IMAGE\ntopic: demo/image\nconfirm: Send image command?\ninput_timeout: 10",
         "widgetType": "image",
         "waitForInput": false,
         "inputs": 1,
         "outputs": 1,
+        "readOnly": false,
         "x": 1430,
         "y": 740,
         "wires": [
-            [
-                "format-event-output",
-                "debug-widget-output"
-            ]
+            []
         ]
     },
     {
-        "id": "widget-iframe",
+        "id": "608a163e3fed7114",
         "type": "ui-buttonpanel-iframe",
-        "z": "buttonpanel-demo-tab",
+        "z": "62c0589774be3f36",
         "name": "Iframe",
         "group": "demo-dashboard-group-display",
         "order": 5,
-        "width": 6,
-        "height": 4,
-        "label": "Iframe",
-        "config": "attributes:\n  loading: lazy\n  referrerpolicy: no-referrer\n  scrolling: auto\n  overflow: auto",
+        "height": 3,
+        "config": "label: Iframe\nattributes:\n  loading: lazy\n  referrerpolicy: no-referrer\n  scrolling: auto\n  overflow: auto",
         "widgetType": "iframe",
+        "waitForInput": true,
         "inputs": 1,
         "outputs": 0,
         "x": 1410,
@@ -438,9 +424,9 @@
         "wires": []
     },
     {
-        "id": "format-event-output",
+        "id": "033982503286a1bc",
         "type": "function",
-        "z": "buttonpanel-demo-tab",
+        "z": "62c0589774be3f36",
         "name": "format output",
         "func": "const label = msg.topic || 'output';\nmsg.payload = `${label}: ${msg.payload}`;\nreturn msg;",
         "outputs": 1,
@@ -453,14 +439,14 @@
         "y": 500,
         "wires": [
             [
-                "delay-event-feedback"
+                "b858a457929dc00f"
             ]
         ]
     },
     {
-        "id": "delay-event-feedback",
+        "id": "b858a457929dc00f",
         "type": "delay",
-        "z": "buttonpanel-demo-tab",
+        "z": "62c0589774be3f36",
         "name": "1s delay",
         "pauseType": "delay",
         "timeout": "1",
@@ -478,14 +464,14 @@
         "y": 500,
         "wires": [
             [
-                "widget-event-text"
+                "e8a0d2d34857d23b"
             ]
         ]
     },
     {
-        "id": "debug-widget-output",
+        "id": "74f592f5673339c9",
         "type": "debug",
-        "z": "buttonpanel-demo-tab",
+        "z": "62c0589774be3f36",
         "name": "widget output",
         "active": true,
         "tosidebar": true,
@@ -500,34 +486,33 @@
         "wires": []
     },
     {
-        "id": "widget-labp-control",
+        "id": "965fe5aed2deaf6f",
         "type": "ui-buttonpanel-select",
-        "z": "buttonpanel-demo-tab",
-        "name": "Lamp button",
+        "z": "62c0589774be3f36",
+        "name": "Lamp",
         "group": "demo-dashboard-group-controls",
-        "order": 9,
+        "order": 10,
         "width": 2,
-        "height": 2,
-        "label": "Lamp",
-        "config": "text: Lamp\ntopic: demo/lamp\nicon: emoji_objects\ncolor: \"#ffd84d\"\nvalues:\n  - value: ON\n    text: ON\n    icon: emoji_objects\n    color: \"#ffd84d\"\n  - value: OFF\n    text: OFF\n    icon: emoji_objects\n    color: \"#7f8790\"",
+        "config": "label: Select (button) ->\ntext: Lamp\ntopic: demo/lamp\nicon: emoji_objects\ncolor: \"#ffd84d\"\nvalues:\n  - value: ON\n    text: ON\n    icon: emoji_objects\n    color: \"#ffd84d\"\n  - value: OFF\n    text: OFF\n    icon: emoji_objects\n    color: \"#7f8790\"",
         "widgetType": "select",
         "waitForInput": false,
         "inputs": 1,
         "outputs": 1,
-        "x": 810,
+        "readOnly": false,
+        "x": 790,
         "y": 920,
         "wires": [
             [
-                "delay-labp-feedback",
-                "format-event-output",
-                "debug-widget-output"
+                "11c62daf9d3c863a",
+                "033982503286a1bc",
+                "74f592f5673339c9"
             ]
         ]
     },
     {
-        "id": "delay-labp-feedback",
+        "id": "11c62daf9d3c863a",
         "type": "delay",
-        "z": "buttonpanel-demo-tab",
+        "z": "62c0589774be3f36",
         "name": "1s delay",
         "pauseType": "delay",
         "timeout": "1",
@@ -545,39 +530,38 @@
         "y": 920,
         "wires": [
             [
-                "d6760ff6d2ceb53c"
+                "35d3d7a80a999747"
             ]
         ]
     },
     {
-        "id": "widget-image-select",
+        "id": "bf4ac948ad1de80f",
         "type": "ui-buttonpanel-select",
-        "z": "buttonpanel-demo-tab",
+        "z": "62c0589774be3f36",
         "name": "Image source button",
         "group": "demo-dashboard-group-controls",
-        "order": 12,
+        "order": 13,
         "width": 3,
-        "height": 2,
-        "label": "Image Source",
-        "config": "text: Image\ntopic: demo/image-source\nicon: image\ncolor: \"#52D017\"\nvalues:\n  - value: LOGO\n    text: Logo\n    icon: dashboard\n    color: \"#52D017\"\n  - value: ALERT\n    text: Alert\n    icon: warning\n    color: \"#f89406\"",
+        "config": "label: Select (button) -> \ntext: Image\ntopic: demo/image-source\nicon: image\ncolor: \"#52D017\"\nvalues:\n  - value: LOGO\n    text: Logo\n    icon: dashboard\n    color: \"#52D017\"\n  - value: ALERT\n    text: Alert\n    icon: warning\n    color: \"#f89406\"",
         "widgetType": "select",
         "waitForInput": false,
         "inputs": 1,
         "outputs": 1,
+        "readOnly": false,
         "x": 780,
         "y": 980,
         "wires": [
             [
-                "build-image-value",
-                "format-event-output",
-                "debug-widget-output"
+                "ed35e6d68e9567d9",
+                "033982503286a1bc",
+                "74f592f5673339c9"
             ]
         ]
     },
     {
-        "id": "build-image-value",
+        "id": "ed35e6d68e9567d9",
         "type": "function",
-        "z": "buttonpanel-demo-tab",
+        "z": "62c0589774be3f36",
         "name": "build image value",
         "func": "function imageValue (value) {\n  const images = {\n    LOGO: { title: 'BUTTONPANEL', subtitle: 'image value', color: '#52D017', symbol: '<path d=\"M70 80h32M86 64v32\" stroke=\"#172015\" stroke-width=\"10\" stroke-linecap=\"round\"/>' },\n    ALERT: { title: 'ALERT', subtitle: 'selected image', color: '#f89406', symbol: '<path d=\"M86 54l38 66H48z\" fill=\"#23180a\"/><rect x=\"82\" y=\"74\" width=\"8\" height=\"24\" fill=\"#f89406\"/><circle cx=\"86\" cy=\"108\" r=\"4\" fill=\"#f89406\"/>' }\n  };\n  const item = images[value] || images.LOGO;\n  const svg = [\n    '<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"360\" height=\"160\" viewBox=\"0 0 360 160\">',\n    '<rect width=\"360\" height=\"160\" fill=\"#20262b\"/>',\n    '<rect x=\"18\" y=\"18\" width=\"324\" height=\"124\" rx=\"8\" fill=\"#303940\"/>',\n    '<circle cx=\"86\" cy=\"80\" r=\"42\" fill=\"' + item.color + '\"/>',\n    item.symbol,\n    '<text x=\"150\" y=\"72\" fill=\"#f5f5f5\" font-family=\"Arial\" font-size=\"28\" font-weight=\"700\">' + item.title + '</text>',\n    '<text x=\"150\" y=\"106\" fill=\"#bdbdbd\" font-family=\"Arial\" font-size=\"18\">' + item.subtitle + '</text>',\n    '</svg>'\n  ].join('');\n  return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);\n}\n\nmsg.payload = imageValue(msg.payload);\nreturn msg;",
         "outputs": 1,
@@ -590,14 +574,14 @@
         "y": 980,
         "wires": [
             [
-                "delay-image-feedback"
+                "b2ca4f39042714ef"
             ]
         ]
     },
     {
-        "id": "delay-image-feedback",
+        "id": "b2ca4f39042714ef",
         "type": "delay",
-        "z": "buttonpanel-demo-tab",
+        "z": "62c0589774be3f36",
         "name": "1s delay",
         "pauseType": "delay",
         "timeout": "1",
@@ -615,39 +599,38 @@
         "y": 980,
         "wires": [
             [
-                "widget-image"
+                "ecee06ef3f1d8caa"
             ]
         ]
     },
     {
-        "id": "widget-iframe-select",
+        "id": "5448126e536a31b5",
         "type": "ui-buttonpanel-select",
-        "z": "buttonpanel-demo-tab",
+        "z": "62c0589774be3f36",
         "name": "Iframe source button",
         "group": "demo-dashboard-group-controls",
-        "order": 13,
+        "order": 14,
         "width": 3,
-        "height": 2,
-        "label": "Iframe Source",
-        "config": "text: Iframe\ntopic: demo/iframe-source\nicon: web_asset\ncolor: \"#26c6da\"\nvalues:\n  - value: STATUS\n    text: Status\n    icon: monitor_heart\n    color: \"#52D017\"\n  - value: METRICS\n    text: Metrics\n    icon: query_stats\n    color: \"#26c6da\"",
+        "config": "label: Select (button) -> \ntext: Iframe\ntopic: demo/iframe-source\nicon: web_asset\ncolor: \"#26c6da\"\nvalues:\n  - value: STATUS\n    text: Status\n    icon: monitor_heart\n    color: \"#52D017\"\n  - value: METRICS\n    text: Metrics\n    icon: query_stats\n    color: \"#26c6da\"",
         "widgetType": "select",
         "waitForInput": false,
         "inputs": 1,
         "outputs": 1,
+        "readOnly": false,
         "x": 780,
         "y": 1040,
         "wires": [
             [
-                "build-iframe-value",
-                "format-event-output",
-                "debug-widget-output"
+                "c5442eaef511ebe0",
+                "033982503286a1bc",
+                "74f592f5673339c9"
             ]
         ]
     },
     {
-        "id": "build-iframe-value",
+        "id": "c5442eaef511ebe0",
         "type": "function",
-        "z": "buttonpanel-demo-tab",
+        "z": "62c0589774be3f36",
         "name": "build iframe value",
         "func": "function iframeValue (value) {\n  const panels = {\n    STATUS: { title: 'Iframe', detail: 'value driven panel', color: '#52D017' },\n    METRICS: { title: 'Metrics', detail: 'selected iframe content', color: '#26c6da' }\n  };\n  const panel = panels[value] || panels.STATUS;\n  const html = [\n    '<!doctype html><html><head><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"><style>html,body{margin:0;min-height:100%;background:#32383e;color:#f5f5f5;font:16px Arial;}body{box-sizing:border-box;display:flex;align-items:center;justify-content:center;padding:12px;text-align:center;}</style></head><body>',\n    '<div><strong style=\"color:' + panel.color + '\">' + panel.title + '</strong><br><span style=\"color:#bdbdbd\">' + panel.detail + '</span></div>',\n    '</body></html>'\n  ].join('');\n  return 'data:text/html;charset=utf-8,' + encodeURIComponent(html);\n}\n\nmsg.payload = iframeValue(msg.payload);\nreturn msg;",
         "outputs": 1,
@@ -660,14 +643,14 @@
         "y": 1040,
         "wires": [
             [
-                "delay-iframe-feedback"
+                "6c727b159d6024bc"
             ]
         ]
     },
     {
-        "id": "delay-iframe-feedback",
+        "id": "6c727b159d6024bc",
         "type": "delay",
-        "z": "buttonpanel-demo-tab",
+        "z": "62c0589774be3f36",
         "name": "1s delay",
         "pauseType": "delay",
         "timeout": "1",
@@ -685,14 +668,14 @@
         "y": 1040,
         "wires": [
             [
-                "widget-iframe"
+                "608a163e3fed7114"
             ]
         ]
     },
     {
-        "id": "8cd1891d2ba005ab",
+        "id": "e9b9e1f771ac3ff4",
         "type": "function",
-        "z": "buttonpanel-demo-tab",
+        "z": "62c0589774be3f36",
         "name": "+",
         "func": "return msg;",
         "outputs": 1,
@@ -705,36 +688,36 @@
         "y": 740,
         "wires": [
             [
-                "widget-fader-live",
-                "widget-fader",
-                "widget-switch",
-                "widget-select",
-                "widget-select-button",
-                "widget-labp-control",
-                "widget-text-edit",
-                "widget-button",
-                "widget-image-select",
-                "widget-iframe-select",
-                "widget-event-text",
-                "widget-iframe",
-                "widget-image-button",
-                "widget-image",
-                "d6760ff6d2ceb53c",
-                "widget-gauge"
+                "01b5eed6538cb59d",
+                "c3076047ef12ca03",
+                "03068f64c52ddad8",
+                "e576067f9a2c6ef7",
+                "1d7ded44c1434acb",
+                "965fe5aed2deaf6f",
+                "f71b7ea745c7b5ed",
+                "d8cf9197b30b7599",
+                "bf4ac948ad1de80f",
+                "5448126e536a31b5",
+                "e8a0d2d34857d23b",
+                "608a163e3fed7114",
+                "606b1137d69e198f",
+                "ecee06ef3f1d8caa",
+                "35d3d7a80a999747",
+                "39050c5138c1c394",
+                "1dfd0ec5b08fb609",
+                "b31721ea3ef5e2cd"
             ]
         ]
     },
     {
-        "id": "49cc0f4309976433",
+        "id": "d8f396ebf2eefa15",
         "type": "ui-buttonpanel-button",
-        "z": "buttonpanel-demo-tab",
+        "z": "62c0589774be3f36",
         "name": "Enable",
         "group": "demo-dashboard-group-controls",
         "order": 1,
         "width": 1,
-        "height": 2,
-        "label": "",
-        "config": "text: En\nvalue: ENABLE\nicon: play_circle\n\n",
+        "config": "label: Button\ntext: En\nvalue: ENABLE\nicon: play_circle\n\n",
         "widgetType": "button",
         "waitForInput": false,
         "inputs": 1,
@@ -743,21 +726,19 @@
         "y": 680,
         "wires": [
             [
-                "781baee934080a85"
+                "f997ba222d71ec2e"
             ]
         ]
     },
     {
-        "id": "e28cbfeda1399363",
+        "id": "de8f342a9556fc6e",
         "type": "ui-buttonpanel-button",
-        "z": "buttonpanel-demo-tab",
+        "z": "62c0589774be3f36",
         "name": "Disable",
         "group": "demo-dashboard-group-controls",
         "order": 2,
         "width": 1,
-        "height": 2,
-        "label": "",
-        "config": "text: Dis\nvalue: DISABLE\nicon: stop\n\n",
+        "config": "label: Button\ntext: Dis\nvalue: DISABLE\nicon: stop\n\n",
         "widgetType": "button",
         "waitForInput": false,
         "inputs": 1,
@@ -766,21 +747,19 @@
         "y": 780,
         "wires": [
             [
-                "c46806c60c22866d"
+                "10fd8c217c74a69f"
             ]
         ]
     },
     {
-        "id": "d6760ff6d2ceb53c",
+        "id": "35d3d7a80a999747",
         "type": "ui-buttonpanel-switch",
-        "z": "buttonpanel-demo-tab",
+        "z": "62c0589774be3f36",
         "name": "Lamp",
         "group": "demo-dashboard-group-display",
         "order": 1,
         "width": 3,
-        "height": 0,
-        "label": "Lamp",
-        "config": "input_timeout: 0\nvalues:\n  - value: OFF\n    text: Off\n    icon: toggle_off\n    color: \"#7f8790\"\n  - value: ON\n    text: On\n    icon: toggle_on\n    color: \"#52D017\"\n    confirm: Turn this on?\n    confirm_pin: 4",
+        "config": "label: Switch (r/o)\ninput_timeout: 0\nvalues:\n  - value: OFF\n    text: Off\n    icon: toggle_off\n    color: \"#7f8790\"\n  - value: ON\n    text: On\n    icon: toggle_on\n    color: \"#52D017\"\n    confirm: Turn this on?\n    confirm_pin: 4",
         "widgetType": "switch",
         "waitForInput": true,
         "inputs": 1,
@@ -791,9 +770,9 @@
         "wires": []
     },
     {
-        "id": "c46806c60c22866d",
+        "id": "10fd8c217c74a69f",
         "type": "function",
-        "z": "buttonpanel-demo-tab",
+        "z": "62c0589774be3f36",
         "name": "DIS",
         "func": "return {enabled: false};",
         "outputs": 1,
@@ -806,16 +785,16 @@
         "y": 780,
         "wires": [
             [
-                "8cd1891d2ba005ab",
-                "e28cbfeda1399363",
-                "45596cd7c23bf5b0"
+                "e9b9e1f771ac3ff4",
+                "de8f342a9556fc6e",
+                "ef78ae54c9b9a20a"
             ]
         ]
     },
     {
-        "id": "781baee934080a85",
+        "id": "f997ba222d71ec2e",
         "type": "function",
-        "z": "buttonpanel-demo-tab",
+        "z": "62c0589774be3f36",
         "name": "EN",
         "func": "return {enabled: true};",
         "outputs": 1,
@@ -828,16 +807,16 @@
         "y": 680,
         "wires": [
             [
-                "8cd1891d2ba005ab",
-                "45596cd7c23bf5b0",
-                "e28cbfeda1399363"
+                "e9b9e1f771ac3ff4",
+                "ef78ae54c9b9a20a",
+                "de8f342a9556fc6e"
             ]
         ]
     },
     {
-        "id": "45596cd7c23bf5b0",
+        "id": "ef78ae54c9b9a20a",
         "type": "function",
-        "z": "buttonpanel-demo-tab",
+        "z": "62c0589774be3f36",
         "name": "^",
         "func": "return {enabled: !msg.enabled};",
         "outputs": 1,
@@ -850,14 +829,14 @@
         "y": 680,
         "wires": [
             [
-                "49cc0f4309976433"
+                "d8f396ebf2eefa15"
             ]
         ]
     },
     {
-        "id": "69e60a6fd4b2dea9",
+        "id": "8f6ab6410759bc58",
         "type": "function",
-        "z": "buttonpanel-demo-tab",
+        "z": "62c0589774be3f36",
         "name": "On Start",
         "func": "\nreturn msg;",
         "outputs": 1,
@@ -870,7 +849,72 @@
         "y": 300,
         "wires": [
             [
-                "demo-initial-values"
+                "01af7a33e98550de"
+            ]
+        ]
+    },
+    {
+        "id": "1dfd0ec5b08fb609",
+        "type": "ui-buttonpanel-switch",
+        "z": "62c0589774be3f36",
+        "name": "Switch Fast Loopback",
+        "group": "demo-dashboard-group-controls",
+        "order": 6,
+        "width": 2,
+        "config": "label: Switch (fast loop back)\ntopic: demo/switch2\ninput_timeout: 10\nvalues:\n  - value: OFF\n    text: Off\n    icon: toggle_off\n    color: \"#7f8790\"\n  - value: ON\n    text: On\n    icon: toggle_on\n    color: \"#52D017\"\n",
+        "widgetType": "switch",
+        "waitForInput": true,
+        "inputs": 1,
+        "outputs": 1,
+        "readOnly": false,
+        "x": 860,
+        "y": 1100,
+        "wires": [
+            [
+                "14037a55e321a526",
+                "033982503286a1bc"
+            ]
+        ]
+    },
+    {
+        "id": "14037a55e321a526",
+        "type": "rbe",
+        "z": "62c0589774be3f36",
+        "name": "",
+        "func": "rbe",
+        "gap": "",
+        "start": "",
+        "inout": "out",
+        "septopics": true,
+        "property": "payload",
+        "topi": "topic",
+        "x": 1070,
+        "y": 1100,
+        "wires": [
+            [
+                "1dfd0ec5b08fb609"
+            ]
+        ]
+    },
+    {
+        "id": "b31721ea3ef5e2cd",
+        "type": "ui-buttonpanel-switch",
+        "z": "62c0589774be3f36",
+        "name": "Switch No Input",
+        "group": "demo-dashboard-group-controls",
+        "order": 7,
+        "width": 2,
+        "config": "label: Switch (no input)\ntopic: demo/switch3\ninput_timeout: 10\nvalues:\n  - value: OFF\n    text: Off\n    icon: toggle_off\n    color: \"#7f8790\"\n  - value: ON\n    text: On\n    icon: toggle_on\n    color: \"#52D017\"\n",
+        "widgetType": "switch",
+        "waitForInput": true,
+        "inputs": 1,
+        "outputs": 1,
+        "readOnly": false,
+        "x": 840,
+        "y": 1160,
+        "wires": [
+            [
+                "033982503286a1bc"
             ]
         ]
     },
@@ -966,11 +1010,11 @@
         }
     },
     {
-        "id": "c76b0340142c219c",
+        "id": "0456abd145daf6f2",
         "type": "global-config",
         "env": [],
         "modules": {
-            "@sourcesimian/node-red-dashboard-2-buttonpanel": "0.1.2",
+            "@sourcesimian/node-red-dashboard-2-buttonpanel": "0.1.3",
             "@flowfuse/node-red-dashboard": "1.30.2"
         }
     }

@@ -65,10 +65,10 @@ module.exports = function (RED) {
       const indent = rawLine.match(/^\s*/)[0].length
       const line = rawLine.trim()
 
-      if (indent === 0 && line.endsWith(':') && ['values', 'ranges', 'attributes'].includes(line.slice(0, -1).trim())) {
+      if (indent === 0 && line.endsWith(':')) {
         section = line.slice(0, -1).trim()
         current = null
-        parsed[section] = section === 'values' || section === 'ranges' ? [] : {}
+        parsed[section] = ['values', 'ranges'].includes(section) ? [] : {}
       } else if (indent === 0) {
         section = null
         current = null

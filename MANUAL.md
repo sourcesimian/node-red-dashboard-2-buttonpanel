@@ -44,8 +44,9 @@ widget is disabled. Messages without `enabled` leave the widget enabled.
 If an input message changes dynamic state such as `enabled` but `value_from` resolves to `undefined`, the widget keeps its current displayed value.
 
 Widgets with both input and output provide a **Wait for input** property. When it
-is enabled, the widget shows a waiting state after sending until the next input
-message arrives. When it is disabled, the widget only shows the sending state.
+is enabled, the widget shows a waiting state before and after sending until the
+next input message arrives. Tapping the waiting indicator clears that waiting
+state. When it is disabled, the widget only shows the sending state.
 
 For entries inside `values`, the top-level `topic`, `confirm`, `confirm_pin`,
 and `input_timeout` values are inherited unless the entry provides its own.
@@ -103,8 +104,8 @@ values:
 ## ButtonPanel Select Config
 
 Select maps incoming values to `values`. Tapping the widget opens a selection
-dialog. Each value can have its own `topic`, `confirm`, `confirm_pin`, and
-`input_timeout`.
+dialog. When **Read Only** is checked, the widget is display-only. Each value
+can have its own `topic`, `confirm`, `confirm_pin`, and `input_timeout`.
 
 ```yaml
 input_timeout: 0
@@ -188,6 +189,9 @@ input_timeout: 0
 Iframe is display-only. The incoming value is used as the iframe URL. The
 Dashboard node **Height** controls the outer grid frame. Iframes default to
 `scrolling: auto` and `overflow: auto`.
+
+Widgets that open a dialog can also take an optional `dialog.label` key to set
+the dialog title.
 
 ```yaml
 attributes:

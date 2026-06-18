@@ -1,6 +1,6 @@
 {
   "name": "@sourcesimian/node-red-dashboard-2-buttonpanel",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Compact Node-RED Dashboard 2.0 button panel widgets.",
   "author": "Source Simian",
   "repository": {
